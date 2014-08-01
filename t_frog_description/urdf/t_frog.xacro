@@ -20,11 +20,11 @@
   <!--
   <link name="world"/>
 
-  <joint name="fixed" type="fixed">
+  <joint name="continuous" type="continuous">
     <parent link="world"/>
     <child link="base_link"/>
   </joint>
-  -->  
+  -->
 
   <!-- Base Link -->
   <link name="base_link">
@@ -105,4 +105,26 @@
     <axis xyz="0 1 0"/>
     <limit effort="30" velocity="1.0"  lower="-100" upper="100" />
   </joint>
+  
+  <transmission name="tran1">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="left_wheel_hinge">
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+    </joint>   
+  <actuator name="left_motor">
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_wheel_hinge">
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+    </joint>  
+  <actuator name="right_motor">
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
 </robot>
