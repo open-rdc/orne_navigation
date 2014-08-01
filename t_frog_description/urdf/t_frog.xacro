@@ -52,26 +52,26 @@
   
   <link name="left_wheel">
     <collision name="collision">
-      <origin xyz=".1 0.13 .1" rpy="0 1.5707 1.5707"/>
+      <origin xyz="0 0.03 0" rpy="0 1.5707 1.5707"/>
       <geometry>
          <cylinder  length="0.05" radius="0.1"/>
       </geometry>
     </collision>
     <visual name="visual">
-      <origin xyz=".1 0.13 .1" rpy="0 1.5707 1.5707"/>
+      <origin xyz="0 0.03 0" rpy="0 1.5707 1.5707"/>
       <geometry>
         <cylinder  length="0.05" radius="0.1"/>
       </geometry>
     </visual>
     <inertial>
       <mass value="1e-5" />
-      <origin xyz=".1 0.13 .1"/>
+      <origin xyz="0 0.03 0"/>
       <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
     </inertial>
   </link>
   
   <joint type="revolute" name="left_wheel_hinge">
-    <origin xyz="0 0.03 0" rpy="0 0 0"/>
+    <origin xyz="0.1 0.13 0.1" rpy="0 0 0"/>
     <child link="left_wheel">left_wheel</child>
     <parent link="base_link">base_link</parent>
     <axis xyz="0 1 0"/>
@@ -80,92 +80,29 @@
   
   <link name="right_wheel">
     <collision name="collision">
-      <origin xyz="0.1 -0.13 0.1" rpy="0 1.5707 1.5707"/>
+      <origin xyz="0 -0.03 0" rpy="0 1.5707 1.5707"/>
       <geometry>
          <cylinder  length="0.05" radius="0.1"/>
       </geometry>
     </collision>
     <visual name="visual">
-      <origin xyz="0.1 -0.13 0.1" rpy="0 1.5707 1.5707"/>
+      <origin xyz="0 -0.03 0" rpy="0 1.5707 1.5707"/>
       <geometry>
         <cylinder  length="0.05" radius="0.1"/>
       </geometry>
     </visual>
     <inertial>
       <mass value="1e-5" />
-      <origin xyz="0.1 -0.13 0.1"/>
+      <origin xyz="0 -0.03 0"/>
       <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
     </inertial>
   </link>
   
   <joint type="revolute" name="right_wheel_hinge">
-    <origin xyz="0 -0.03 0" rpy="0 0 0"/>
+    <origin xyz="0.1 -0.13 0.1" rpy="0 0 0"/>
     <child link="right_wheel">right_wheel</child>
     <parent link="base_link">base_link</parent>
     <axis xyz="0 1 0"/>
     <limit effort="30" velocity="1.0"  lower="-100" upper="100" />
   </joint>
- 
-<!--
-  <joint name="left_wheel_hinge" type="revolute">
-    <parent link="chassis"/>
-    <child link="left_wheel"/>
-    <origin xyz="0 0 -0.03" rpy="0 0 0"/>
-    <axis xyz="0 1 0"/>
-  </joint>
-<link name="left_wheel">
-    <collision>
-      <origin xyz="0.1 0.13 0.1" rpy="0 1.5707 1.5707"/>
-      <geometry>
-        <cylinder>
-	  <radius>.1</radius>
-	  <length>.05</length>
-	</cylinder>
-      </geometry>
-    </collision>
-
-    <visual>
-      <origin xyz="0.1 0.13 0.1" rpy="0 1.5707 1.5707"/>
-      <geometry>
-        <cylinder>
-	  <radius>.1</radius>
-	  <length>.05</length>
-	</cylinder>
-      </geometry>
-      <material name="orange"/>
-    </visual>
-  </link>
-  
-  <joint name="right_wheel_hinge" type="revolute">
-    <parent link="chassis"/>
-    <child link="right_wheel"/>
-    <origin xyz="0 0 0.03" rpy="0 0 0"/>
-    <axis xyz="0 1 0"/>
-  </joint>
-
-  <link name="right_wheel">
-    <collision>
-      <origin xyz="0.1 -0.13 0.1" rpy="0 1.5707 1.5707"/>
-      <geometry>
-        <cylinder>
-	  <radius>.1</radius>
-	  <length>.05</length>
-	</cylinder>
-      </geometry>
-    </collision>
-
-    <visual>
-      <origin xyz="0.1 -0.13 0.1" rpy="0 1.5707 1.5707"/>
-      <geometry>
-        <cylinder>
-	  <radius>.1</radius>
-	  <length>.05</length>
-	</cylinder>
-      </geometry>
-      <material name="orange"/>
-    </visual>
-  </link>
-
--->
-
 </robot>
