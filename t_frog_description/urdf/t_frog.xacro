@@ -17,191 +17,155 @@
   <xacro:include filename="$(find t_frog_description)/urdf/materials.xacro" />
 
   <!-- Used for fixing robot to Gazebo 'base_link' -->
+  <!--
   <link name="world"/>
 
   <joint name="fixed" type="fixed">
     <parent link="world"/>
-    <child link="link1"/>
+    <child link="base_link"/>
   </joint>
+  -->  
 
   <!-- Base Link -->
-  <link name="link1">
+  <link name="base_link">
     <collision>
-      <origin xyz="0 0 ${height1/2}" rpy="0 0 0"/>
+      <origin xyz="0 0 .1" rpy="0 0 0"/>
       <geometry>
-	<box size="${width} ${width} ${height1}"/>
+	<box size=".4 .2 .1"/>
       </geometry>
     </collision>
 
     <visual>
-      <origin xyz="0 0 ${height1/2}" rpy="0 0 0"/>
+      <origin xyz="0 0 .1" rpy="0 0 0"/>
       <geometry>
-	<box size="${width} ${width} ${height1}"/>
+	<box size=".4 .2 .1"/>
       </geometry>
       <material name="orange"/>
     </visual>
 
     <inertial>
-      <origin xyz="0 0 ${height1/2}" rpy="0 0 0"/>
-      <mass value="1"/>
-      <inertia
-	  ixx="1.0" ixy="0.0" ixz="0.0"
-	  iyy="1.0" iyz="0.0"
-	  izz="1.0"/>
+       <mass value="1e-5" />
+       <origin xyz="0 0 .1 " rpy="0 0 0"/>
+       <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
     </inertial>
   </link>
-
-  <joint name="joint1" type="continuous">
-    <parent link="link1"/>
-    <child link="link2"/>
-    <origin xyz="0 ${width} ${height1 - axel_offset}" rpy="0 0 0"/>
-    <axis xyz="0 1 0"/>
-    <dynamics damping="0.7"/>
-  </joint>
-
-  <!-- Middle Link -->
-  <link name="link2">
-    <collision>
-      <origin xyz="0 0 ${height2/2 - axel_offset}" rpy="0 0 0"/>
+  
+  <link name="left_wheel">
+    <collision name="collision">
+      <origin xyz=".1 0.13 .1" rpy="0 1.5707 1.5707"/>
       <geometry>
-	<box size="${width} ${width} ${height2}"/>
+         <cylinder  length="0.05" radius="0.1"/>
       </geometry>
     </collision>
-
-    <visual>
-      <origin xyz="0 0 ${height2/2 - axel_offset}" rpy="0 0 0"/>
+    <visual name="visual">
+      <origin xyz=".1 0.13 .1" rpy="0 1.5707 1.5707"/>
       <geometry>
-	<box size="${width} ${width} ${height2}"/>
+        <cylinder  length="0.05" radius="0.1"/>
       </geometry>
-      <material name="black"/>
     </visual>
-
     <inertial>
-      <origin xyz="0 0 ${height2/2 - axel_offset}" rpy="0 0 0"/>
-      <mass value="1"/>
-      <inertia
-	  ixx="1.0" ixy="0.0" ixz="0.0"
-	  iyy="1.0" iyz="0.0"
-	  izz="1.0"/>
+      <mass value="1e-5" />
+      <origin xyz=".1 0.13 .1"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
     </inertial>
   </link>
-
-  <joint name="joint2" type="continuous">
-    <parent link="link2"/>
-    <child link="link3"/>
-    <origin xyz="0 ${width} ${height2 - axel_offset*2}" rpy="0 0 0"/>
+  
+  <joint type="revolute" name="left_wheel_hinge">
+    <origin xyz="0 0.03 0" rpy="0 0 0"/>
+    <child link="left_wheel">left_wheel</child>
+    <parent link="base_link">base_link</parent>
     <axis xyz="0 1 0"/>
-    <dynamics damping="0.7"/>
-  </joint>
-
-  <!-- Top Link -->
-  <link name="link3">
-    <collision>
-      <origin xyz="0 0 ${height3/2 - axel_offset}" rpy="0 0 0"/>
+    <limit effort="30" velocity="1.0"  lower="-100" upper="100" />
+  </joint> 
+  
+  <link name="right_wheel">
+    <collision name="collision">
+      <origin xyz="0.1 -0.13 0.1" rpy="0 1.5707 1.5707"/>
       <geometry>
-	<box size="${width} ${width} ${height3}"/>
+         <cylinder  length="0.05" radius="0.1"/>
+      </geometry>
+    </collision>
+    <visual name="visual">
+      <origin xyz="0.1 -0.13 0.1" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder  length="0.05" radius="0.1"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0.1 -0.13 0.1"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+  
+  <joint type="revolute" name="right_wheel_hinge">
+    <origin xyz="0 -0.03 0" rpy="0 0 0"/>
+    <child link="right_wheel">right_wheel</child>
+    <parent link="base_link">base_link</parent>
+    <axis xyz="0 1 0"/>
+    <limit effort="30" velocity="1.0"  lower="-100" upper="100" />
+  </joint>
+ 
+<!--
+  <joint name="left_wheel_hinge" type="revolute">
+    <parent link="chassis"/>
+    <child link="left_wheel"/>
+    <origin xyz="0 0 -0.03" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+<link name="left_wheel">
+    <collision>
+      <origin xyz="0.1 0.13 0.1" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder>
+	  <radius>.1</radius>
+	  <length>.05</length>
+	</cylinder>
       </geometry>
     </collision>
 
     <visual>
-      <origin xyz="0 0 ${height3/2 - axel_offset}" rpy="0 0 0"/>
+      <origin xyz="0.1 0.13 0.1" rpy="0 1.5707 1.5707"/>
       <geometry>
-	<box size="${width} ${width} ${height3}"/>
+        <cylinder>
+	  <radius>.1</radius>
+	  <length>.05</length>
+	</cylinder>
       </geometry>
       <material name="orange"/>
     </visual>
-
-    <inertial>
-      <origin xyz="0 0 ${height3/2 - axel_offset}" rpy="0 0 0"/>
-      <mass value="1"/>
-      <inertia
-	  ixx="1.0" ixy="0.0" ixz="0.0"
-	  iyy="1.0" iyz="0.0"
-	  izz="1.0"/>
-    </inertial>
   </link>
-
-  <joint name="hokuyo_joint" type="fixed">
-    <axis xyz="0 1 0" />
-    <origin xyz="0 0 ${height3 - axel_offset/2}" rpy="0 0 0"/>
-    <parent link="link3"/>
-    <child link="hokuyo_link"/>
+  
+  <joint name="right_wheel_hinge" type="revolute">
+    <parent link="chassis"/>
+    <child link="right_wheel"/>
+    <origin xyz="0 0 0.03" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
   </joint>
 
-  <!-- Hokuyo Laser -->
-  <link name="hokuyo_link">
+  <link name="right_wheel">
     <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0.1 -0.13 0.1" rpy="0 1.5707 1.5707"/>
       <geometry>
-	<box size="0.1 0.1 0.1"/>
+        <cylinder>
+	  <radius>.1</radius>
+	  <length>.05</length>
+	</cylinder>
       </geometry>
     </collision>
 
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0.1 -0.13 0.1" rpy="0 1.5707 1.5707"/>
       <geometry>
-        <mesh filename="package://t_frog_description/meshes/hokuyo.dae"/>
+        <cylinder>
+	  <radius>.1</radius>
+	  <length>.05</length>
+	</cylinder>
       </geometry>
+      <material name="orange"/>
     </visual>
-
-    <inertial>
-      <mass value="1e-5" />
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
-    </inertial>
   </link>
 
-  <joint name="camera_joint" type="fixed">
-    <axis xyz="0 1 0" />
-    <origin xyz="${camera_link} 0 ${height3 - axel_offset*2}" rpy="0 0 0"/>
-    <parent link="link3"/>
-    <child link="camera_link"/>
-  </joint>
-
-  <!-- Camera -->
-  <link name="camera_link">
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-	<box size="${camera_link} ${camera_link} ${camera_link}"/>
-      </geometry>
-    </collision>
-
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-	<box size="${camera_link} ${camera_link} ${camera_link}"/>
-      </geometry>
-      <material name="red"/>
-    </visual>
-
-    <inertial>
-      <mass value="1e-5" />
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
-    </inertial>
-  </link>
-
-  <transmission name="tran1">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="joint1">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
-    </joint>   
-  <actuator name="motor1">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-
-  <transmission name="tran2">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="joint2">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
-    </joint>  
-  <actuator name="motor2">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
+-->
 
 </robot>
