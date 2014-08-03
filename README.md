@@ -1,2 +1,2 @@
-t-frog-navigation
+t_frog_ros_pkgs
 =================
