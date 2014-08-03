@@ -1,0 +1,3 @@
+[submodule "t_frog_gazebo"]
+	path = t_frog_gazebo
+	url = git://github.com/open-rdc/t_frog_gazebo.git
