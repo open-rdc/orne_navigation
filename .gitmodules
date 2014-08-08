@@ -1,3 +1,6 @@
 [submodule "t_frog_gazebo"]
 	path = t_frog_gazebo
 	url = https://github.com/open-rdc/t_frog_gazebo
+[submodule "t_frog_driver"]
+	path = t_frog_driver
+	url = https://github.com/open-rdc/t_frog_driver
