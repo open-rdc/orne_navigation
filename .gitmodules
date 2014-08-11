@@ -7,3 +7,6 @@
 [submodule "t_frog_navigation"]
 	path = t_frog_navigation
 	url = https://github.com/open-rdc/t_frog_navigation
+[submodule "t_frog_slam"]
+	path = t_frog_slam
+	url = https://github.com/open-rdc/t_frog_slam
