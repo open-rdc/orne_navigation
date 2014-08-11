@@ -4,3 +4,6 @@
 [submodule "t_frog_driver"]
 	path = t_frog_driver
 	url = https://github.com/open-rdc/t_frog_driver
+[submodule "t_frog_navigation"]
+	path = t_frog_navigation
+	url = https://github.com/open-rdc/t_frog_navigation
