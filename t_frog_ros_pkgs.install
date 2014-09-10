@@ -1,0 +1,12 @@
+- git:
+    uri: https://github.com/open-rdc/t_frog_driver
+    local-name: t_frog_driver
+- git:
+    uri: https://github.com/open-rdc/t_frog_gazebo
+    local-name: t_frog_gazebo
+- git:
+    uri: https://github.com/open-rdc/t_frog_navigation
+    local-name: t_frog_navigation
+- git:
+    uri: https://github.com/open-rdc/t_frog_slam
+    local-name: t_frog_slam
