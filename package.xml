@@ -5,7 +5,7 @@
   <description>The t_frog_ros_pkgs package</description>
   <maintainer email="method_aspect_card@yahoo.co.jp">Daiki Maekawa</maintainer>
   <author>Daiki Maekawa</author>
-  <license>BSD</license>
+  <license>MIT</license>
   <buildtool_depend>catkin</buildtool_depend>
   <run_depend>t_frog_driver</run_depend>
   <run_depend>t_frog_slam</run_depend>
