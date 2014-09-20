@@ -10,3 +10,7 @@
 - git:
     uri: https://github.com/open-rdc/t_frog_slam
     local-name: t_frog_slam
+
+- git:
+    uri: https://github.com/open-rdc/t_frog_localization
+    local-name: t_frog_localization
