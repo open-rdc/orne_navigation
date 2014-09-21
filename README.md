@@ -19,7 +19,7 @@ $ wstool init
 $ wstool merge t_frog_ros_pkgs.install
 $ wstool update
 $ cd ..
-$ rosdep install --from-paths . --ignore-src --rosdistro `$ROS_DISTRO` -y
+$ rosdep install --from-paths . --ignore-src --rosdistro $ROS_DISTRO -y
 $ catkin_make
 ```
 
