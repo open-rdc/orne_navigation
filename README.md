@@ -16,7 +16,7 @@ t_frog_gazebo | https://github.com/open-rdc/t_frog_gazebo
 ```sh
 $ cd CATKIN_WORKSPACE/src
 $ wstool init
-$ wstool merge t_frog_ros_pkgs.rosinstall
+$ wstool merge t_frog_ros_pkgs.install
 $ wstool update
 $ cd ..
 $ rosdep install --from-paths . --ignore-src --rosdistro `$ROS_DISTRO` -y
