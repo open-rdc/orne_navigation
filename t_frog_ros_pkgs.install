@@ -1,4 +1,7 @@
 - git:
+    uri: https://github.com/open-rdc/t_frog_ros_pkgs
+    local-name: t_frog_ros_pkgs
+- git:
     uri: https://github.com/open-rdc/t_frog_driver
     local-name: t_frog_driver
 - git:
