@@ -1,16 +1,21 @@
 - git:
     uri: https://github.com/open-rdc/t_frog_ros_pkgs
     local-name: t_frog_ros_pkgs
+    version: master
 - git:
     uri: https://github.com/open-rdc/t_frog_driver
     local-name: t_frog_driver
+    version: master
 - git:
     uri: https://github.com/open-rdc/t_frog_gazebo
     local-name: t_frog_gazebo
+    version: master
 - git:
     uri: https://github.com/open-rdc/t_frog_navigation
     local-name: t_frog_navigation
+    version: master
 - git:
     uri: https://github.com/open-rdc/t_frog_slam
     local-name: t_frog_slam
+    version: master
 
