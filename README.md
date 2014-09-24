@@ -24,6 +24,10 @@ $ rosdep install --from-paths . --ignore-src --rosdistro $ROS_DISTRO -y
 $ catkin_make
 ```
 
+## Bugs
+
+If you find a bug please let me know by opening an issue at: https://github.com/open-rdc/t_frog_ros_pkgs/issues
+
 ## License
 
 License-check is open source software under the [MIT license](https://github.com/open-rdc/t_frog_ros_pkgs/blob/master/LICENSE).
