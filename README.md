@@ -26,19 +26,19 @@ $ catkin_make
 
 ## Usage
 
-### Setup
+#### Setup
 
 ```sh
 $ ./t-frog.sh
 ```
 
-### Build map
+#### Build map
 
 ```sh
 $ roslaunch t_frog_slam build_map_teleop.launch
 ```
 
-### Navigation
+#### Navigation
 
 ```sh
 $ roslanch t_frog_navigation nav_static_map.launch
