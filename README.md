@@ -26,6 +26,12 @@ $ catkin_make
 
 ## Usage
 
+### Setup
+
+```sh
+$ ./t-frog.sh
+```
+
 ### Build map
 
 ```sh
