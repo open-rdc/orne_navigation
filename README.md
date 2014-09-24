@@ -24,6 +24,20 @@ $ rosdep install --from-paths . --ignore-src --rosdistro $ROS_DISTRO -y
 $ catkin_make
 ```
 
+## Usage
+
+### Build map
+
+```sh
+$ roslaunch t_frog_slam build_map_teleop.launch
+```
+
+### Navigation
+
+```sh
+$ roslanch t_frog_navigation nav_static_map.launch
+```
+
 ## Bugs
 
 If you find a bug please let me know by opening an issue at: https://github.com/open-rdc/t_frog_ros_pkgs/issues
