@@ -13,6 +13,8 @@ t_frog_gazebo | https://github.com/open-rdc/t_frog_gazebo
 
 ## Install
 
+Install ROS software (recommended ROS indigo version with Ubuntu 14.04LTS) at http://www.ros.org/wiki/ROS/Installation, please select Ubuntu platform. 
+
 ```sh
 $ cd CATKIN_WORKSPACE/src
 $ wstool init
