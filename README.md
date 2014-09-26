@@ -1,8 +1,8 @@
 t_frog_ros_pkgs
 =================
-This repository contains metapackages and files for installation/use of the T-frog.
+This repository contains metapackages and files for installation/use of the i-Cart mini.
 
-## Other T-frog Repositories
+## Other i-Cart mini Repositories
 
 Package | Repository URL
 ------- | --------------
