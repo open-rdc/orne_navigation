@@ -1,4 +1,4 @@
-t_frog_ros_pkgs
+icart_mini_ros_pkgs
 =================
 This repository contains metapackages and files for installation/use of the i-Cart mini.
 
@@ -18,8 +18,8 @@ Install ROS software (recommended ROS indigo version with Ubuntu 14.04LTS) at ht
 ```sh
 $ cd CATKIN_WORKSPACE/src
 $ wstool init
-$ git clone https://github.com/open-rdc/t_frog_ros_pkgs
-$ wstool merge t_frog_ros_pkgs/t_frog_ros_pkgs.install
+$ git clone https://github.com/open-rdc/icart_mini_ros_pkgs
+$ wstool merge icart_mini_ros_pkgs/icart_mini_ros_pkgs.install
 $ wstool update
 $ cd ..
 $ rosdep install --from-paths . --ignore-src --rosdistro $ROS_DISTRO -y
@@ -31,7 +31,7 @@ $ catkin_make
 #### Setup
 
 ```sh
-$ ./t-frog.sh
+$ ./icart-mini.sh
 ```
 
 #### Build map
@@ -48,8 +48,8 @@ $ roslanch t_frog_navigation nav_static_map.launch
 
 ## Bugs
 
-If you find a bug please let me know by opening an issue at: https://github.com/open-rdc/t_frog_ros_pkgs/issues
+If you find a bug please let me know by opening an issue at: https://github.com/open-rdc/icart_mini_ros_pkgs/issues
 
 ## License
 
-License-check is open source software under the [MIT license](https://github.com/open-rdc/t_frog_ros_pkgs/blob/master/LICENSE).
+License-check is open source software under the [MIT license](https://github.com/open-rdc/icart_mini_ros_pkgs/blob/master/LICENSE).
