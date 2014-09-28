@@ -1,4 +1,4 @@
-ypspur-coordinator -p icart-mini.param -d /dev/sensors/t_frog &
+ypspur-coordinator -p icart-mini.param -d /dev/sensors/icart-mini &
 while true
 do
 isAlive=`ps -ef | grep " ypspur-coordinator " | \
@@ -7,7 +7,7 @@ if [ $isAlive = 1 ]; then
 : #Idling
 else
 echo "ypspur restart"
-ypspur-coordinator -p icart-mini.param -d /dev/sensors/t_frog &
+ypspur-coordinator -p icart-mini.param -d /dev/sensors/icart-mini &
 fi
 sleep 1
 done

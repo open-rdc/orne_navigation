@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>t_frog_ros_pkgs</name>
+  <name>icart_mini_ros_pkgs</name>
   <version>0.0.1</version>
-  <description>The t_frog_ros_pkgs package</description>
+  <description>The icart_mini_ros_pkgs package</description>
   <maintainer email="method_aspect_card@yahoo.co.jp">Daiki Maekawa</maintainer>
   <author>Daiki Maekawa</author>
   <license>MIT</license>
