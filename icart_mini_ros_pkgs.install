@@ -1,6 +1,6 @@
 - git:
-    uri: https://github.com/open-rdc/t_frog_ros_pkgs
-    local-name: t_frog_ros_pkgs
+    uri: https://github.com/open-rdc/icart_mini_ros_pkgs
+    local-name: icart_mini_ros_pkgs
     version: master
 - git:
     uri: https://github.com/open-rdc/t_frog_driver
