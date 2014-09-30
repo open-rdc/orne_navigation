@@ -3,15 +3,15 @@
     local-name: icart_mini_ros_pkgs
     version: master
 - git:
-    uri: https://github.com/open-rdc/t_frog_driver
-    local-name: t_frog_driver
+    uri: https://github.com/open-rdc/icart_mini_driver
+    local-name: icart_mini_driver
     version: master
 - git:
     uri: https://github.com/open-rdc/icart_mini_gazebo
     local-name: icart_mini_gazebo
     version: master
 - git:
-    uri: https://github.com/open-rdc/t_frog_navigation
-    local-name: t_frog_navigation
+    uri: https://github.com/open-rdc/icart_mini_navigation
+    local-name: icart_mini_navigation
     version: master
 
