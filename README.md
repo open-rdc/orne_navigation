@@ -6,9 +6,9 @@ This repository contains metapackages and files for installation/use of the i-Ca
 
 Package | Repository URL
 ------- | --------------
-t_frog_driver | https://github.com/open-rdc/t_frog_driver
-t_frog_navigation | https://github.com/open-rdc/t_frog_navigation
-t_frog_gazebo | https://github.com/open-rdc/t_frog_gazebo
+icart_mini_driver | https://github.com/open-rdc/icart_mini_driver
+icart_mini_navigation | https://github.com/open-rdc/icart_mini_navigation
+icart_mini_gazebo | https://github.com/open-rdc/icart_mini_gazebo
 
 ## Install
 
