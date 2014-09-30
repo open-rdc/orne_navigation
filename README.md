@@ -51,7 +51,7 @@ $ roslaunch icart_mini_navigation build_map_teleop.launch
 #### Navigation
 
 ```sh
-$ roslanch icart_mini_navigation nav_static_map.launch
+$ roslaunch icart_mini_navigation nav_static_map.launch
 ```
 
 ## Bugs
