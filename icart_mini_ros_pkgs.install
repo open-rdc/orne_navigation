@@ -14,8 +14,4 @@
     uri: https://github.com/open-rdc/t_frog_navigation
     local-name: t_frog_navigation
     version: master
-- git:
-    uri: https://github.com/open-rdc/t_frog_slam
-    local-name: t_frog_slam
-    version: master
 
