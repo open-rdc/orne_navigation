@@ -45,13 +45,13 @@ $ roslaunch icart_mini_driver icart_mini_drive.launch
 #### Build map
 
 ```sh
-$ roslaunch t_frog_slam build_map_teleop.launch
+$ roslaunch icart_mini_navigation build_map_teleop.launch
 ```
 
 #### Navigation
 
 ```sh
-$ roslanch t_frog_navigation nav_static_map.launch
+$ roslanch icart_mini_navigation nav_static_map.launch
 ```
 
 ## Bugs
