@@ -9,7 +9,7 @@
   <buildtool_depend>catkin</buildtool_depend>
   <run_depend>t_frog_driver</run_depend>
   <run_depend>t_frog_slam</run_depend>
-  <run_depend>t_frog_gazebo</run_depend>
+  <run_depend>icart_mini_gazebo</run_depend>
   <run_depend>t_frog_control</run_depend>
   <run_depend>t_frog_description</run_depend>
   <run_depend>t_frog_navigation</run_depend>
