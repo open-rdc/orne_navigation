@@ -29,8 +29,17 @@ $ catkin_make
 
 #### Setup
 
+ * running simulator
+
+```sh
+$ roslaunch icart_mini_gazebo icart_mini.launch
+```
+
+ * start-up real robot
+
 ```sh
 $ ./icart-mini.sh
+$ roslaunch icart_mini_driver icart_mini_drive.launch
 ```
 
 #### Build map
