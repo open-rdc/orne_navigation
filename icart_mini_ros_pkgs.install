@@ -14,4 +14,7 @@
     uri: https://github.com/open-rdc/icart_mini_navigation
     local-name: icart_mini_navigation
     version: master
-
+- git:
+    uri: https://github.com/open-rdc/adis_imu_drivers
+    local-name: adis_imu_drivers
+    version: master
