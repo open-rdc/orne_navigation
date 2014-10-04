@@ -60,4 +60,4 @@ If you find a bug please let me know by opening an issue at: https://github.com/
 
 ## License
 
-License-check is open source software under the [MIT license](https://github.com/open-rdc/icart_mini_ros_pkgs/blob/master/LICENSE).
+License-check is open source software under the [BSD license](https://github.com/open-rdc/icart_mini_ros_pkgs/blob/master/LICENSE).
