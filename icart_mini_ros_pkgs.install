@@ -3,8 +3,8 @@
     local-name: icart_mini_ros_pkgs
     version: master
 - git:
-    uri: https://github.com/open-rdc/icart_mini_driver
-    local-name: icart_mini_driver
+    uri: https://github.com/open-rdc/icart_mini_core
+    local-name: icart_mini_core
     version: master
 - git:
     uri: https://github.com/open-rdc/icart_mini_gazebo
