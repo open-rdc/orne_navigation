@@ -6,7 +6,7 @@ This repository contains metapackages and files for installation/use of the i-Ca
 
 Package | Repository URL
 ------- | --------------
-icart_mini_driver | https://github.com/open-rdc/icart_mini_driver
+icart_mini_core | https://github.com/open-rdc/icart_mini_core
 icart_mini_navigation | https://github.com/open-rdc/icart_mini_navigation
 icart_mini_gazebo | https://github.com/open-rdc/icart_mini_gazebo
 
