@@ -20,8 +20,8 @@ $ wstool init
 $ git clone https://github.com/open-rdc/icart_mini_ros_pkgs
 $ wstool merge icart_mini_ros_pkgs/icart_mini_ros_pkgs.install
 $ wstool update
-$ cd ..
 $ rosdep install --from-paths . --ignore-src --rosdistro $ROS_DISTRO -y
+$ cd ..
 $ catkin_make
 ```
 
