@@ -29,13 +29,15 @@ $ catkin_make
 
 #### Setup
 
- * running simulator
+The following will show the commands needed to bring up either real or simulated robots.
+
+ * Bring up the simulated robot
 
 ```sh
 $ roslaunch icart_mini_gazebo icart_mini.launch
 ```
 
- * start-up real robot
+ * Bring up the real robot
 
 ```sh
 $ ./icart-mini.sh
