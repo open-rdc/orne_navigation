@@ -27,7 +27,7 @@ $ catkin_make
 
 ## Usage
 
-#### Setup
+#### Bring up the real/simulated robot
 
 The following will show the commands needed to bring up either real or simulated robots.
 
