@@ -50,6 +50,12 @@ $ roslaunch icart_mini_driver icart_mini_drive.launch
 $ roslaunch icart_mini_navigation build_map_teleop.launch
 ```
 
+#### Record the waypoints
+
+```sh
+$ roslaunch icart_mini_navigation record_waypoints_viz.launch
+```
+
 #### Navigation
 
 ```sh
