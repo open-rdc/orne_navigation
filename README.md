@@ -56,7 +56,7 @@ $ roslaunch icart_mini_navigation build_map_teleop.launch
 $ roslaunch icart_mini_navigation record_waypoints_viz.launch
 ```
 
-#### 
+#### Navigation
 
  * Waypoint Navigation
 
