@@ -56,7 +56,15 @@ $ roslaunch icart_mini_navigation build_map_teleop.launch
 $ roslaunch icart_mini_navigation record_waypoints_viz.launch
 ```
 
-#### Path Planning and Navigation in static map
+#### 
+
+ * Waypoint Navigation
+
+```sh
+$ roslaunch icart_mini_navigation play_waypoints_nav.launch
+```
+
+ * Path Planning and Navigation in static map
 
 ```sh
 $ roslaunch icart_mini_navigation nav_static_map.launch
