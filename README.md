@@ -52,8 +52,16 @@ $ roslaunch icart_mini_navigation build_map_teleop.launch
 
 #### Record the waypoints
 
+ * Using the publish point on RViz
+
 ```sh
 $ roslaunch icart_mini_navigation record_waypoints_viz.launch
+```
+
+ * Using the Joystick
+
+```sh
+$ roslaunch icart_mini_navigation record_waypoints_joy.launch
 ```
 
 #### Navigation
