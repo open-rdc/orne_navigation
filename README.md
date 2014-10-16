@@ -78,9 +78,9 @@ $ roslaunch icart_mini_navigation play_waypoints_nav.launch
 $ roslaunch icart_mini_navigation nav_static_map.launch
 ```
 
-## Bugs
+## Bugs & Task Management
 
-If you find a bug please let me know by opening an issue at: https://github.com/open-rdc/icart_mini_ros_pkgs/issues
+https://github.com/open-rdc/icart_mini_ros_pkgs/issues
 
 ## License
 
