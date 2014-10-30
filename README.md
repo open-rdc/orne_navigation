@@ -2,6 +2,8 @@ icart_mini_ros_pkgs
 =================
 This repository contains metapackages and files for installation/use of the i-Cart mini.
 
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/open-rdc/icart_mini_ros_pkgs/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
 ## Other i-Cart mini Repositories
 
 Package | Repository URL
@@ -85,7 +87,3 @@ https://github.com/open-rdc/icart_mini_ros_pkgs/issues
 ## License
 
 License-check is open source software under the [BSD license](https://github.com/open-rdc/icart_mini_ros_pkgs/blob/master/LICENSE).
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/open-rdc/icart_mini_ros_pkgs/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
