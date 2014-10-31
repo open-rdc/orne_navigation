@@ -2,8 +2,6 @@ icart_mini_ros_pkgs
 =================
 This repository contains metapackages and files for installation/use of the i-Cart mini.
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/open-rdc/icart_mini_ros_pkgs/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
 ## Other i-Cart mini Repositories
 
 Package | Repository URL
