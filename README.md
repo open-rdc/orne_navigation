@@ -46,6 +46,12 @@ $ ./icart-mini.sh
 $ roslaunch icart_mini_driver icart_mini_drive.launch
 ```
 
+#### Teleoperation with a joystick
+
+```sh
+$ roslaunch icart_mini_driver teleop_joy.launch
+```
+
 #### Build map
 
 ```sh
