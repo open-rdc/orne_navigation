@@ -23,7 +23,3 @@
     local-name: ros_controllers
     version: indigo-devel
 
-- git:
-    uri: https://github.com/yujinrobot/navigation
-    local-name: navigation
-    version: 0ad55d3799e3ac4f988f5190632a71a080b39a65
