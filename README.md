@@ -1,4 +1,4 @@
-icart_mini_ros_pkgs
+TsukubaChallenge
 =================
 This repository contains metapackages and files for installation/use of the i-Cart mini.
 
