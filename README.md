@@ -2,7 +2,7 @@ TsukubaChallenge
 =================
 This repository is bugs and tasks management for Tsukuba Challenge.
 
-## Other i-Cart mini Repositories
+## i-Cart mini Repositories
 
 Package | Repository URL
 ------- | --------------
