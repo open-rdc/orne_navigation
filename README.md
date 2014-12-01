@@ -1,6 +1,6 @@
 TsukubaChallenge
 =================
-This repository contains metapackages and files for installation/use of the i-Cart mini.
+This repository is bugs and tasks management for Tsukuba Challenge.
 
 ## Other i-Cart mini Repositories
 
