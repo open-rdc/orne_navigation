@@ -2,13 +2,9 @@ TsukubaChallenge
 =================
 This repository is bugs and tasks management for Tsukuba Challenge.
 
-## i-Cart mini Repositories
+## i-Cart mini Repository
 
-Package | Repository URL
-------- | --------------
-icart_mini_core | https://github.com/open-rdc/icart_mini_core
-icart_mini_navigation | https://github.com/open-rdc/icart_mini_navigation
-icart_mini_gazebo | https://github.com/open-rdc/icart_mini_gazebo
+https://github.com/open-rdc/icart_mini
 
 ## Install
 
