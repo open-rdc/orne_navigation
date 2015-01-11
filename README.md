@@ -3,6 +3,7 @@ TsukubaChallenge
 
 This repository is bugs and tasks management for Tsukuba Challenge.
 
+
 [![Throughput Graph](https://graphs.waffle.io/open-rdc/tsukubachallenge/throughput.svg)](https://waffle.io/open-rdc/tsukubachallenge/metrics) 
 
 
