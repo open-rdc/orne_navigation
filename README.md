@@ -15,7 +15,7 @@ This repository is bugs and tasks management for Tsukuba Challenge.
 
 ## Bugs & Tasks
 
-https://github.com/open-rdc/icart_mini_ros_pkgs/issues
+https://github.com/open-rdc/TsukubaChallenge/issues
 
 ## License
 
