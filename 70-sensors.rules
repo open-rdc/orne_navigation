@@ -1,3 +1,3 @@
-SUBSYSTEMS=="usb", KERNEL=="ttyACM*", ACTION=="add", ATTRS{product}=="URG-Series USB Driver", MODE="666", SYMLINK+="sensors/hokuyo_urg" GROUP="dialout"
+SUBSYSTEMS=="usb", KERNEL=="ttyACM*", ACTION=="add", ATTRS{product}=="URG-Series USB Driver", MODE="666", SYMLINK+="sensors/hokuyo_urg%n" GROUP="dialout"
 SUBSYSTEMS=="usb", KERNEL=="ttyACM*", ACTION=="add", ATTRS{product}=="T-frog Driver", MODE="666", SYMLINK+="sensors/icart-mini", GROUP="dialout"
-SUBSYSTEMS=="usb", KERNEL=="ttyUSB*", ACTION=="add", ATTRS{product}=="FT232R USB UART", MODE="666", SYMLINK+="sensors/imu", GROUP="dialout"
+SUBSYSTEMS=="usb", KERNEL=="ttyUSB*", ACTION=="add", ATTRS{product}=="FT232R USB UART", MODE="666", SYMLINK+="sensors/ftdi%n", GROUP="dialout"
