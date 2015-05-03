@@ -1,4 +1,4 @@
-TsukubaChallenge
+orne_navigation
 =================
 
 This repository is bugs and tasks management for Tsukuba Challenge.
