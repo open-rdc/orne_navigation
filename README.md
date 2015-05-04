@@ -6,7 +6,7 @@ This repository provide basic navigation system for Tsukuba Challenge using i-Ca
 [![Throughput Graph](https://graphs.waffle.io/open-rdc/tsukubachallenge/throughput.svg)](https://waffle.io/open-rdc/tsukubachallenge/metrics) 
 
 
-## Development Repositories
+## Dependency Repositories
 
 * https://github.com/open-rdc/icart_mini
 
