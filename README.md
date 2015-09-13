@@ -14,6 +14,10 @@ This repository provide basic navigation system for Tsukuba Challenge using i-Ca
 
 * https://github.com/open-rdc/adis_imu_drivers
 
+* https://github.com/open-rdc/orne_maps
+
+* https://github.com/open-rdc/orne_icart_designs
+
 ## Bugs & Tasks
 
 https://github.com/open-rdc/TsukubaChallenge/issues
