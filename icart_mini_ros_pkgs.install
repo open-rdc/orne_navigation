@@ -1,25 +1,20 @@
 - git:
-    uri: https://github.com/open-rdc/icart_mini_ros_pkgs
-    local-name: icart_mini_ros_pkgs
-    version: indigo-devel
-- git:
-    uri: https://github.com/open-rdc/icart_mini_core
-    local-name: icart_mini_core
-    version: indigo-devel
-- git:
-    uri: https://github.com/open-rdc/icart_mini_gazebo
-    local-name: icart_mini_gazebo
-    version: indigo-devel
-- git:
-    uri: https://github.com/open-rdc/icart_mini_navigation
-    local-name: icart_mini_navigation
+    uri: https://github.com/open-rdc/icart_mini
+    local-name: icart_mini
     version: indigo-devel
 - git:
     uri: https://github.com/open-rdc/adis_imu_drivers
     local-name: adis_imu_drivers
     version: indigo-devel
+#- git:
+#    uri: https://github.com/ros-controls/ros_controllers
+#    local-name: ros_controllers
+#    version: indigo-devel
 - git:
-    uri: https://github.com/ros-controls/ros_controllers
-    local-name: ros_controllers
+    uri: https://github.com/DaikiMaekawa/fulanghua_navigation
+    local-name: fulanghua_navigation
+    version: master
+- git:
+    uri: https://github.com/open-rdc/orne_navigation
+    local-name: orne_navigation
     version: indigo-devel
-
