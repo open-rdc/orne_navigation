@@ -4,23 +4,16 @@
   <version>0.0.0</version>
   <description>The orne_gazebo package</description>
 
-  <maintainer email="ubuntu1404@todo.todo">ubuntu1404</maintainer>
+  <maintainer email="d.maekawa@rapyuta-robotics.com">Daiki Maekawa</maintainer>
 
   <license>BSD</license>
 
-  <!-- Author tags are optional, mutiple are allowed, one per tag -->
-  <!-- Authors do not have to be maintianers, but could be -->
-  <!-- Example: -->
-  <!-- <author email="jane.doe@example.com">Jane Doe</author> -->
-
+  <author email="d.maekawa@rapyuta-robotics.com">Daiki Maekawa</author>
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>icart_mini_gazebo</build_depend>
   <run_depend>icart_mini_gazebo</run_depend>
 
-  <!-- The export tag contains other, unspecified, tags -->
   <export>
-    <!-- Other tools can request additional information be placed here -->
-
   </export>
 </package>
