@@ -1,0 +1,4 @@
+# orne_β
+
+scan_dev: /dev/sensors/hokuyo_urg
+imu_dev: /dev/sensors/imu

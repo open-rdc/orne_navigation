@@ -6,5 +6,6 @@ echo ""
 echo "Create robot parameters for ypspur"
 echo ""
 
-sudo cp `rospack find orne_setup`/config/icart-mini.param /usr/local/share/robot-params
+PARAM=${1:-/config/icart-mini.param}
+sudo cp `rospack find orne_setup`$PARAM /usr/local/share/robot-params
 

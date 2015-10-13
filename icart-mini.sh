@@ -1,5 +1,4 @@
-PARAM=${1:-icart-mini.param}
-ypspur-coordinator -p $PARAM -d /dev/sensors/icart-mini &
+ypspur-coordinator -p icart-mini.param -d /dev/sensors/icart-mini &
 while true
 do
 isAlive=`ps -ef | grep " ypspur-coordinator " | \
@@ -8,7 +7,7 @@ if [ $isAlive = 1 ]; then
 : #pass
 else
 echo "ypspur restart"
-ypspur-coordinator -p $PARAM -d /dev/sensors/icart-mini &
+ypspur-coordinator -p icart-mini.param -d /dev/sensors/icart-mini &
 fi
 sleep 1
 done
