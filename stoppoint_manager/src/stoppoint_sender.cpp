@@ -13,11 +13,13 @@ class StopPointSender{
     ros::Rate rate_;
     ros::Publisher stop_point_pub_;
 
+    double xmin_, ymin_, xmax_, ymax_;
     geometry_msgs::PointStamped stop_point;
     bool done_sending_the_topic;
 
     void sleep();
-    bool onStopPoint(const geometry_msgs::Point& dest, double dist_err = 0.5);
+    void setStopArea(double xmin, double ymin, double xmax, double ymax);
+    bool onStopArea();
     tf::StampedTransform getRobotPosGL();
     void setStopPoint(double x, double y, double z);
     void pulishStopPoint();
@@ -38,13 +40,13 @@ StopPointSender::StopPointSender() :
   stop_point_pub_ = nh.advertise<geometry_msgs::PointStamped>("/stoppoint", 1);
 
   setStopPoint(-0.856632, 5.10851, -2.68494e-10);
+  setStopArea(-1.51892, 8.49779, -0.51892, 9.49779);
 }
 
-void
-StopPointSender::run(){
+void StopPointSender::run(){
   while(ros::ok()){
     if (!done_sending_the_topic) {
-      while(!onStopPoint(stop_point.point) && ros::ok()){
+      while(!onStopArea() && ros::ok()){
         sleep();
       }
     pulishStopPoint();
@@ -54,25 +56,26 @@ StopPointSender::run(){
   }
 }
 
-void
-StopPointSender::sleep(){
+void StopPointSender::sleep(){
   rate_.sleep();
   ros::spinOnce();
 }
 
-bool StopPointSender::onStopPoint(const geometry_msgs::Point& dest, double dist_err){
-  tf::StampedTransform robot_gl = getRobotPosGL();
-  const double wx = dest.x;
-  const double wy = dest.y;
-  const double rx = robot_gl.getOrigin().x();
-  const double ry = robot_gl.getOrigin().y();
-  const double dist = std::sqrt(std::pow(wx - rx, 2) + std::pow(wy - ry, 2));
-
-  return dist < dist_err;
+void StopPointSender::setStopArea(double xmin, double ymin, double xmax, double ymax){
+  xmin_ = xmin;
+  ymin_ = ymin;
+  xmax_ = xmax;
+  ymax_ = ymax;
 }
 
-tf::StampedTransform
-StopPointSender::getRobotPosGL()
+bool StopPointSender::onStopArea(){
+  tf::StampedTransform robot_gl = getRobotPosGL();
+  
+  return (xmin_ < getRobotPosGL().getOrigin().x()) && (getRobotPosGL().getOrigin().x() < xmax_) && (ymin_ < getRobotPosGL().getOrigin().y()) && (getRobotPosGL().getOrigin().y() < ymax_);
+
+}
+
+tf::StampedTransform StopPointSender::getRobotPosGL()
 {
   tf::StampedTransform robot_gl;
   try{
@@ -85,30 +88,23 @@ StopPointSender::getRobotPosGL()
   return robot_gl;
 }
 
-void
-StopPointSender::setStopPoint(double x, double y, double z)
+void StopPointSender::setStopPoint(double x, double y, double z)
 {
   stop_point.point.x = x;
   stop_point.point.y = y;
   stop_point.point.z = z;
 }
 
-void
-StopPointSender::pulishStopPoint()
+void StopPointSender::pulishStopPoint()
 {
-  tf::StampedTransform robot_gl = getRobotPosGL();
-  geometry_msgs::PointStamped ps;
-  ps.header.frame_id = world_frame_;
-  ps.header.stamp = ros::Time::now();
-  ps.point.x = robot_gl.getOrigin().x();
-  ps.point.y = robot_gl.getOrigin().y();
-  ps.point.z = robot_gl.getOrigin().z();
-  stop_point_pub_.publish(ps);
+  stop_point.header.frame_id = world_frame_;
+  stop_point.header.stamp = ros::Time::now();
+  stop_point_pub_.publish(stop_point);
 
   ROS_INFO("%.6f %.6f %.6f",
-           robot_gl.getOrigin().x(),
-           robot_gl.getOrigin().y(),
-           robot_gl.getOrigin().z());
+      stop_point.point.x,
+      stop_point.point.y,
+      stop_point.point.z);
 }
 
 
