@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <name>orne_gazebo</name>
+  <version>0.0.0</version>
+  <description>The orne_gazebo package</description>
+
+  <maintainer email="d.maekawa@rapyuta-robotics.com">Daiki Maekawa</maintainer>
+
+  <license>BSD</license>
+
+  <author email="d.maekawa@rapyuta-robotics.com">Daiki Maekawa</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>icart_mini_gazebo</build_depend>
+  <run_depend>icart_mini_gazebo</run_depend>
+
+  <export>
+  </export>
+</package>
