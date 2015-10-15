@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package>
+  <name>orne_stoppoint_manager</name>
+  <version>0.0.0</version>
+  <description>send stop point</description>
+
+  <maintainer email="humio@todo.todo">humio</maintainer>
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>tf</build_depend>
+  <build_depend>yaml-cpp</build_depend>
+
+  <run_depend>roscpp</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>tf</run_depend>
+  <run_depend>yaml-cpp</run_depend>
+
+<export>
+ </export>
+</package>
