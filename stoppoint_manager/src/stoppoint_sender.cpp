@@ -27,14 +27,14 @@ class StopPointSender{
     ros::Rate rate_;
     ros::Publisher stop_point_pub_;
 
-    double xmin_, ymin_, xmax_, ymax_;
+    geometry_msgs::PointStamped stop_area_center_;
     geometry_msgs::PointStamped stop_point;
     bool done_sending_the_topic;
 
     bool readFile(const std::string &filename);
     void sleep();
-    void setStopArea(double xmin, double ymin, double xmax, double ymax);
-    bool onStopArea();
+    void setStopAreaCenter(double x, double y, double z);
+    bool onStopArea(double dist_err = 1.0);
     tf::StampedTransform getRobotPosGL();
     void setStopPoint(double x, double y, double z);
     void pulishStopPoint();
@@ -59,9 +59,6 @@ StopPointSender::StopPointSender() :
 
   ros::NodeHandle nh;
   stop_point_pub_ = nh.advertise<geometry_msgs::PointStamped>("/stop_point", 1);
-
-  // setStopPoint(-0.856632, 5.10851, -2.68494e-10);
-  // setStopArea(-1.51892, 8.49779, -0.51892, 9.49779);
 }
 
 bool StopPointSender::readFile(const std::string &filename)
@@ -82,21 +79,20 @@ bool StopPointSender::readFile(const std::string &filename)
     #endif
 
     #ifdef NEW_YAMLCPP
-        const YAML::Node &sa_node_tmp = node["stop_area"];
+        const YAML::Node &sa_node_tmp = node["stop_area_center"];
         const YAML::Node *sa_node = sa_node_tmp ? &sa_node_tmp : NULL;
     #else
-        const YAML::Node *sa_node = node.FindValue("stop_area");
+        const YAML::Node *sa_node = node.FindValue("stop_area_center");
     #endif
 
     if(sa_node != NULL){
-      double xmin, ymin, xmax, ymax;
+      double x, y, z;
 
-      (*sa_node)["area"]["xmin"] >> xmin;
-      (*sa_node)["area"]["ymin"] >> ymin;
-      (*sa_node)["area"]["xmax"] >> xmax;
-      (*sa_node)["area"]["ymax"] >> ymax; 
-
-      setStopArea(xmin, ymin, xmax, ymax);
+      (*sa_node)["center"]["x"] >> x;
+      (*sa_node)["center"]["y"] >> y;
+      (*sa_node)["center"]["z"] >> z; 
+     
+      setStopAreaCenter(x, y, z);
     }else{
         return false;
     }
@@ -106,6 +102,7 @@ bool StopPointSender::readFile(const std::string &filename)
 
     if(sp_node != NULL){
         double x, y, z;
+
         (*sp_node)["point"]["x"] >> x;
         (*sp_node)["point"]["y"] >> y;
         (*sp_node)["point"]["z"] >> z;
@@ -143,18 +140,23 @@ void StopPointSender::sleep(){
   ros::spinOnce();
 }
 
-void StopPointSender::setStopArea(double xmin, double ymin, double xmax, double ymax){
-  xmin_ = xmin;
-  ymin_ = ymin;
-  xmax_ = xmax;
-  ymax_ = ymax;
+void StopPointSender::setStopAreaCenter(double x, double y, double z)
+{
+  stop_area_center_.point.x = x;
+  stop_area_center_.point.y = y;
+  stop_area_center_.point.z = z;
 }
 
-bool StopPointSender::onStopArea(){
+bool StopPointSender::onStopArea(double dist_err){
   tf::StampedTransform robot_gl = getRobotPosGL();
-  
-  return (xmin_ < getRobotPosGL().getOrigin().x()) && (getRobotPosGL().getOrigin().x() < xmax_) && (ymin_ < getRobotPosGL().getOrigin().y()) && (getRobotPosGL().getOrigin().y() < ymax_);
 
+  const double wx = stop_area_center_.point.x;
+  const double wy = stop_area_center_.point.y;
+  const double rx = robot_gl.getOrigin().x();
+  const double ry = robot_gl.getOrigin().y();
+  const double dist = std::sqrt(std::pow(wx - rx, 2) + std::pow(wy - ry, 2));
+
+  return dist < dist_err;
 }
 
 tf::StampedTransform StopPointSender::getRobotPosGL()
