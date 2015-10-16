@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 
 <launch>
-  <arg name="sensors_file" default="$(find orne_setup)/config/icart_mini_sensors.yaml" />
   <include file="$(find icart_mini_driver)/launch/icart_mini_drive.launch">
     <arg name="model" default="$(find xacro)/xacro.py '$(find icart_mini_description)/urdf/icart_mini.xacro'" />
   </include>
