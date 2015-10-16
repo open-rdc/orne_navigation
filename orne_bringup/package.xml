@@ -13,8 +13,10 @@
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>icart_mini_driver</build_depend>
   <build_depend>icart_mini_gazebo</build_depend>
+  <build_depend>robot_pose_ekf</build_depend>
   <run_depend>icart_mini_driver</run_depend>
   <run_depend>icart_mini_gazebo</run_depend>
+  <run_depend>robot_pose_ekf</run_depend>
 
   <export>
   </export>
