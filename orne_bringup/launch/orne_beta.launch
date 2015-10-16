@@ -4,4 +4,6 @@
         <arg name="scan_dev" value="/dev/sensors/hokuyo"/>
         <arg name="imu_dev"  value="/dev/sensors/ftdi0"/>
     </include>
+
+    <include file="$(find orne_bringup)/launch/includes/base.launch.xml"/>
 </launch>
