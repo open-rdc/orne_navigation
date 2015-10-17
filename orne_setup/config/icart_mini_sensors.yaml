@@ -1,4 +1,0 @@
-# orne_β
-
-scan_dev: /dev/sensors/hokuyo
-imu_dev: /dev/sensors/ftdi0

@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(orne_gazebo)
+project(orne_bringup)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  icart_mini_driver
   icart_mini_gazebo
 )
 
@@ -99,8 +100,8 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES orne_gazebo
-#  CATKIN_DEPENDS icart_mini_gazebo
+#  LIBRARIES orne_bringup
+#  CATKIN_DEPENDS icart_mini_driver icart_mini_gazebo
 #  DEPENDS system_lib
 )
 
@@ -116,24 +117,24 @@ include_directories(
 )
 
 ## Declare a C++ library
-# add_library(orne_gazebo
-#   src/${PROJECT_NAME}/orne_gazebo.cpp
+# add_library(orne_bringup
+#   src/${PROJECT_NAME}/orne_bringup.cpp
 # )
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
-# add_dependencies(orne_gazebo ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# add_dependencies(orne_bringup ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-# add_executable(orne_gazebo_node src/orne_gazebo_node.cpp)
+# add_executable(orne_bringup_node src/orne_bringup_node.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-# add_dependencies(orne_gazebo_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# add_dependencies(orne_bringup_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(orne_gazebo_node
+# target_link_libraries(orne_bringup_node
 #   ${catkin_LIBRARIES}
 # )
 
@@ -152,7 +153,7 @@ include_directories(
 # )
 
 ## Mark executables and/or libraries for installation
-# install(TARGETS orne_gazebo orne_gazebo_node
+# install(TARGETS orne_bringup orne_bringup_node
 #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
@@ -177,7 +178,7 @@ include_directories(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_orne_gazebo.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_orne_bringup.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
