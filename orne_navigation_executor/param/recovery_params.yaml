@@ -2,4 +2,3 @@ recovery_behaviors: [{name: aggressive_reset, type: clear_costmap_recovery/Clear
                      {name: rotate_recovery, type: rotate_recovery/RotateRecovery},
                      {name: conservative_reset, type: clear_costmap_recovery/ClearCostmapRecovery},
                      {name: move_slow_and_clear, type: move_slow_and_clear/MoveSlowAndClear}]
-
