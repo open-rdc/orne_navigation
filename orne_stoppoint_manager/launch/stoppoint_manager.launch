@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 
 <launch>
-  <arg name="stoppoint_file" default="$(find stoppoint_manager)/stoppoint_cfg/stoppoint.yaml"/>
+  <arg name="stoppoint_file" default="$(find orne_stoppoint_manager)/stoppoint_cfg/stoppoint.yaml"/>
 
-  <node name="stoppoint_sender" pkg="stoppoint_manager" type="stoppoint_sender">
+  <node name="stoppoint_sender" pkg="orne_stoppoint_manager" type="orne_stoppoint_sender">
     <param name="filename" value="$(arg stoppoint_file)"/>
   </node>
 </launch>
