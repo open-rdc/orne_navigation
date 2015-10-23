@@ -49,12 +49,6 @@ $ roslaunch orne_bringup orne_alpha_sim.launch // or orne_beta_sim.launch
 $ roslaunch orne_bringup orne_alpha.launch // or orne_beta.launch
 ```
 
-### Teleoperation with a joystick
-
-```sh
-$ roslaunch icart_mini_driver teleop_joy.launch
-```
-
 ### Build map
 
 ```sh
