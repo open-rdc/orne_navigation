@@ -117,4 +117,6 @@ https://github.com/open-rdc/orne_navigation/issues
 
 ## License
 
+![BSD](http://img.shields.io/badge/license-BSD-green.svg)
+
 License-check is open source software under the [BSD license](https://github.com/open-rdc/icart_mini_ros_pkgs/blob/master/LICENSE).
