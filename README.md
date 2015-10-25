@@ -113,7 +113,7 @@ Don't forget to turn off the teleoperation, it might interfere with the robot's 
 
 ## Bugs & Tasks
 
-https://github.com/open-rdc/TsukubaChallenge/issues
+https://github.com/open-rdc/orne_navigation/issues
 
 ## License
 
