@@ -1,6 +1,6 @@
 <launch>
     <include file="$(find icart_mini_driver)/launch/icart_mini_drive.launch">
-        <arg name="model"    value="$(find xacro)/xacro.py '$(find icart_mini_description)/urdf/icart_mini.xacro'"/>
+        <arg name="model"    value="$(find xacro)/xacro.py '$(find orne_description)/urdf/orne_beta.xacro'"/>
         <arg name="scan_dev" value="/dev/sensors/hokuyo"/>
         <arg name="imu_dev"  value="/dev/sensors/ftdi0"/>
     </include>
