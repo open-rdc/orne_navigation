@@ -6,7 +6,7 @@
 <xacro:include filename="$(find icart_mini_description)/urdf/icart_mini.gazebo"/>
 <xacro:include filename="$(find icart_mini_description)/urdf/sensors/imu.urdf.xacro"/>
 <xacro:sensor_imu name="imu" parent="base_link">
-    <origin xyz="-0.18 0.0 0.170" rpy="0 0 0"/>
+    <origin xyz="0.19 0.0 0.15" rpy="0 0 0"/>
 </xacro:sensor_imu>
 
 </robot>
