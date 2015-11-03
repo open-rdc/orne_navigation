@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<robot name="orne_beta" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="orne_alpha" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 <xacro:include filename="$(find icart_mini_description)/urdf/icart_mini.xacro"/>
 <xacro:include filename="$(find icart_mini_description)/urdf/icart_mini.gazebo"/>
@@ -9,4 +9,8 @@
     <origin xyz="0.19 0.0 0.15" rpy="0 0 0"/>
 </xacro:sensor_imu>
 
+<xacro:include filename="$(find icart_mini_description)/urdf/sensors/hokuyo3d.urdf.xacro"/>
+<xacro:sensor_hokuyo3d name="hokuyo3d" parent="base_link">
+    <origin xyz="0.27 0 0.35" rpy="0 0.192 0"/>
+</xacro:sensor_hokuyo3d>
 </robot>
