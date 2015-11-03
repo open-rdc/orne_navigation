@@ -1,0 +1,10 @@
+<library path="lib/orne_rviz_plugins">
+    <class name="orne_rviz_plugins/StateTrigger"
+           type="orne_rviz_plugins::StateTriggerPanel"
+           base_class_type="rviz::Panel">
+
+           <description>
+               TODO
+           </description>
+    </class>
+</library>
