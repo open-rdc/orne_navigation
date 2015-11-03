@@ -6,7 +6,6 @@ project(orne_strategy)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   fulanghua_srvs
-  fulanghua_waypoints_nav
   smach
   smach_ros
 )
