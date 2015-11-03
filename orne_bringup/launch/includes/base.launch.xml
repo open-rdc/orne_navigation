@@ -1,6 +1,5 @@
 <launch>
     <node name="combine_dr_measurements" pkg="robot_pose_ekf" type="robot_pose_ekf">
-        <remap from="imu_data"             to="/icart_mini/imu"/>
         <remap from="odom"                 to="/icart_mini/odom"/>
         <param name="freq"                 value="10.0"/>
         <param name="sensor_timeout"       value="1.0"/>
