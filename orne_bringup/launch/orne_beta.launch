@@ -2,8 +2,13 @@
     <include file="$(find icart_mini_driver)/launch/icart_mini_drive.launch">
         <arg name="model"    value="$(find xacro)/xacro.py '$(find orne_description)/urdf/orne_beta.xacro'"/>
         <arg name="scan_dev" value="/dev/sensors/hokuyo"/>
-        <arg name="imu_dev"  value="/dev/sensors/ftdi0"/>
     </include>
+
+    <node pkg="cit_adis_imu" type="imu_node" name="imu_node">
+        <remap from="imu"        to="imu_data"/>
+        <param name="port_name"  value="/dev/sensors/ftdi0"/>
+        <param name="z_axis_dir" value="-1"/>
+    </node>
 
     <include file="$(find orne_bringup)/launch/includes/base.launch.xml"/>
 </launch>
