@@ -1,18 +1,9 @@
-<library path="lib/orne_rviz_plugins">
-    <class name="orne_rviz_plugins/StateTriggerPanel"
-           type="orne_rviz_plugins::StateTriggerPanel"
-           base_class_type="rviz::Panel">
-
-           <description>
-               TODO
-           </description>
-    </class>
-    <class name="orne/Teleop"
-           type="orne::TeleopPanel"
-           base_class_type="rviz::Panel">
-
-           <description>
-            HOGEHOGE
-           </description>
-    </class>
+<library path="lib/librviz_plugin_tutorials">
+  <class name="rviz_plugin_tutorials/Teleop"
+         type="rviz_plugin_tutorials::TeleopPanel"
+         base_class_type="rviz::Panel">
+    <description>
+      A panel widget allowing simple diff-drive style robot base control.
+    </description>
+  </class>
 </library>
