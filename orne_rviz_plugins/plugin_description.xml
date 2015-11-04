@@ -1,9 +1,9 @@
-<library path="lib/librviz_plugin_tutorials">
-  <class name="rviz_plugin_tutorials/Teleop"
-         type="rviz_plugin_tutorials::TeleopPanel"
+<library path="lib/liborne_rviz_plugins">
+  <class name="orne_rviz_plugins/Teleop"
+         type="orne_rviz_plugins::TeleopPanel"
          base_class_type="rviz::Panel">
     <description>
-      A panel widget allowing simple diff-drive style robot base control.
+        TODO
     </description>
   </class>
 </library>
