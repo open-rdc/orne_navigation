@@ -26,6 +26,7 @@ public Q_SLOTS:
     
 protected:
   ros::NodeHandle nh_;
+  ros::ServiceClient start_client_;
   QPushButton *start_nav_button_;
 
 };
