@@ -12,7 +12,7 @@
 
 #include "teleop_panel.h"
 
-namespace rviz_plugin_tutorials
+namespace orne_rviz_plugins
 {
 
 TeleopPanel::TeleopPanel( QWidget* parent )
@@ -41,7 +41,7 @@ void TeleopPanel::pushStartNavigation() {
     ROS_ERROR("just debugging");
 }
 
-} // end namespace rviz_plugin_tutorials
+} // end namespace orne_rviz_plugins
 
 #include <pluginlib/class_list_macros.h>
-PLUGINLIB_EXPORT_CLASS(rviz_plugin_tutorials::TeleopPanel,rviz::Panel )
+PLUGINLIB_EXPORT_CLASS(orne_rviz_plugins::TeleopPanel,rviz::Panel )

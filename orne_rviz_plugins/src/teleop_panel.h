@@ -9,7 +9,7 @@
 
 class QPushButton;
 
-namespace rviz_plugin_tutorials
+namespace orne_rviz_plugins
 {
 
 class TeleopPanel: public rviz::Panel
@@ -30,6 +30,6 @@ protected:
 
 };
 
-} // end namespace rviz_plugin_tutorials
+} // end namespace orne_rviz_plugins
 
 #endif // TELEOP_PANEL_H
