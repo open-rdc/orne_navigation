@@ -8,7 +8,7 @@
     <arg name="map_file" value="$(arg map_file)"/>
   </include>
 
-  <node name="waypoints_nav" pkg="waypoints_navigation" type="waypoints_nav" output="screen">
+  <node name="waypoints_nav" pkg="fulanghua_waypoints_nav" type="waypoints_nav" output="screen">
     <param name="filename" value="$(arg waypoints_file)"/>
   </node>
 </launch>
