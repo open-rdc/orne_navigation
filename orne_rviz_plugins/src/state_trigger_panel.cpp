@@ -10,7 +10,7 @@
 
 #include <geometry_msgs/Twist.h>
 
-#include "teleop_panel.h"
+#include "state_trigger_panel.h"
 
 namespace orne_rviz_plugins
 {
