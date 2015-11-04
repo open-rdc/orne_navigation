@@ -1,9 +1,5 @@
-## BEGIN_TUTORIAL
-## This CMakeLists.txt file for rviz_plugin_tutorials builds both the TeleopPanel tutorial and the ImuDisplay tutorial.
-##
-## First start with some standard catkin stuff.
 cmake_minimum_required(VERSION 2.8.3)
-project(rviz_plugin_tutorials)
+project(orne_rviz_plugins)
 find_package(catkin REQUIRED COMPONENTS rviz)
 catkin_package()
 include_directories(${catkin_INCLUDE_DIRS})
