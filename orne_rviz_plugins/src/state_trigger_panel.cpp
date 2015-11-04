@@ -3,7 +3,7 @@
 
 #include <QHBoxLayout>
 
-namespace orne_navigation
+namespace orne_rviz_plugins
 {
 
 StateTriggerPanel::StateTriggerPanel(QWidget *parent) : 
@@ -33,5 +33,5 @@ void StateTriggerPanel::save(rviz::Config config) const {
 } //namespace orne_navigation
 
 #include <pluginlib/class_list_macros.h>
-PLUGINLIB_EXPORT_CLASS(orne_navigation::StateTriggerPanel, rviz::Panel)
+PLUGINLIB_EXPORT_CLASS(orne_rviz_plugins::StateTriggerPanel, rviz::Panel)
 
