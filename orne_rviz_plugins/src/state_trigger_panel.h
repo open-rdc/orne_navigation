@@ -1,5 +1,5 @@
-#ifndef TELEOP_PANEL_H
-#define TELEOP_PANEL_H
+#ifndef STATE_TRIGGER_PANEL_H
+#define STATE_TRIGGER_PANEL_H
 
 #ifndef Q_MOC_RUN
 # include <ros/ros.h>
@@ -12,11 +12,11 @@ class QPushButton;
 namespace orne_rviz_plugins
 {
 
-class TeleopPanel: public rviz::Panel
+class StateTriggerPanel: public rviz::Panel
 {
 Q_OBJECT
 public:
-  TeleopPanel( QWidget* parent = 0 );
+  StateTriggerPanel( QWidget* parent = 0 );
 
   virtual void load( const rviz::Config& config );
   virtual void save( rviz::Config config ) const;
@@ -32,4 +32,4 @@ protected:
 
 } // end namespace orne_rviz_plugins
 
-#endif // TELEOP_PANEL_H
+#endif // STATE_TRIGGER_PANEL_H

@@ -15,7 +15,7 @@
 namespace orne_rviz_plugins
 {
 
-TeleopPanel::TeleopPanel( QWidget* parent )
+StateTriggerPanel::StateTriggerPanel( QWidget* parent )
   : rviz::Panel( parent )
 {
   start_nav_button_ = new QPushButton("StartWaypointsNavigation");
@@ -27,21 +27,21 @@ TeleopPanel::TeleopPanel( QWidget* parent )
   connect(start_nav_button_, SIGNAL(clicked()), this, SLOT(pushStartNavigation()));
 }
 
-void TeleopPanel::save( rviz::Config config ) const
+void StateTriggerPanel::save( rviz::Config config ) const
 {
   rviz::Panel::save( config );
 }
 
-void TeleopPanel::load( const rviz::Config& config )
+void StateTriggerPanel::load( const rviz::Config& config )
 {
   rviz::Panel::load( config );
 }
 
-void TeleopPanel::pushStartNavigation() {
+void StateTriggerPanel::pushStartNavigation() {
     ROS_ERROR("just debugging");
 }
 
 } // end namespace orne_rviz_plugins
 
 #include <pluginlib/class_list_macros.h>
-PLUGINLIB_EXPORT_CLASS(orne_rviz_plugins::TeleopPanel,rviz::Panel )
+PLUGINLIB_EXPORT_CLASS(orne_rviz_plugins::StateTriggerPanel,rviz::Panel )
