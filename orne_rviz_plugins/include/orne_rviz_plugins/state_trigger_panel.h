@@ -7,7 +7,7 @@
 #include <QPushButton>
 #endif
 
-namespace orne_navigation {
+namespace orne_rviz_plugins {
 
 class StateTriggerPanel : public rviz::Panel
 {
