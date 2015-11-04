@@ -19,10 +19,14 @@ add_definitions(-DQT_NO_KEYWORDS)
 
 qt4_wrap_cpp(MOC_FILES
     include/orne_rviz_plugins/state_trigger_panel.h
+    src/teleop_panel.h
+    src/drive_widget.h
 )
 
 set(SOURCE_FILES
     src/state_trigger_panel.cpp
+    src/teleop_panel.cpp
+    src/drive_widget.cpp
     ${MOC_FILES}
 )
 
