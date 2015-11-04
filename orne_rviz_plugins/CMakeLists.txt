@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(orne_rviz_plugins)
-find_package(catkin REQUIRED COMPONENTS rviz)
+find_package(catkin REQUIRED COMPONENTS rviz std_srvs)
 catkin_package()
 include_directories(${catkin_INCLUDE_DIRS})
 link_directories(${catkin_LIBRARY_DIRS})
