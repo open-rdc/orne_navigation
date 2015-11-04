@@ -1,6 +1,6 @@
 <library path="lib/liborne_rviz_plugins">
-  <class name="orne_rviz_plugins/Teleop"
-         type="orne_rviz_plugins::TeleopPanel"
+  <class name="orne_rviz_plugins/StateTriggerPanel"
+         type="orne_rviz_plugins::StateTriggerPanel"
          base_class_type="rviz::Panel">
     <description>
         TODO
