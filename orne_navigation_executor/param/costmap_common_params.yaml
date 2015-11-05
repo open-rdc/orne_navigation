@@ -11,6 +11,6 @@ update_frequency: 3.0
 
 observation_sources: scan point_cloud
 
-scan: {data_type: LaserScan, topic: /scan, marking: true, clearing: true, min_obstacle_height: 0, max_obstacle_height: 1.0}
+scan: {data_type: LaserScan, topic: /scan, marking: true, clearing: true, min_obstacle_height: 0.15, max_obstacle_height: 1.0}
 
 point_cloud: {data_type: PointCloud, topic: /filtered_cloud, marking: true, clearing: true}
