@@ -1,3 +1,35 @@
 #!/usr/bin/env python
 
+import rospy
+from std_srvs.srv import Trigger
+
+class TsukubaChallengeStrategy:
+    def __init__(self):
+        rospy.init_node('tsukuba_challenge_strategy')
+        self.start_nav_server = rospy.Service('start_nav', Trigger, self.start_nav_callback)
+        """
+        try:
+            rospy.wait_for_service('start_wp_nav')
+            self.start_wp_nav = self.ServiceProxy('start_wp_nav', Trigger)
+        except rospy.ServiceException, e:
+            print "Service call failed: %s" % e
+        """
+
+    def start_nav_callback(self, req):
+        try:
+            rospy.loginfo("strategy: start_nav_callback")
+            rospy.wait_for_service('start_wp_nav')
+            start_wp_nav = rospy.ServiceProxy('start_wp_nav', Trigger)
+            return start_wp_nav()
+            #rospy.loginfo(start_wp_nav())
+            #return (True, "successful")
+        except rospy.ServiceException, e:
+            print "error: %s" % e
+
+    def spin(self):
+        rospy.spin()
+
+if __name__ == '__main__':
+    strategy = TsukubaChallengeStrategy()
+    strategy.spin()
 
