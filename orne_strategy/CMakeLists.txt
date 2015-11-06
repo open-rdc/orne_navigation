@@ -8,6 +8,8 @@ find_package(catkin REQUIRED COMPONENTS
   fulanghua_srvs
   smach
   smach_ros
+  std_srvs
+  rospy
 )
 
 ## System dependencies are found with CMake's conventions
