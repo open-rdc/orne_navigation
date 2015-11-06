@@ -2,6 +2,7 @@
 
 import rospy
 import geometry_msgs.msg
+import tf
 from std_srvs.srv import Trigger
 from fulanghua_srvs.srv import Pose
 
@@ -12,6 +13,8 @@ class TsukubaChallengeStrategy:
         
         suspend_pose_cfg = rospy.get_param('~suspend_pose')
         resume_pose_cfg = rospy.get_param('~resume_pose')
+        self.world_frame = rospy.get_param('~world_frame', 'map')
+        self.robot_frame = rospy.get_param('~robot_frame', 'base_link')
         
         print "suspend_pose_cfg = " + str(suspend_pose_cfg)
 
@@ -36,6 +39,8 @@ class TsukubaChallengeStrategy:
         print "suspend_pose = " + str(self.suspend_pose)
         print "resume_pose = " + str(self.resume_pose)
 
+        self.tf_listener = tf.TransformListener()
+
     def start_nav_callback(self, req):
         try:
             rospy.loginfo("strategy: start_nav_callback")
@@ -46,7 +51,7 @@ class TsukubaChallengeStrategy:
             #return (True, "successful")
         except rospy.ServiceException, e:
             print "error: %s" % e
-    
+
     def resume_nav_callback(self, req):
         try:
             rospy.loginfo('strategy: resume_nav_callback')
@@ -57,7 +62,18 @@ class TsukubaChallengeStrategy:
             print "error: %s" % e
 
     def spin(self):
-        rospy.spin()
+        rate = rospy.Rate(10)
+        while not rospy.is_shutdown():
+            rate.sleep()
+            
+            try:
+                (trans, rot) = self.tf_listener.lookupTransform(self.world_frame, self.robot_frame, rospy.Time(0))
+                x = trans[0]
+                y = trans[1]
+
+                print "robot_gl = ("  + str(x) + ", " + str(y) + ")"
+            except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
+                continue
 
 if __name__ == '__main__':
     strategy = TsukubaChallengeStrategy()
