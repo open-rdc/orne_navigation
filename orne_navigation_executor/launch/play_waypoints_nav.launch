@@ -10,8 +10,10 @@
 
   <node name="waypoints_nav" pkg="fulanghua_waypoints_nav" type="waypoints_nav" output="screen">
     <param name="filename" value="$(arg waypoints_file)"/>
-</node>
+  </node>
 
-<node name="tsukuba_challenge_strategy" pkg="orne_strategy" type="tsukuba_challenge" output="screen"/>
+  <node name="tsukuba_challenge_strategy" pkg="orne_strategy" type="tsukuba_challenge" output="screen">
+      <rosparam file="$(find orne_strategy)/suspend_cfg/suspend.yaml" command="load"/>
+  </node>
 </launch>
 
