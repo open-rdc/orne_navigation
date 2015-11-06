@@ -7,13 +7,12 @@ class TsukubaChallengeStrategy:
     def __init__(self):
         rospy.init_node('tsukuba_challenge_strategy')
         self.start_nav_server = rospy.Service('start_nav', Trigger, self.start_nav_callback)
-        """
-        try:
-            rospy.wait_for_service('start_wp_nav')
-            self.start_wp_nav = self.ServiceProxy('start_wp_nav', Trigger)
-        except rospy.ServiceException, e:
-            print "Service call failed: %s" % e
-        """
+        
+        suspend_pose = rospy.get_param('~suspend_pose')
+        resume_pose = rospy.get_param('~resume_pose')
+
+        print "suspend_pose = " + str(suspend_pose)
+        print "resume_pose = " + str(resume_pose)
 
     def start_nav_callback(self, req):
         try:
