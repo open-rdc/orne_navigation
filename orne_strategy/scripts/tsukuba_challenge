@@ -1,18 +1,40 @@
 #!/usr/bin/env python
 
 import rospy
+import geometry_msgs.msg
 from std_srvs.srv import Trigger
+from fulanghua_srvs.srv import Pose
 
 class TsukubaChallengeStrategy:
     def __init__(self):
         rospy.init_node('tsukuba_challenge_strategy')
         self.start_nav_server = rospy.Service('start_nav', Trigger, self.start_nav_callback)
         
-        suspend_pose = rospy.get_param('~suspend_pose')
-        resume_pose = rospy.get_param('~resume_pose')
+        suspend_pose_cfg = rospy.get_param('~suspend_pose')
+        resume_pose_cfg = rospy.get_param('~resume_pose')
+        
+        print "suspend_pose_cfg = " + str(suspend_pose_cfg)
 
-        print "suspend_pose = " + str(suspend_pose)
-        print "resume_pose = " + str(resume_pose)
+        self.suspend_pose = geometry_msgs.msg.Pose()
+        self.suspend_pose.position.x = suspend_pose_cfg['position']['x']
+        self.suspend_pose.position.y = suspend_pose_cfg['position']['y']
+        self.suspend_pose.position.z = suspend_pose_cfg['position']['z']
+        self.suspend_pose.orientation.x = suspend_pose_cfg['orientation']['x']
+        self.suspend_pose.orientation.y = suspend_pose_cfg['orientation']['y']
+        self.suspend_pose.orientation.z = suspend_pose_cfg['orientation']['z']
+        self.suspend_pose.orientation.w = suspend_pose_cfg['orientation']['w']
+        
+        self.resume_pose = geometry_msgs.msg.Pose()
+        self.resume_pose.position.x = resume_pose_cfg['position']['x']
+        self.resume_pose.position.y = resume_pose_cfg['position']['y']
+        self.resume_pose.position.z = resume_pose_cfg['position']['z']
+        self.resume_pose.orientation.x = resume_pose_cfg['orientation']['x']
+        self.resume_pose.orientation.y = resume_pose_cfg['orientation']['y']
+        self.resume_pose.orientation.z = resume_pose_cfg['orientation']['z']
+        self.resume_pose.orientation.w = resume_pose_cfg['orientation']['w']
+
+        print "suspend_pose = " + str(self.suspend_pose)
+        print "resume_pose = " + str(self.resume_pose)
 
     def start_nav_callback(self, req):
         try:
@@ -22,6 +44,15 @@ class TsukubaChallengeStrategy:
             return start_wp_nav()
             #rospy.loginfo(start_wp_nav())
             #return (True, "successful")
+        except rospy.ServiceException, e:
+            print "error: %s" % e
+    
+    def resume_nav_callback(self, req):
+        try:
+            rospy.loginfo('strategy: resume_nav_callback')
+            rospy.wait_for_service('resume_wp_nav')
+            resume_wp_nav = rospy.ServiceProxy('resume_wp_nav', Pose)
+            return resume_wp_nav(self.resume_pose)
         except rospy.ServiceException, e:
             print "error: %s" % e
 
