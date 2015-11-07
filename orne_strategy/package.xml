@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package>
+  <name>orne_strategy</name>
+  <version>0.0.0</version>
+  <description>The orne_strategy package</description>
+
+  <maintainer email="d.maekawa@rapyuta-robotics.com">Daiki Maekawa</maintainer>
+
+  <license>BSD</license>
+
+  <author email="d.maekawa@rapyuta-robotics.com">Daiki Maekawa</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>fulanghua_srvs</build_depend>
+  <build_depend>fulanghua_waypoints_nav</build_depend>
+  <build_depend>smach</build_depend>
+  <build_depend>smach_ros</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>std_srvs</build_depend>
+  <run_depend>fulanghua_srvs</run_depend>
+  <run_depend>fulanghua_waypoints_nav</run_depend>
+  <run_depend>smach</run_depend>
+  <run_depend>smach_ros</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>std_srvs</run_depend>
+
+  <export>
+  </export>
+</package>
