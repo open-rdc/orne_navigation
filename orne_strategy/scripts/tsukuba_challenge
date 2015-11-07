@@ -77,7 +77,7 @@ class TsukubaChallengeStrategy:
                 print "robot_gl = ("  + str(x) + ", " + str(y) + ")"
                 print "dist = " + str(dist)
 
-                if(dist < 0.5) and not already_send_suspend_pose:
+                if(dist < 1.0) and not already_send_suspend_pose:
                     rospy.loginfo('strategy: send suspending request')
                     rospy.wait_for_service('suspend_wp_pose')
                     suspend_wp_nav = rospy.ServiceProxy('suspend_wp_pose', Pose)
