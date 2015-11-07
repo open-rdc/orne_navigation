@@ -23,11 +23,13 @@ public:
 
 public Q_SLOTS:
   void pushStartNavigation();
+  void pushResumeNavigation();
     
 protected:
   ros::NodeHandle nh_;
-  ros::ServiceClient start_client_;
+  ros::ServiceClient start_client_, resume_client_;
   QPushButton *start_nav_button_;
+  QPushButton *resume_nav_button_;
 
 };
 

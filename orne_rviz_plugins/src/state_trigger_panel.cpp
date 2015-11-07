@@ -19,14 +19,18 @@ StateTriggerPanel::StateTriggerPanel( QWidget* parent )
   : rviz::Panel( parent )
 {
   start_client_ = nh_.serviceClient<std_srvs::Trigger>("start_nav", false);
+  resume_client_ = nh_.serviceClient<std_srvs::Trigger>("resume_nav", false);
 
   start_nav_button_ = new QPushButton("StartWaypointsNavigation");
+  resume_nav_button_ = new QPushButton("ResumeWaypointsNavigation");
 
-  QVBoxLayout* layout = new QVBoxLayout;
+  QHBoxLayout* layout = new QHBoxLayout;
   layout->addWidget(start_nav_button_);
+  layout->addWidget(resume_nav_button_);
   setLayout( layout );
   
   connect(start_nav_button_, SIGNAL(clicked()), this, SLOT(pushStartNavigation()));
+  connect(resume_nav_button_, SIGNAL(clicked()), this, SLOT(pushResumeNavigation()));
 }
 
 void StateTriggerPanel::save( rviz::Config config ) const
@@ -44,6 +48,13 @@ void StateTriggerPanel::pushStartNavigation() {
     
     std_srvs::Trigger trigger;
     start_client_.call(trigger);
+}
+
+void StateTriggerPanel::pushResumeNavigation() {
+    ROS_INFO("Service call: resume waypoints navigation");
+    
+    std_srvs::Trigger trigger;
+    resume_client_.call(trigger);
 }
 
 } // end namespace orne_rviz_plugins
