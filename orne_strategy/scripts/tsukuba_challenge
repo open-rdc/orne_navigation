@@ -3,6 +3,7 @@
 import rospy
 import geometry_msgs.msg
 import tf
+import math
 from std_srvs.srv import Trigger
 from fulanghua_srvs.srv import Pose
 
@@ -10,13 +11,12 @@ class TsukubaChallengeStrategy:
     def __init__(self):
         rospy.init_node('tsukuba_challenge_strategy')
         self.start_nav_server = rospy.Service('start_nav', Trigger, self.start_nav_callback)
+        self.resume_nav_server = rospy.Service('resume_nav', Trigger, self.resume_nav_callback)
         
         suspend_pose_cfg = rospy.get_param('~suspend_pose')
         resume_pose_cfg = rospy.get_param('~resume_pose')
         self.world_frame = rospy.get_param('~world_frame', 'map')
         self.robot_frame = rospy.get_param('~robot_frame', 'base_link')
-        
-        print "suspend_pose_cfg = " + str(suspend_pose_cfg)
 
         self.suspend_pose = geometry_msgs.msg.Pose()
         self.suspend_pose.position.x = suspend_pose_cfg['position']['x']
@@ -55,14 +55,15 @@ class TsukubaChallengeStrategy:
     def resume_nav_callback(self, req):
         try:
             rospy.loginfo('strategy: resume_nav_callback')
-            rospy.wait_for_service('resume_wp_nav')
-            resume_wp_nav = rospy.ServiceProxy('resume_wp_nav', Pose)
+            rospy.wait_for_service('resume_wp_pose')
+            resume_wp_nav = rospy.ServiceProxy('resume_wp_pose', Pose)
             return resume_wp_nav(self.resume_pose)
         except rospy.ServiceException, e:
             print "error: %s" % e
 
     def spin(self):
         rate = rospy.Rate(10)
+        already_send_suspend_pose = False
         while not rospy.is_shutdown():
             rate.sleep()
             
@@ -71,7 +72,18 @@ class TsukubaChallengeStrategy:
                 x = trans[0]
                 y = trans[1]
 
+                dist = math.sqrt(math.pow(x - self.suspend_pose.position.x, 2) + math.pow(y - self.suspend_pose.position.y, 2))
+
                 print "robot_gl = ("  + str(x) + ", " + str(y) + ")"
+                print "dist = " + str(dist)
+
+                if(dist < 0.5) and not already_send_suspend_pose:
+                    rospy.loginfo('strategy: send suspending request')
+                    rospy.wait_for_service('suspend_wp_pose')
+                    suspend_wp_nav = rospy.ServiceProxy('suspend_wp_pose', Pose)
+                    print "suspend_wp_nav() = " + str(suspend_wp_nav(self.suspend_pose))
+                    already_send_suspend_pose = True
+
             except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
                 continue
 
