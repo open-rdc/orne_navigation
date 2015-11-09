@@ -7,7 +7,7 @@ update_frequency: 3.0
 
 #width: 5.0
 #height: 5.0
-resolution: 0.2
+resolution: 0.15
 
 observation_sources: scan point_cloud
 
