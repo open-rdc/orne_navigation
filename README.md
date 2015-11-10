@@ -29,8 +29,7 @@ $ wstool init
 $ wstool merge https://raw.githubusercontent.com/open-rdc/orne_navigation/indigo-devel/orne_pkgs.install
 $ wstool up
 $ rosdep install --from-paths . --ignore-src --rosdistro $ROS_DISTRO -y
-$ cd ..
-$ catkin_make
+$ catkin build
 ```
 
 ## Usage
