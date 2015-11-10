@@ -7,6 +7,8 @@ This repository provides mobile navigation system with i-Cart mini for Tsukuba C
 
 [![Throughput Graph](https://graphs.waffle.io/open-rdc/tsukubachallenge/throughput.svg)](https://waffle.io/open-rdc/tsukubachallenge/metrics) 
 
+![](docs/orne.png)
+
 ## Dependency Repositories
 
 * https://github.com/open-rdc/icart_mini
