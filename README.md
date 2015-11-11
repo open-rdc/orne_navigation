@@ -3,9 +3,11 @@ orne_navigation
 
 [![Join the chat at https://gitter.im/open-rdc/orne_navigation](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/open-rdc/orne_navigation?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-This repository provide basic navigation system for Tsukuba Challenge using i-Cart mini by Project ORNE.
+This repository provides mobile navigation system with i-Cart mini for Tsukuba Challenge under Project ORNE. 
 
 [![Throughput Graph](https://graphs.waffle.io/open-rdc/tsukubachallenge/throughput.svg)](https://waffle.io/open-rdc/tsukubachallenge/metrics) 
+
+![](docs/orne.png)
 
 ## Dependency Repositories
 
@@ -27,8 +29,7 @@ $ wstool init
 $ wstool merge https://raw.githubusercontent.com/open-rdc/orne_navigation/indigo-devel/orne_pkgs.install
 $ wstool up
 $ rosdep install --from-paths . --ignore-src --rosdistro $ROS_DISTRO -y
-$ cd ..
-$ catkin_make
+$ catkin build
 ```
 
 ## Usage
@@ -118,5 +119,7 @@ https://github.com/open-rdc/orne_navigation/issues
 ## License
 
 ![BSD](http://img.shields.io/badge/license-BSD-green.svg)
+
+Copyright (c) 2014 - 2015, [Daiki Maekawa](https://github.com/DaikiMaekawa) and Chiba Institute of Technology.
 
 License-check is open source software under the [BSD license](https://github.com/open-rdc/icart_mini_ros_pkgs/blob/master/LICENSE).
