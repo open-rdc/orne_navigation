@@ -1,5 +1,6 @@
 <launch>
-	<node type="hokuyo3d" pkg="hokuyo3d" name="hokuyo3d">
-		<param name="output_cycle" value="frame" />
-	</node>
+    <node type="hokuyo3d" pkg="hokuyo3d" name="hokuyo3d">
+        <param name="output_cycle" value="frame" />
+        <param name="frame_id" value="hokuyo3d_link" />
+    </node>
 </launch>
