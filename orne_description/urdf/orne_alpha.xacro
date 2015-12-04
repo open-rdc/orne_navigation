@@ -8,6 +8,11 @@
     <origin xyz="0.19 0.0 0.15" rpy="0 0 0"/>
 </xacro:sensor_imu>
 
+<xacro:include filename="$(find icart_mini_description)/urdf/sensors/hokuyo.urdf.xacro"/>
+<xacro:sensor_hokuyo name="hokuyo" parent="base_link">
+    <origin xyz="0.243 0 0.2" rpy="0 0 0"/>
+</xacro:sensor_hokuyo>
+
 <xacro:include filename="$(find icart_mini_description)/urdf/sensors/hokuyo3d.urdf.xacro"/>
 <xacro:sensor_hokuyo3d name="hokuyo3d" parent="base_link">
     <origin xyz="0.27 0 0.35" rpy="0 0.192 0"/>
