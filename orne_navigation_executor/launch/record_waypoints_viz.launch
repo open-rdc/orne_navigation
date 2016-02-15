@@ -5,7 +5,7 @@
   <arg name="filename" default="$(find orne_navigation_executor)/waypoints_cfg/waypoints.yaml"/>
 
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)"/>
-  <node name="waypoints_saver" pkg="waypoints_navigation" type="waypoints_saver">
+  <node name="waypoints_saver" pkg="fulanghua_waypoints_nav" type="waypoints_saver">
     <param name="filename" value="$(arg filename)"/> 
     <remap from="waypoints_viz" to="clicked_point"/>
     <remap from="finish_pose" to="move_base_simple/goal"/>
