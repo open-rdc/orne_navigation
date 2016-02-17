@@ -7,7 +7,7 @@
   <arg name="waypoints_file" default="$(find orne_navigation_executor)/waypoints_cfg/waypoints.yaml"/>
   <arg name="save_joy_button" default="0"/>
 
-  <node name="waypoints_saver" pkg="waypoints_navigation" type="waypoints_saver" output="screen">
+  <node name="waypoints_saver" pkg="fulanghua_waypoints_nav" type="waypoints_saver" output="screen">
     <param name="save_joy_button" value="$(arg save_joy_button)"/>
     <param name="filename" value="$(arg waypoints_file)"/> 
     <remap from="waypoints_joy" to="joy"/>
