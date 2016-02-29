@@ -1,7 +1,7 @@
 <launch>
     <include file="$(find icart_mini_driver)/launch/icart_mini_drive.launch">
         <arg name="model"    value="$(find xacro)/xacro.py '$(find orne_description)/urdf/orne_alpha.xacro'"/>
-        <arg name="use_eth_urg" value="true"/>
+        <arg name="scan_dev" value="/dev/sensors/hokuyo"/>
     </include>
 
     <node pkg="cit_adis_imu" type="imu_node" name="imu_node">
