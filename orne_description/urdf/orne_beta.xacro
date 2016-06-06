@@ -10,7 +10,7 @@
 
 <xacro:include filename="$(find icart_mini_description)/urdf/sensors/hokuyo.urdf.xacro"/>
 <xacro:sensor_hokuyo name="hokuyo" parent="base_link">
-    <origin xyz="0.2 0 0.2" rpy="0 0 0"/>
+    <origin xyz="0.2 0 0.22" rpy="0 0 0"/>
 </xacro:sensor_hokuyo>
 
 </robot>
