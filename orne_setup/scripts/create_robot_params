@@ -7,6 +7,9 @@ echo "Create robot parameters for ypspur"
 echo ""
 
 PARAM=${1:-icart-mini.param}
-echo "PARAM_FILE_NAME = $PARAM"
+MIDDLE=${1:-icart-middle.param}
+echo "PARAM_FILE_NAME = $PARAM,$MIDDLE"
+
 sudo mkdir /usr/local/share/robot-params
 sudo cp `rospack find orne_setup`/config/$PARAM /usr/local/share/robot-params/$PARAM
+sudo cp `rospack find orne_setup`/config/$MIDDLE /usr/local/share/robot-params/$MIDDLE
