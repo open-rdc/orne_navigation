@@ -5,10 +5,12 @@
         <arg name="ypspur_params" value="/usr/local/share/robot-params/icart-middle.param"/>
  </include>
 
-    <node pkg="cit_adis_imu" type="imu_node" name="imu_node">
+    <node pkg="mpu6050_serial_to_imu" type="mpu6050_serial_to_imu_node" name="imu_node">
         <remap from="imu"        to="imu_data"/>
-        <param name="port_name"  value="/dev/sensors/imu"/>
-        <param name="z_axis_dir" value="-1"/>
+        <param name="port"       value="/dev/sensors/imu"/>
+        <param name="tf_parent_frame_id" value="base_link"/>
+        <param name="tf_frame_id"        value="imu_link"/>
+        <param name="imu_frame_id"       value="imu_link"/>
     </node>
 
     <include file="$(find orne_bringup)/launch/includes/base.launch.xml"/>
