@@ -1,7 +1,7 @@
 max_obstacle_height: 0.60  # assume something like an arm is mounted on top of the robot
 obstacle_range: 2.5
 raytrace_range: 3.0
-footprint: [[0.0925, 0.215], [0.0925, -0.215], [-0.3925, -0.215], [-0.3925, 0.215]]
+footprint: [[0.1425, 0.265], [0.1425, -0.265], [-0.4425, -0.265], [-0.4425, 0.265]]
 inflation_radius: 0.50
 update_frequency: 3.0
 
