@@ -83,7 +83,7 @@
   </link>
 
   <joint type="fixed" name="visual_left_wheel_hinge">
-    <origin xyz="0.06 0.288 0.1518" rpy="0 0 0"/>
+    <origin xyz="0.06 0.22479 0.1518" rpy="0 0 0"/>
     <child link="visual_left_wheel">visual_left_wheel</child>
     <parent link="base_link">base_link</parent>
     <axis xyz="0 1 0"/>
@@ -110,7 +110,7 @@
   </link>
   
   <joint type="revolute" name="left_wheel_hinge">
-    <origin xyz="0.06 0.288 0.1518" rpy="0 0 0"/>
+    <origin xyz="0.06 0.22479 0.1518" rpy="0 0 0"/>
     <child link="left_wheel">left_wheel</child>
     <parent link="base_link">base_link</parent>
     <axis xyz="0 1 0"/>
@@ -127,7 +127,7 @@
   </link>
 
   <joint type="fixed" name="visual_right_wheel_hinge">
-    <origin xyz="0.06 -0.288 0.1518" rpy="0 0 0"/>
+    <origin xyz="0.06 -0.22479 0.1518" rpy="0 0 0"/>
     <child link="visual_right_wheel">visual_right_wheel</child>
     <parent link="base_link">base_link</parent>
     <axis xyz="0 1 0"/>
@@ -154,7 +154,7 @@
   </link>
   
   <joint type="revolute" name="right_wheel_hinge">
-    <origin xyz="0.06 -0.288 0.1518" rpy="0 0 0"/>
+    <origin xyz="0.06 -0.22479 0.1518" rpy="0 0 0"/>
     <child link="right_wheel">right_wheel</child>
     <parent link="base_link">base_link</parent>
     <axis xyz="0 1 0"/>
