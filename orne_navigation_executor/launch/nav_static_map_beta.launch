@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
 
 <launch>
-  <arg name="map_file" default="$(find orne_navigation_executor)/maps/mymap.yaml"/>
-  <arg name="map_file_for_costmap" default="$(find orne_navigation_executor)/maps/mymap_for_costmap.yaml"/>
+  <arg name="map_file" default="$(find orne_navigation_executor)/maps/mymap"/>
 
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file).yaml"/>
   <node name="map_server_for_costmap" pkg="map_server" type="map_server" args="$(arg map_file)_for_costmap.yaml">
