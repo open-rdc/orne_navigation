@@ -1,8 +1,14 @@
 <launch>
     <include file="$(find icart_mini_driver)/launch/icart_mini_drive.launch">
         <arg name="model"    value="$(find xacro)/xacro.py '$(find orne_description)/urdf/orne_alpha.xacro'"/>
-        <arg name="scan_dev" value="/dev/sensors/hokuyo"/>
+        <arg name="scan_dev" value="/dev/sensors/hokuyo_0"/>
     </include>
+
+<node pkg="hokuyo_node" type="hokuyo_node" name="hokuyo_node_2">
+   <param name="frame_id" value="diagonally_hokuyo_link" />
+   <param name="port" value="/dev/densors/hokuyo_1"/>
+</node>
+
 
     <node pkg="cit_adis_imu" type="imu_node" name="imu_node">
         <remap from="imu"        to="imu_data"/>
