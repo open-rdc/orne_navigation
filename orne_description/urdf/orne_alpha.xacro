@@ -21,7 +21,7 @@
 <!-- Setting for diagonally fixed 2D URG -->
 <xacro:include filename="$(find icart_mini_description)/urdf/sensors/hokuyo.urdf.xacro"/>
 <xacro:sensor_hokuyo name="diagonally_hokuyo" parent="base_link">
-   <origin xyz="0.093 0 0.427" rpy="0 0.296706 0"/> <!-- 0.296706 radian = 17 degree -->
+   <origin xyz="0.093 0 0.664" rpy="0 0.296706 0"/> <!-- 0.296706 radian = 17 degree -->
 </xacro:sensor_hokuyo>
 
 <!--
