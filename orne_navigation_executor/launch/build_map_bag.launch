@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<launch>
+  <arg name="scan_topic" default="/diag_scan_20Hz"/>
+  <arg name="bag_file"/>
+    
+  <node pkg="gmapping" type="slam_gmapping_replay" name="slam_gmapping_replay" args="--bag_filename $(arg bag_file)" output="screen">
+    <remap from="scan" to="diag_scan" />
+    <param name="delta" value="0.10"/>
+  </node>
+
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find orne_navigation_executor)/rviz_cfg/nav.rviz"/>
+
+</launch>
