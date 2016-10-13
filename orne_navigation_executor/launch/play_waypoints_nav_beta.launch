@@ -2,7 +2,7 @@
 
 <launch>
   <arg name="map_file" default="$(find orne_navigation_executor)/maps/mymap.yaml"/>
-  <arg name="waypoints_file" default="$(find orne_navigation_executor)/waypoints_cfg/waypoints.yaml"/>
+  <arg name="waypoints_file" default="$(find orne_navigation_executor)/waypoints_cfg/waypoints_beta.yaml"/>
 
   <include file="$(find orne_navigation_executor)/launch/nav_static_map_beta.launch">
     <arg name="map_file" value="$(arg map_file)"/>
