@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<launch>
+<node pkg="amcl" type="amcl" name="amcl" output="screen">
+  <rosparam file="$(find orne_navigation_executor)/param/localization_params_beta.yaml" command="load"/>
+  <rosparam file="$(find orne_navigation_executor)/initial_pose_cfg/initial_pose_beta.yaml" command="load"/>
+</node>
+</launch>
