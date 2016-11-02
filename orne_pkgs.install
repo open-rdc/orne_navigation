@@ -13,7 +13,7 @@
 - git:
     uri: https://github.com/DaikiMaekawa/fulanghua_navigation
     local-name: fulanghua_navigation
-    version: master
+    version: indigo-devel
 - git:
     uri: https://github.com/open-rdc/orne_navigation
     local-name: orne_navigation
