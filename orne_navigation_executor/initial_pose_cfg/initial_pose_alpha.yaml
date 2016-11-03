@@ -1,7 +1,0 @@
-# initial pose config
-initial_pose_x: 90.4516450328
-initial_pose_y: -0.0806254716084
-initial_pose_a: -0.08152333681588794
-initial_cov_xx: 0.065
-initial_cov_yy: 0.065
-initial_cov_aa: 0.065
