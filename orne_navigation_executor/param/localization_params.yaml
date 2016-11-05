@@ -12,7 +12,7 @@ odom_alpha1: 0.2
 odom_alpha2: 0.2
 # translation std dev, m
 odom_alpha3: 0.8
-odom_alpha4: 0.1
+odom_alpha4: 0.4
 laser_z_hit: 0.5
 laser_z_short: 0.05
 laser_z_max: 0.05
