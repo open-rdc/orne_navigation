@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <launch>
-  <arg name="map_file" default="$(find orne_navigation_executor)/maps/mymap.yaml"/>
+  <arg name="map_file" default="$(find orne_navigation_executor)/maps/mymap"/>
 
-  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file).yaml"/>
+  <node name="map_server_for_costmap" pkg="map_server" type="map_server" args="$(arg map_file)_for_costmap.yaml">
+    <remap from="/map" to="/map_for_costmap"/>
+    <param name="frame_id" value="/map_for_costmap"/>
+  </node>
 
   <include file="$(find orne_navigation_executor)/launch/move_base.launch">
     <arg name="odom_topic" value="combined_odom"/>
@@ -13,5 +17,5 @@
   <include file="$(find orne_navigation_executor)/launch/localization.launch"/>
 
   <node pkg="rviz" type="rviz" name="rviz" args="-d $(find orne_navigation_executor)/rviz_cfg/nav.rviz"/>
-  
+
 </launch>
