@@ -59,7 +59,9 @@ class TsukubaChallengeStrategy:
         self.world_frame = rospy.get_param('~world_frame', 'map')
         self.robot_frame = rospy.get_param('~robot_frame', 'base_link')
         self.is_search = rospy.get_param('~is_search', False)
-        self.search_rect = rospy.get_param('~search_rect',[[0,0],[0,0]])
+        self.search_rect = rospy.get_param('~search_rect', [[0,0],[0,0]])
+
+        self.target_position = geometry_msgs.PoseStamped()
 
         self.suspend_pose = geometry_msgs.msg.Pose()
         self.suspend_pose.position.x = suspend_pose_cfg['position']['x']
@@ -87,7 +89,8 @@ class TsukubaChallengeStrategy:
 
     def target_position_cb(self, data):
         if self.is_in_area() and not self.aproach_flag:
-            self.target_position = data
+            self.target_position.header=Header(stamp=rospy.Time(0),frame_id=world_frame)
+            self.target_position.pose.position = data.point
             self.aproach_flag = True
 
     def goal_cb(self, data):
@@ -207,7 +210,7 @@ class TsukubaChallengeStrategy:
                 rospy.wait_for_service('resume_wp_pose')
                 resume_wp_nav = rospy.ServiceProxy('resume_wp_pose', Pose)
                 self.goal_manager.set_goal(wp)
-                self.gpal_manager.start_nav()
+                self.goal_manager.start_nav()
                 state = 'aproach_near_point'
 
             elif state == 'aproach_near_point':
