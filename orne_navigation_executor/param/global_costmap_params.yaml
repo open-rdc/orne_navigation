@@ -1,4 +1,5 @@
 global_costmap:
+   map_topic: /lawn_map
    global_frame: /map
    robot_base_frame: /base_link
    update_frequency: 1.0
