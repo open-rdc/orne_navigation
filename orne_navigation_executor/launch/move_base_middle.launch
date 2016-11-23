@@ -14,7 +14,7 @@
     <rosparam file="$(find orne_navigation_executor)/param/move_base_params.yaml" command="load"/>
     <!--param name="base_global_planner" value="global_planner/GlobalPlanner"/-->
     <!--rosparam file="$(find orne_navigation_executor)/param/dwa_local_planner_params.yaml" command="load"/-->
-    <rosparam file="$(find orne_navigation_executor)/param/base_local_planner_params.yaml" command="load"/>
+    <rosparam file="$(find orne_navigation_executor)/param/base_local_planner_params_beta.yaml" command="load"/>
     <rosparam file="$(find orne_navigation_executor)/param/recovery_params.yaml" command="load"/>
   </node>
 </launch>

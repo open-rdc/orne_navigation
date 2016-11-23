@@ -4,8 +4,8 @@ odom_alpha5: 0.1
 transform_tolerance: 0.2
 gui_publish_rate: 10.0
 laser_max_beams: 30
-min_particles: 1000
-max_particles: 10000
+min_particles: 500
+max_particles: 5000
 kld_err: 0.05
 kld_z: 0.99
 odom_alpha1: 0.2
@@ -30,3 +30,5 @@ resample_interval: 1
 transform_tolerance: 0.1
 recovery_alpha_slow: 0.0
 recovery_alpha_fast: 0.0
+
+reset_th_alpha: 0.003
