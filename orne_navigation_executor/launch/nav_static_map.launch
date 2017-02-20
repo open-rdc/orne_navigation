@@ -1,20 +1,22 @@
 <?xml version="1.0"?>
 
 <launch>
-  <arg name="map_file" default="$(find orne_navigation_executor)/maps/mymap"/>
-
-  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file).yaml"/>
-  <node name="map_server_for_costmap" pkg="map_server" type="map_server" args="$(arg map_file)_for_costmap.yaml">
-    <remap from="/map" to="/map_for_costmap"/>
-    <param name="frame_id" value="/map_for_costmap"/>
-  </node>
+  <arg name="robot_name" default="alpha"/>
+  <arg name="map_file"   default="$(find orne_navigation_executor)/maps/mymap"/>
+  <arg name="init_pos_file" default="$(find orne_navigation_executor)/initial_pose_cfg/initial_pose.yaml"/>
 
   <include file="$(find orne_navigation_executor)/launch/move_base.launch">
+    <arg name="robot_name" value="$(arg robot_name)"/>
+    <arg name="map_file" value="$(arg map_file)"/>
     <arg name="odom_topic" value="combined_odom"/>
     <arg name="cmd_vel" value="icart_mini/cmd_vel"/>
   </include>
 
-  <include file="$(find orne_navigation_executor)/launch/localization.launch"/>
+  <include file="$(find orne_navigation_executor)/launch/localization.launch">
+    <arg name="robot_name" value="$(arg robot_name)"/>
+    <arg name="map_file" value="$(arg map_file)"/>
+    <arg name="init_pos_file" value="$(arg init_pos_file)"/>
+  </include>
 
   <node pkg="rviz" type="rviz" name="rviz" args="-d $(find orne_navigation_executor)/rviz_cfg/nav.rviz"/>
 

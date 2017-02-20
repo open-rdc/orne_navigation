@@ -1,4 +1,3 @@
-# Publish scans from best pose at a max of 10 Hz -->
 odom_model_type: diff
 odom_alpha5: 0.1
 transform_tolerance: 0.2
@@ -10,8 +9,6 @@ kld_err: 0.05
 kld_z: 0.99
 odom_alpha1: 0.2
 odom_alpha2: 0.2
-# translation std dev, m
-odom_alpha3: 0.8
 odom_alpha4: 0.4
 laser_z_hit: 0.5
 laser_z_short: 0.05
@@ -21,7 +18,6 @@ laser_sigma_hit: 0.2
 laser_lambda_short: 0.1
 laser_lambda_short: 0.1
 laser_model_type: likelihood_field
-
 laser_likelihood_max_dist: 2.0
 update_min_d: 0.2
 update_min_a: 0.5
