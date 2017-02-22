@@ -40,6 +40,13 @@ $ catkin build
 
 ## Usage
 
+###Setting(First time only)
+
+```sh
+$ rosrun orne_setup create_robot_params
+$ rosrun orne_setup create_udev_rules
+```
+
 ### Bring up the real/simulated robot
 
 The following will show the commands needed to bring up either real or simulated robots.
