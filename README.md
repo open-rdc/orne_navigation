@@ -106,7 +106,7 @@ $ roslaunch orne_navigation_executor  play_waypoints_nav_{alpha|beta}.launch
 * Waypoint Navigation with an optional map file
 
 ```sh
-$ roslaunch orne_navigation_executor  play_waypoints_nav.launch map_file:=filename.yaml
+$ roslaunch orne_navigation_executor  play_waypoints_nav_{alpha|beta}.launch map_file:=filename.yaml
 ```
 
 A map name must be specified in the full path.
