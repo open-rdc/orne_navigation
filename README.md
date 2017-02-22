@@ -90,7 +90,7 @@ $ roslaunch orne_navigation_executor  record_waypoints_viz.launch map_file:=file
 * Using a joystick
 
 ```sh
-$ roslaunch orne_navigation_executor  record_waypoints_joy.launch map_file:=filename.yaml
+$ roslaunch orne_navigation_executor  record_waypoints_joy_{alpha|beta}.launch map_file:=filename.yaml
 ```
 
 Note that filename must be specified in the full path.
@@ -100,7 +100,7 @@ Note that filename must be specified in the full path.
 * Waypoint Navigation
 
 ```sh
-$ roslaunch orne_navigation_executor  play_waypoints_nav.launch
+$ roslaunch orne_navigation_executor  play_waypoints_nav_{alpha|beta}.launch
 ```
 
 * Waypoint Navigation with an optional map file
@@ -118,7 +118,7 @@ Click "StartWaypointsNavigation" button on Rviz
 * Run the navigation system with a static map
 
 ```sh
-$ roslaunch orne_navigation_executor  nav_static_map.launch
+$ roslaunch orne_navigation_executor  nav_static_map.launch robot_name:={alpha|beta} map_file:=filename.yaml
 ```
 
 Don't forget to turn off the teleoperation, it might interfere with the robot's commands.
