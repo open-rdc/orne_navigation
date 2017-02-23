@@ -6,7 +6,7 @@ PLUGINLIB_EXPORT_CLASS(simple_lead_out::SimpleLeadOut, nav_core::RecoveryBehavio
 namespace simple_lead_out
 {
 SimpleLeadOut::SimpleLeadOut(): local_costmap_(NULL), tf_(NULL), initialized_(false), 
-                    width_min_(0.0), width_max_(0.0), back_(0.0), front_(0.0) {}
+                                width_min_(0.0), width_max_(0.0), back_(0.0), front_(0.0) {}
 
 SimpleLeadOut::~SimpleLeadOut(){
   if (scan_filter_)
@@ -30,14 +30,17 @@ void SimpleLeadOut::initialize(std::string name, tf::TransformListener* tf, cost
       width_min_>footprint.points.at(i).y?width_min_=footprint.points.at(i).y:width_min_=width_min_;
     }
 
+    private_nh_.param("base_frame_id", base_frame_id_, std::string("/base_link"));
+    private_nh_.param("scan_frame_id", scan_frame_id_, std::string("/scan"));
+
     ros::NodeHandle private_nh_("~/" + name);
     std::string planner_namespace;
     private_nh_.param("planner_namespace", planner_namespace, std::string("TrajectoryPlannerROS"));
     private_nh_.param("move_dist", move_dist_, front_-back_);
 
     planner_nh_ = ros::NodeHandle("~/" + planner_namespace);
-    scan_filter_sub_ = new message_filters::Subscriber<sensor_msgs::LaserScan>(planner_nh_, "/scan", 10);
-    scan_filter_ = new tf::MessageFilter<sensor_msgs::LaserScan>(*scan_filter_sub_, *tf_, "/base_link", 10);
+    scan_filter_sub_ = new message_filters::Subscriber<sensor_msgs::LaserScan>(planner_nh_, scan_frame_id_, 10);
+    scan_filter_ = new tf::MessageFilter<sensor_msgs::LaserScan>(*scan_filter_sub_, *tf_, base_frame_id_, 10);
     scan_filter_->registerCallback(boost::bind(&SimpleLeadOut::scanCallback, this, _1));
 
     planner_nh_.param("vel_x", vel_x_, 0.2);
@@ -82,8 +85,8 @@ pcl::PointCloud<pcl::PointXYZ> SimpleLeadOut::mergeCloud()
     projector_.projectLaser(scans.at(i), scan_cloud);
 
     sensor_msgs::PointCloud2 tf_cloud;
-    tf_->waitForTransform(scan_cloud.header.frame_id, "/base_link", scan_cloud.header.stamp, ros::Duration(0.5));
-    pcl_ros::transformPointCloud("/base_link", scan_cloud, tf_cloud, *tf_);
+    tf_->waitForTransform(scan_cloud.header.frame_id, base_frame_id_, scan_cloud.header.stamp, ros::Duration(0.5));
+    pcl_ros::transformPointCloud(base_frame_id_, scan_cloud, tf_cloud, *tf_);
 
     pcl::PointCloud<pcl::PointXYZ>::Ptr pcl_point_cloud(new pcl::PointCloud<pcl::PointXYZ>());
     pcl::fromROSMsg(tf_cloud, *pcl_point_cloud);
