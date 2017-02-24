@@ -49,7 +49,7 @@ namespace simple_lead_out
       std::map< std::string, int> frame_to_scan_;
       std::vector< sensor_msgs::LaserScan > scans_;
       bool initialized_;
-      double move_dist_, front_, back_, width_min_, width_max_, vel_x_;
+      double move_dist_, front_, back_, width_min_, width_max_, vel_x_, stop_dist_;
       std::string base_frame_id_, scan_frame_id_;
 
       boost::recursive_mutex configuration_mutex_;

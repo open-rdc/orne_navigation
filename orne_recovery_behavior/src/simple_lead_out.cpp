@@ -49,6 +49,12 @@ void SimpleLeadOut::initialize(std::string name, tf::TransformListener* tf, cost
       vel_x_ = 0.0;
     }
 
+    planner_nh_.param("stop_dist", stop_dist_, 0.2);
+    if(stop_dist_ < 0.0){
+      ROS_WARN_STREAM("stop_dist can not be negative.");
+      stop_dist_ = 0.0;
+    }
+
     initialized_ = true;
 
     frame_to_scan_.clear();
@@ -85,8 +91,13 @@ pcl::PointCloud<pcl::PointXYZ> SimpleLeadOut::mergeCloud()
     projector_.projectLaser(scans.at(i), scan_cloud);
 
     sensor_msgs::PointCloud2 tf_cloud;
-    tf_->waitForTransform(scan_cloud.header.frame_id, base_frame_id_, scan_cloud.header.stamp, ros::Duration(0.5));
-    pcl_ros::transformPointCloud(base_frame_id_, scan_cloud, tf_cloud, *tf_);
+    try{
+      tf_->waitForTransform(scan_cloud.header.frame_id, base_frame_id_, scan_cloud.header.stamp, ros::Duration(0.5));
+      pcl_ros::transformPointCloud(base_frame_id_, scan_cloud, tf_cloud, *tf_);
+    }catch(tf::TransformException e){
+      ROS_WARN("Failed to compute odom pose, skipping scan (%s)", e.what());
+      continue;
+    }
 
     pcl::PointCloud<pcl::PointXYZ>::Ptr pcl_point_cloud(new pcl::PointCloud<pcl::PointXYZ>());
     pcl::fromROSMsg(tf_cloud, *pcl_point_cloud);
@@ -145,7 +156,7 @@ void SimpleLeadOut::runBehavior()
   while((move < move_dist_)&&(n.ok())){
     pcl::PointCloud<pcl::PointXYZ> scan_cloud = mergeCloud();
     // ROS_WARN_STREAM("test :" << direction * move_dist_  <<  ' ' << d);
-    if(isObstacle(front_, front_+0.1, width_min_, width_max_, scan_cloud)) {
+    if(isObstacle(front_, front_+stop_dist_, width_min_, width_max_, scan_cloud)) {
       ROS_WARN("can't move");
       break;
     }
