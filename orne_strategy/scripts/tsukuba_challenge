@@ -49,7 +49,7 @@ class TsukubaChallengeStrategy:
         self.start_nav_server = rospy.Service('start_nav', Trigger, self.start_nav_callback)
         self.resume_nav_server = rospy.Service('resume_nav', Trigger, self.resume_nav_callback)
 
-        rospy.Subscriber('/clicked_point', PointStamped, self.target_position_cb, queue_size=10)
+        rospy.Subscriber('/target_point', PointStamped, self.target_position_cb, queue_size=10)
         rospy.Subscriber('/move_base/current_goal', PoseStamped, self.goal_cb, queue_size=10)
 
         self.goal_pose_pub = rospy.Publisher('/move_base_simple/goal', PoseStamped, queue_size=10)
