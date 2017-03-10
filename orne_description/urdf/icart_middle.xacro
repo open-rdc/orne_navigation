@@ -13,14 +13,14 @@
     <collision>
       <origin xyz="0 0 0.1" rpy="0 0 0"/>
       <geometry>
-	<box size=".462 .50 .134"/>
+	<box size=".462 .45 .134"/>
       </geometry>
     </collision>
 
     <visual>
       <origin xyz="0 0 0.1" rpy="0 0 0"/>
       <geometry>
-	<box size=".462 .50 .134"/>
+	<box size=".462 .45 .134"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -28,14 +28,14 @@
     <collision>
       <origin xyz="-0.095 0 0.305" rpy="0 0 0"/>
       <geometry>
-	<box size=".276 .50 .342"/>
+	<box size=".276 .45 .342"/>
       </geometry>
     </collision>
 
     <visual>
       <origin xyz="-0.095 0 0.305" rpy="0 0 0"/>
       <geometry>
-	<box size=".276 .50 .342"/>
+	<box size=".276 .45 .342"/>
       </geometry>
       <material name="orange"/>
     </visual>
