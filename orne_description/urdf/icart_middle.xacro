@@ -13,14 +13,14 @@
     <collision>
       <origin xyz="0 0 0.1" rpy="0 0 0"/>
       <geometry>
-	<box size=".462 .50 .134"/>
+	<box size=".462 .45 .134"/>
       </geometry>
     </collision>
 
     <visual>
       <origin xyz="0 0 0.1" rpy="0 0 0"/>
       <geometry>
-	<box size=".462 .50 .134"/>
+	<box size=".462 .45 .134"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -28,14 +28,14 @@
     <collision>
       <origin xyz="-0.095 0 0.305" rpy="0 0 0"/>
       <geometry>
-	<box size=".276 .50 .342"/>
+	<box size=".276 .45 .342"/>
       </geometry>
     </collision>
 
     <visual>
       <origin xyz="-0.095 0 0.305" rpy="0 0 0"/>
       <geometry>
-	<box size=".276 .50 .342"/>
+	<box size=".276 .45 .342"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -67,7 +67,7 @@
     </visual>
 
     <inertial>
-       <mass value="20" />
+       <mass value="15" />
        <origin xyz="0 0 0" rpy="0 0 0"/>
        <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1" />
     </inertial>
@@ -83,7 +83,7 @@
   </link>
 
   <joint type="fixed" name="visual_left_wheel_hinge">
-    <origin xyz="0.06 0.22479 0.1518" rpy="0 0 0"/>
+    <origin xyz="0.06 0.199796 0.1518" rpy="0 0 0"/>
     <child link="visual_left_wheel">visual_left_wheel</child>
     <parent link="base_link">base_link</parent>
     <axis xyz="0 1 0"/>
@@ -110,8 +110,8 @@
   </link>
   
   <joint type="revolute" name="left_wheel_hinge">
-    <origin xyz="0.06 0.22479 0.1518" rpy="0 0 0"/>
-    <child link="left_wheel">left_wheel</child>
+    <origin xyz="0.06 0.199796 0.1518" rpy="0 0 0"/>
+    <child link="left_wheel">left_wheel</child> 
     <parent link="base_link">base_link</parent>
     <axis xyz="0 1 0"/>
     <limit effort="100" velocity="100.0"  lower="-5000" upper="5000" />
@@ -127,7 +127,7 @@
   </link>
 
   <joint type="fixed" name="visual_right_wheel_hinge">
-    <origin xyz="0.06 -0.22479 0.1518" rpy="0 0 0"/>
+    <origin xyz="0.06 -0.199796 0.1518" rpy="0 0 0"/>
     <child link="visual_right_wheel">visual_right_wheel</child>
     <parent link="base_link">base_link</parent>
     <axis xyz="0 1 0"/>
@@ -154,7 +154,7 @@
   </link>
   
   <joint type="revolute" name="right_wheel_hinge">
-    <origin xyz="0.06 -0.22479 0.1518" rpy="0 0 0"/>
+    <origin xyz="0.06 -0.199796 0.1518" rpy="0 0 0"/>
     <child link="right_wheel">right_wheel</child>
     <parent link="base_link">base_link</parent>
     <axis xyz="0 1 0"/>
