@@ -18,6 +18,8 @@ find_package(catkin REQUIRED COMPONENTS
   pcl_msgs
   costmap_2d
   pluginlib
+  nav_core
+  base_local_planner
 )
 
 catkin_package(
