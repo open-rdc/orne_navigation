@@ -1,7 +1,7 @@
 <launch>
     <include file="$(find icart_mini_driver)/launch/icart_mini_drive.launch">
         <arg name="model"    value="$(find xacro)/xacro.py '$(find orne_description)/urdf/orne_beta.xacro'"/>
-        <arg name="scan_dev" value="/dev/sensors/hokuyo_H110848"/>
+        <arg name="scan_dev" value="/dev/sensors/hokuyo_H1110848"/>
         <arg name="ypspur_params" value="/usr/local/share/robot-params/icart-middle.param"/>
  </include>
 
