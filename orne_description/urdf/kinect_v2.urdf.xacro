@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<robot name="sensor_kinect_v2" xmlns:xacro="http://ros.org/wiki/xacro"
+                              xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+                              xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+
+  <xacro:macro name="sensor_kinect_v2" params="name parent *origin">
+	  <joint name="${name}_joint" type="fixed">
+	      <axis xyz="1 0 0"/>
+	      <insert_block name="origin"/>
+	      <parent link="${parent}"/>
+	      <child link="${name}_link"/>
+      </joint>
+
+
+      <joint name="${name}_rgb_joint" type="fixed">
+          <origin rpy="1.57 3.14 1.57"/>
+	      <parent link="${name}_link"/>
+	      <child link="kinect2_ir_optical_frame"/>
+      </joint>
+
+	  <link name="kinect2_ir_optical_frame"/>
+	
+	  <link name="${name}_link">
+	      <inertial>
+            <mass value="0.935"/>
+            <inertia ixx="0.0053937" ixy="0" ixz="0"
+                     iyy="0.00085311" iyz="0"
+                     izz="0.00519899" />
+	      </inertial>
+	      <visual>
+	        <origin rpy="0 0 0" xyz="0 0 0"/>
+	        <geometry>
+	          <box size="0.1 0.2 0.1"/>
+	        </geometry>
+	      </visual>
+	      <collision>
+	        <origin rpy="0 0 0" xyz="0 0 0"/>
+	        <geometry>
+	          <box size="0.1 0.2 0.1"/>
+	        </geometry>
+	      </collision>
+    </link>
+
+	  
+      <gazebo reference="${name}_link">
+        <sensor name="kinect2" type="depth">
+          <always_on>true</always_on>
+          <visualize>false</visualize>
+          <update_rate>30</update_rate>
+
+          <camera>
+            <horizontal_fov>${84.1*3.14/180.0}</horizontal_fov>
+            <image>
+              <format>B8G8R8</format>
+              <width>512</width>
+              <height>424</height>
+            </image>
+            <clip>
+              <near>0.05</near>
+              <far>4.5</far>
+            </clip>
+            <noise>
+              <type>gaussian</type>
+              <mean>0.0</mean>
+              <stddev>0.005</stddev>
+            </noise>
+          </camera>
+
+          <plugin name="${name}_camera_controller" filename="libgazebo_ros_openni_kinect.so">
+            <cameraName>kinect2/sd</cameraName>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>30</updateRate>
+            <imageTopicName>image_color</imageTopicName>
+            <depthImageTopicName>image_depth</depthImageTopicName>
+            <pointCloudTopicName>points</pointCloudTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <depthImageCameraInfoTopicName>camera_info</depthImageCameraInfoTopicName>
+            <frameName>kinect2_ir_optical_frame</frameName>
+            <baseline>0.1</baseline>
+            <distortion_k1>0.0</distortion_k1>
+            <distortion_k2>0.0</distortion_k2>
+            <distortion_k3>0.0</distortion_k3>
+            <distortion_t1>0.0</distortion_t1>
+            <distortion_t2>0.0</distortion_t2>
+            <pointCloudCutoff>0.05</pointCloudCutoff>
+            <pointCloudCutoffMax>4.5</pointCloudCutoffMax>
+          </plugin>
+        </sensor>
+      </gazebo>
+   </xacro:macro>
+
+</robot>

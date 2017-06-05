@@ -20,5 +20,11 @@
 </xacro:sensor_hokuyo3d>
 
 
+<xacro:include filename="$(find orne_description)/urdf/kinect_v2.urdf.xacro"/>
+<xacro:sensor_kinect_v2 name="kinect_v2" parent="base_link">
+    <origin xyz="0.12 0 0.60" rpy="0.0 0.0 0.0"/>
+</xacro:sensor_kinect_v2>
+
+
 
 </robot>
