@@ -1,0 +1,218 @@
+<?xml version="1.0"?>
+<!-- Revolute-Revolute Manipulator -->
+<robot name="interaction_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Constants for robot dimensions -->
+  <xacro:property name="PI" value="3.1415926535897931"/>
+
+  <!-- Import Rviz colors -->
+  <xacro:include filename="$(find icart_mini_description)/urdf/materials.xacro" />
+  <xacro:include filename="$(find orne_description)/urdf/interaction_robot.gazebo"/>
+
+  <!-- <xacro:include filename="$(find icart_mini_description)/urdf/sensors/imu.urdf.xacro"/>
+  <xacro:sensor_imu name="imu" parent="base_link" size="0.05 0.05 0.05">
+      <origin xyz="0.04 0.0 0.15" rpy="0 0 3.14"/>
+  </xacro:sensor_imu> -->
+
+
+  <!-- Base Link -->
+  <link name="base_link">
+    <collision>
+      <origin xyz="0 0 0.14" rpy="0 0 0"/>
+      <geometry>
+	<box size=".645 .385 .02"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0.14" rpy="0 0 0"/>
+      <geometry>
+	<box size=".645 .385 .02"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0.74" rpy="0 0 0"/>
+      <geometry>
+  <box size=".020 .040 1.20"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0.74" rpy="0 0 0"/>
+      <geometry>
+  <box size=".020 .040 1.20"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+
+    <collision name="collision">
+      <origin xyz="-0.185 -0.0875 0.05" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder  length="0.03" radius="0.04625"/>
+      </geometry>
+    </collision>
+    <visual name="visual">
+      <origin xyz="-0.185 -0.0875 0.05" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder  length="0.03" radius="0.04625"/>
+      </geometry>
+    </visual>
+
+    <collision name="collision">
+      <origin xyz="-0.185 0.0875 0.05" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder  length="0.03" radius="0.04625"/>
+      </geometry>
+    </collision>
+    <visual name="visual">
+      <origin xyz="-0.185 0.0875 0.05" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder  length="0.03" radius="0.04625"/>
+      </geometry>
+    </visual>
+
+    <collision name="collision">
+      <origin xyz="0.18 -0.0875 0.05" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder  length="0.03" radius="0.04625"/>
+      </geometry>
+    </collision>
+    <visual name="visual">
+      <origin xyz="0.18 -0.0875 0.05" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder  length="0.03" radius="0.04625"/>
+      </geometry>
+    </visual>
+
+    <collision name="collision">
+      <origin xyz="0.18 0.0875 0.05" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder  length="0.03" radius="0.04625"/>
+      </geometry>
+    </collision>
+    <visual name="visual">
+      <origin xyz="0.18 0.0875 0.05" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder  length="0.03" radius="0.04625"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+       <mass value="20" />
+       <origin xyz="0 0 0" rpy="0 0 0"/>
+       <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1" />
+    </inertial>
+  </link>
+
+  <link name="visual_left_wheel">
+    <visual name="visual">
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder  length="0.03" radius="0.0725"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint type="fixed" name="visual_left_wheel_hinge">
+    <origin xyz="0 0.15 0.0725" rpy="0 0 0"/>
+    <child link="visual_left_wheel">visual_left_wheel</child>
+    <parent link="base_link">base_link</parent>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <link name="left_wheel">
+    <collision name="collision">
+      <origin xyz="0 -0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+         <cylinder  length="0.03" radius="0.0725"/>
+      </geometry>
+    </collision>
+    <!--visual name="visual">
+      <origin xyz="0 0.0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder  length="0.03" radius="0.0725"/>
+      </geometry>
+    </visual-->
+    <inertial>
+      <mass value="1" />
+      <origin xyz="0 0.0 0"/>
+      <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1" />
+    </inertial>
+  </link>
+
+  <joint type="revolute" name="left_wheel_hinge">
+    <origin xyz="0 0.15 0.07258" rpy="0 0 0"/>
+    <child link="left_wheel">left_wheel</child>
+    <parent link="base_link">base_link</parent>
+    <axis xyz="0 1 0"/>
+    <limit effort="100" velocity="100.0"  lower="-5000" upper="5000" />
+  </joint>
+
+  <link name="visual_right_wheel">
+    <visual name="visual">
+      <origin xyz="0 -0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder  length="0.03" radius="0.0725"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint type="fixed" name="visual_right_wheel_hinge">
+    <origin xyz="0 -0.15 0.0725" rpy="0 0 0"/>
+    <child link="visual_right_wheel">visual_right_wheel</child>
+    <parent link="base_link">base_link</parent>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <link name="right_wheel">
+    <collision name="collision">
+      <origin xyz="0 -0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+         <cylinder  length="0.03" radius="0.0725"/>
+      </geometry>
+    </collision>
+    <!--visual name="visual">
+      <origin xyz="0 0.0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder  length="0.03" radius="0.0725"/>
+      </geometry>
+    </visual-->
+    <inertial>
+      <mass value="1" />
+      <origin xyz="0 0.0 0"/>
+      <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1" />
+    </inertial>
+  </link>
+
+  <joint type="revolute" name="right_wheel_hinge">
+    <origin xyz="0 -0.15 0.0725" rpy="0 0 0"/>
+    <child link="right_wheel">right_wheel</child>
+    <parent link="base_link">base_link</parent>
+    <axis xyz="0 1 0"/>
+    <limit effort="100" velocity="100.0"  lower="-5000" upper="5000" />
+  </joint>
+
+
+  <transmission name="tran1">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="left_wheel_hinge">
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+    </joint>
+  <actuator name="left_motor">
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_wheel_hinge">
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+    </joint>
+  <actuator name="right_motor">
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+</robot>
