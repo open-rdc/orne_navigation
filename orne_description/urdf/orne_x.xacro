@@ -13,63 +13,63 @@
     <collision>
       <origin xyz="0 0 0.1" rpy="0 0 0"/>
       <geometry>
-	<box size=".40 .45 .134"/>
+	<box size=".462 .40 .134"/>
       </geometry>
     </collision>
 
     <visual>
       <origin xyz="0 0 0.1" rpy="0 0 0"/>
       <geometry>
-	<box size=".462 .45 .134"/>
+	<box size=".462 .40 .134"/>
       </geometry>
       <material name="orange"/>
     </visual>
 
     <collision>
-      <origin xyz="-0.095 0 0.305" rpy="0 0 0"/>
+      <origin xyz="-0.095 0 0.245" rpy="0 0 0"/>
       <geometry>
-	<box size=".376 .45 .242"/>
+	<box size=".25 .40 .255"/>
       </geometry>
     </collision>
 
     <visual>
-      <origin xyz="-0.095 0 0.305" rpy="0 0 0"/>
+      <origin xyz="-0.095 0 0.285" rpy="0 0 0"/>
       <geometry>
-	<box size=".276 .45 .342"/>
+	<box size=".25 .40 .255"/>
       </geometry>
       <material name="orange"/>
     </visual>
 
     <collision name="collision">
-      <origin xyz="0.201 -0.141 0.075" rpy="0 1.5707 1.5707"/>
+      <origin xyz="0.201 -0.141 0.05" rpy="0 1.5707 1.5707"/>
       <geometry>
-        <cylinder  length="0.03" radius="0.075"/>
+        <cylinder  length="0.03" radius="0.04625"/>
       </geometry>
     </collision>
     <visual name="visual">
-      <origin xyz="0.201 -0.141 0.075" rpy="0 1.5707 1.5707"/>
+      <origin xyz="0.201 -0.141 0.05" rpy="0 1.5707 1.5707"/>
       <geometry>
-        <cylinder  length="0.03" radius="0.075"/>
+        <cylinder  length="0.03" radius="0.04625"/>
       </geometry>
     </visual>
 
     <collision name="collision">
-      <origin xyz="0.201 0.141 0.075" rpy="0 1.5707 1.5707"/>
+      <origin xyz="0.201 0.141 0.05" rpy="0 1.5707 1.5707"/>
       <geometry>
-        <cylinder  length="0.03" radius="0.075"/>
+        <cylinder  length="0.03" radius="0.04625"/>
       </geometry>
     </collision>
     <visual name="visual">
-      <origin xyz="0.201 0.141 0.075" rpy="0 1.5707 1.5707"/>
+      <origin xyz="0.201 0.141 0.05" rpy="0 1.5707 1.5707"/>
       <geometry>
-        <cylinder  length="0.03" radius="0.075"/>
+        <cylinder  length="0.03" radius="0.04625"/>
       </geometry>
     </visual>
 
     <inertial>
        <mass value="15" />
        <origin xyz="0 0 0" rpy="0 0 0"/>
-       <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1" />
+       <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1" />
     </inertial>
   </link>
 
@@ -83,7 +83,7 @@
   </link>
 
   <joint type="fixed" name="visual_left_wheel_hinge">
-    <origin xyz="-0.145 0.233 0.15" rpy="0 0 0"/>
+    <origin xyz="-0.145 0.223 0.1518" rpy="0 0 0"/>
     <child link="visual_left_wheel">visual_left_wheel</child>
     <parent link="base_link">base_link</parent>
     <axis xyz="0 1 0"/>
@@ -91,7 +91,7 @@
 
   <link name="left_wheel">
     <collision name="collision">
-      <origin xyz="0 0.0 0" rpy="0 0 0"/>
+      <origin xyz="0 0.0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
          <cylinder  length="0.03" radius="0.151"/>
       </geometry>
@@ -99,18 +99,18 @@
     <!--visual name="visual">
       <origin xyz="0 0.0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
-        <cylinder  length="0.03" radius="0.151"/>
+        <cylinder  length="0.03" radius="0.0725"/>
       </geometry>
     </visual-->
     <inertial>
-      <mass value="1" />
+      <mass value="5" />
       <origin xyz="0 0.0 0"/>
       <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1" />
     </inertial>
   </link>
 
   <joint type="revolute" name="left_wheel_hinge">
-    <origin xyz="-0.145 0.223 0.15" rpy="0 0 0"/>
+    <origin xyz="-0.145 0.2228 0.1518" rpy="0 0 0"/>
     <child link="left_wheel">left_wheel</child>
     <parent link="base_link">base_link</parent>
     <axis xyz="0 1 0"/>
@@ -127,7 +127,7 @@
   </link>
 
   <joint type="fixed" name="visual_right_wheel_hinge">
-    <origin xyz="-0.145 -0.223 0.15" rpy="0 0 0"/>
+    <origin xyz="-0.145 -0.2228 0.1518" rpy="0 0 0"/>
     <child link="visual_right_wheel">visual_right_wheel</child>
     <parent link="base_link">base_link</parent>
     <axis xyz="0 1 0"/>
@@ -143,18 +143,18 @@
     <!--visual name="visual">
       <origin xyz="0 0.0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
-        <cylinder  length="0.03" radius="0.151"/>
+        <cylinder  length="0.03" radius="0.0725"/>
       </geometry>
     </visual-->
     <inertial>
-      <mass value="1" />
+      <mass value="5" />
       <origin xyz="0 0.0 0"/>
       <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1" />
     </inertial>
   </link>
 
   <joint type="revolute" name="right_wheel_hinge">
-    <origin xyz="-0.145 -0.223 0.15" rpy="0 0 0"/>
+    <origin xyz="-0.145 -0.2228 0.1518" rpy="0 0 0"/>
     <child link="right_wheel">right_wheel</child>
     <parent link="base_link">base_link</parent>
     <axis xyz="0 1 0"/>
