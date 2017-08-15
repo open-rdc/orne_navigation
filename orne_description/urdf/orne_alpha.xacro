@@ -2,7 +2,7 @@
 
 <robot name="orne_alpha" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:include filename="$(find orne_description)/urdf/orne_x.xacro"/>
+<xacro:include filename="$(find orne_description)/urdf/orne_x.xacro"/>
 
 
 <!-- Setting for imu -->

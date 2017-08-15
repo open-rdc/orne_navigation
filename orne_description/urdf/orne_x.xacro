@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!-- Revolute-Revolute Manipulator -->
-<robot name="icart_middle" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="orne_x" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <!-- Constants for robot dimensions -->
   <xacro:property name="PI" value="3.1415926535897931"/>
 
   <!-- Import Rviz colors -->
   <xacro:include filename="$(find icart_mini_description)/urdf/materials.xacro" />
-  <xacro:include filename="$(find orne_description)/urdf/icart_middle.gazebo"/>
+  <xacro:include filename="$(find orne_description)/urdf/orne_x.gazebo"/>
 
   <!-- Base Link -->
   <link name="base_link">
@@ -20,7 +20,7 @@
     <visual>
       <origin xyz="0 0 0.1" rpy="0 0 0"/>
       <geometry>
-	<box size=".462 .45 .134"/>
+	<box size=".40 .45 .134"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -35,7 +35,7 @@
     <visual>
       <origin xyz="-0.095 0 0.305" rpy="0 0 0"/>
       <geometry>
-	<box size=".276 .45 .342"/>
+	<box size=".376 .45 .242"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -69,7 +69,7 @@
     <inertial>
        <mass value="15" />
        <origin xyz="0 0 0" rpy="0 0 0"/>
-       <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1" />
+       <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1" />
     </inertial>
   </link>
 
@@ -91,7 +91,7 @@
 
   <link name="left_wheel">
     <collision name="collision">
-      <origin xyz="0 0.0 0" rpy="0 0 0"/>
+      <origin xyz="0 0.0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
          <cylinder  length="0.03" radius="0.151"/>
       </geometry>
@@ -149,7 +149,7 @@
     <inertial>
       <mass value="1" />
       <origin xyz="0 0.0 0"/>
-      <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1" />
+      <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="1" />
     </inertial>
   </link>
 
