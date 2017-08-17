@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!-- Revolute-Revolute Manipulator -->
-<robot name="orne_x" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="orne_x" xmlns:xacro="http://ros.org/wiki/xacro">
   <!-- Constants for robot dimensions -->
   <xacro:property name="PI" value="3.1415926535897931"/>
 
