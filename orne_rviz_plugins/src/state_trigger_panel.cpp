@@ -2,7 +2,7 @@
 
 #include <QPainter>
 #include <QLineEdit>
-#include <QtGui/QPushButton>
+#include <QPushButton>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QLabel>
