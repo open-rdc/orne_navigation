@@ -5,7 +5,7 @@
     </include>
 
 
-    <node pkg="hokuyo_node" type="hokuyo_node" name="hokuyo_node_0">
+    <node pkg="urg_node" type="urg_node" name="hokuyo_node_0">
        <remap from="/scan" to="/diag_scan" />
        <param name="frame_id" value="diagonally_hokuyo_link" />
        <param name="port" value="/dev/sensors/hokuyo_H0803606"/>
