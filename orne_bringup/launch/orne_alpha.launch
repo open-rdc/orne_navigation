@@ -6,15 +6,15 @@
     </include>
 
 
-    <node pkg="hokuyo_node" type="hokuyo_node" name="hokuyo_node_0">
-       <remap from="/scan" to="/diag_scan" />
-       <param name="frame_id" value="diagonally_hokuyo_link" />
-       <param name="port" value="/dev/sensors/hokuyo_00803606"/>
-       <param name="min_ang" type="double" value="-1.047" />
-       <param name="max_ang" type="double" value="1.047" />
-       <param name="allow_unsafe_settings" value="true" />
-       <param name="intensity" value="true" />
-    </node>
+  <node pkg="urg_node" type="urg_node" name="urg_node_0">
+    <remap from="/scan" to="/diag_scan" />
+    <param name="frame_id" value="diagonally_hokuyo_link" />
+    <param name="serial_port" value="/dev/sensors/hokuyo_00803606"/>
+    <param name="publish_multiecho" value="false"/>
+    <param name="angle_min" value="-1.047"/>
+    <param name="angle_max" value="1.047"/>
+    <param name="publish_intensity" value="true"/>
+  </node>
 
 
     <node pkg="cit_adis_imu" type="imu_node" name="imu_node">
