@@ -8,7 +8,6 @@ import tf
 import math
 from std_srvs.srv import Trigger
 from fulanghua_srvs.srv import Pose
-from espeak import espeak
 
 class GoalManager:
     def __init__(self, nav_publisher, world_frame, robot_frame):
@@ -172,7 +171,7 @@ class TsukubaChallengeStrategy:
                     self.state = 'approach_near_point'
                     befor_dist = float('inf')
 
-            elif self.state == 'approach_near_point'
+            elif self.state == 'approach_near_point':
                 pose1 = self.get.now_pose()
                 pose2 = self.target_position
                 dist = self.get_distance(pose1, pose2)
@@ -204,7 +203,7 @@ class TsukubaChallengeStrategy:
 
             elif self_state == 'arrive_target':
                 now = rospy.Time.now().to_secs()
-                if stop_Time - now >5.0
+                if stop_Time - now > 5.0:
                         self_state = 'return_stop_point'
 
             elif self_state == 'return_stop_point':
