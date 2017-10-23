@@ -14,6 +14,8 @@ class GoalManager:
         self.nav_publisher = nav_publisher
         self.tf_listener = tf.TransformListener()
 
+        self.goal_pose = geometry_msgs.msg.Pose
+
         self.world_frame = world_frame
         self.robot_frame = robot_frame
 
@@ -57,8 +59,8 @@ class TsukubaChallengeStrategy:
         self.world_frame = rospy.get_param('~world_frame', 'map')
         self.robot_frame = rospy.get_param('~robot_frame', 'base_link')
         self.target_position = geometry_msgs.msg.PoseStamped()
-        self.is_search = rospy.get_param('~is_search', False)
-        self.search_rect = rospy.get_param('~search_rect', [[0,0],[0,0]])
+        self.is_search = rospy.get_param('~is_search', True)
+        self.search_rect = rospy.get_param('~search_rect',[[-1000,-1000],[1000,1000]])
 
         self.suspend_pose = geometry_msgs.msg.Pose()
         self.suspend_pose.position.x = suspend_pose_cfg['position']['x']
@@ -90,14 +92,14 @@ class TsukubaChallengeStrategy:
         self.state = 'not_search'
 
         rospy.wait_for_service('suspend_wp_pose')
-        self.suspend_pose = rospy.ServiceProxy('suspend_wp_pose', Pose)
+        self.suspend_wp_nav = rospy.ServiceProxy('suspend_wp_pose', Pose)
 
-        rospy.wait_for_service('resume_wp_nav')
-        self.resume_wp_nav = rospy.ServiceProxy('resume_wp_nav', Pose)
+        rospy.wait_for_service('resume_wp_pose')
+        self.resume_wp_nav = rospy.ServiceProxy('resume_wp_pose', Pose)
 
 
     def target_position_cb(self, data):
-       if not self.aproach_flag:
+        if not self.aproach_flag:
             self.target_position.header=Header(stamp=rospy.Time(0),frame_id=self.world_frame)
             self.target_position.pose.position = data.point
             self.target_position.pose.orientation = Quaternion(0.0,0.0,0.0,1.0)
@@ -144,6 +146,7 @@ class TsukubaChallengeStrategy:
         y = now_pose.pose.position.y
 
         if x > self.search_rect[0][0] and y > self.search_rect[0][1] and x < self.search_rect[1][0] and y < self.search_rect[1][1]:
+            rospy.loginfo("in search_area")
             return True
         else:
             return False
@@ -157,11 +160,13 @@ class TsukubaChallengeStrategy:
 
     def spin(self):
         rate = rospy.Rate(10)
-        already_send_suspend_pose = False
         self.state = 'not_search'
+        state_tmp = self.state
         while not rospy.is_shutdown():
             rate.sleep()
-            rospy.loginfo(self.state)
+            if self.state != state_tmp:
+                rospy.loginfo(self.state)
+                state_tmp = self.state
             if self.state == 'not_search':
                 if self.is_search and self.is_in_search_area():
                     self.state = 'search'
@@ -169,56 +174,66 @@ class TsukubaChallengeStrategy:
             elif self.state == 'search':
                 if self.aproach_flag:
                     self.state = 'approach_near_point'
-                    befor_dist = float('inf')
+                    before_dist = float('inf')
 
             elif self.state == 'approach_near_point':
-                pose1 = self.get.now_pose()
+                pose1 = self.get_now_pose()
                 pose2 = self.target_position
                 dist = self.get_distance(pose1, pose2)
-                if (dist > before_dist):
-                        self.state = 'suspend_nav'
+                if dist > before_dist:
+                    self.state = 'suspend_nav'
                 else :
-                        before_dist = dist
+                    before_dist = dist
 
-            elif self_state == 'suspend_nav':
+            elif self.state == 'suspend_nav':
                 self.return_pose = self.get_now_pose()
-                ret = self.suspend_pose(self.return_pose)
+                ret = self.suspend_wp_nav(self.return_pose.pose)
                 if ret:
-                        self.state = 'aproach_target'
+                    self.state = 'aproach_target'
 
-            elif self_state == 'aproach_target':
+            elif self.state == 'aproach_target':
                 goal_pose = self.target_position
                 self.goal_manager.set_goal(goal_pose)
                 self.goal_manager.start_nav()
-                if self.goal_manager.is_arrive_goal(dist_thr=2.0):
-                        self.state = 'stop_near_target'
+                self.state = 'wait_near_target'
 
-            elif self_state == 'stop_near_target':
-                pose_arrive = goal_pose
+            elif self.state == 'wait_near_target':
+                if self.goal_manager.is_arrive_goal(dist_thr=2.0):
+                    self.state = 'stop_near_target'
+
+            elif self.state == 'stop_near_target':
+                pose_arrive = self.get_now_pose()
                 self.goal_manager.set_goal(pose_arrive)
                 self.goal_manager.start_nav()
+                self.state = 'wait_arrive_target'
+
+            elif self.state == 'wait_arrive_target':
                 if self.goal_manager.is_arrive_goal(dist_thr=0.5):
-                        self.state = 'arrive_target'
-                        stop_time=rospy.Time.now().to_secs()
+                    self.state = 'arrive_target'
+                    stop_time=rospy.Time.now().to_sec()
 
-            elif self_state == 'arrive_target':
-                now = rospy.Time.now().to_secs()
-                if stop_Time - now > 5.0:
-                        self_state = 'return_stop_point'
+            elif self.state == 'arrive_target':
+                now = rospy.Time.now().to_sec()
+                rospy.loginfo(now - stop_time)
+                if now - stop_time > 5.0:
+                    self.state = 'return_stop_point'
 
-            elif self_state == 'return_stop_point':
+            elif self.state == 'return_stop_point':
                 return_pose = self.return_pose
                 self.goal_manager.set_goal(return_pose)
                 self.goal_manager.start_nav()
-                if self.goal_manager.is_arrive_goal(dist_thr=1.0):
-                        self.state = 'resume_nav'
+                self.state = 'wait_resume_nav'
 
-            elif self_state == 'resume_nav':
+            elif self.state == 'wait_resume_nav':
+                if self.goal_manager.is_arrive_goal(dist_thr=1.0):
+                    self.state = 'resume_nav'
+
+            elif self.state == 'resume_nav':
                 self_resume_pose = self.get_now_pose()
-                ref = self.resume_nav(self_resume_pose)
+                ref = self.resume_wp_nav(self_resume_pose.pose)
                 if ref:
-                        self.state = 'not_search'
-                        self.aproach_flag= False
+                    self.state = 'not_search'
+                    self.aproach_flag= False
 
             '''try:
                 (trans, rot) = self.tf_listener.lookupTransform(self.world_frame, self.robot_frame, rospy.Time(0))
