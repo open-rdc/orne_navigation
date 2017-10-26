@@ -92,11 +92,19 @@ class TsukubaChallengeStrategy:
         self.state = 'not_search'
 
     def target_position_cb(self, data):
-        if not self.aproach_flag:
-            self.target_position.header=Header(stamp=rospy.Time(0),frame_id=self.world_frame)
-            self.target_position.pose.position = data.point
-            self.target_position.pose.orientation = Quaternion(0.0,0.0,0.0,1.0)
-            self.aproach_flag = True
+       if not self.aproach_flag:
+            past_flag = True
+            if len(self.past_positions):
+                for past in self.past_positions:
+                    if self.get_distance(geometry_msgs.msg.Pose(data.point), geometry_msgs.msg.Pose(past)) < 1.0:
+                        past_flag = False
+                        break
+            if past_flag:
+                self.target_position.header=Header(stamp=rospy.Time(0),frame_id=self.world_frame)
+                self.target_position.pose.position = data.point
+                self.target_position.pose.orientation = Quaternion(0.0,0.0,0.0,1.0)
+                self.aproach_flag = True
+                self.past_positions.append(data.point)
 
     def start_nav_callback(self, req):
         try:
