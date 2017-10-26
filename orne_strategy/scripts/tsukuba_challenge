@@ -3,6 +3,7 @@
 
 import rospy
 from geometry_msgs.msg import *
+from std_msgs.msg import *
 import tf
 import math
 from std_srvs.srv import Trigger
@@ -57,6 +58,8 @@ class TsukubaChallengeStrategy:
         resume_pose_cfg = rospy.get_param('~resume_pose')
         self.world_frame = rospy.get_param('~world_frame', 'map')
         self.robot_frame = rospy.get_param('~robot_frame', 'base_link')
+        self.is_search = rospy.get_param('~is_search', False)
+        self.search_rect = rospy.get_param('~search_rect',[[0,0],[0,0]])
 
         self.suspend_pose = geometry_msgs.msg.Pose()
         self.suspend_pose.position.x = suspend_pose_cfg['position']['x']
@@ -116,17 +119,17 @@ class TsukubaChallengeStrategy:
                 stamp=rospy.Time(0),
                 frame_id='base_link'
             ),
-            pose=Pose()
+            pose=geometry_msgs.msg.Pose()
         )
         robot_pose = PoseStamped()
         try:
-            robot_pose = self.tf_listener.transformPose('map', identf)
+            robot_pose = self.tf_listener.transformPose(self.world_frame, ident)
         except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
             rospy.loginfo('tf except')
         return robot_pose
 
     def is_in_search_area(self):
-        now_pose = get_now_pose()
+        now_pose = self.get_now_pose()
         x = now_pose.pose.position.x
         y = now_pose.pose.position.y
 
