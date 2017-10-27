@@ -59,7 +59,7 @@ class TsukubaChallengeStrategy:
         self.world_frame = rospy.get_param('~world_frame', 'map')
         self.robot_frame = rospy.get_param('~robot_frame', 'base_link')
         self.target_position = geometry_msgs.msg.PoseStamped()
-        self.is_search = rospy.get_param('~is_search', True)
+        self.is_search = rospy.get_param('~is_search', False)
         self.search_rect = rospy.get_param('~search_rect',[[-1000,-1000],[1000,1000]])
 
         self.suspend_pose = geometry_msgs.msg.Pose()
@@ -90,13 +90,15 @@ class TsukubaChallengeStrategy:
 
         self.aproach_flag = False
         self.state = 'not_search'
+        self.past_positions = []
 
     def target_position_cb(self, data):
        if not self.aproach_flag:
             past_flag = True
             if len(self.past_positions):
                 for past in self.past_positions:
-                    if self.get_distance(geometry_msgs.msg.Pose(data.point), geometry_msgs.msg.Pose(past)) < 1.0:
+                    dist = math.sqrt(math.pow(past.x - data.point.x, 2) + math.pow(past.y - data.point.y, 2))
+                    if dist < 1.0:
                         past_flag = False
                         break
             if past_flag:
@@ -107,6 +109,7 @@ class TsukubaChallengeStrategy:
                 self.past_positions.append(data.point)
 
     def start_nav_callback(self, req):
+        self.is_search = True
         try:
             rospy.loginfo("strategy: start_nav_callback")
             rospy.wait_for_service('start_wp_nav')
