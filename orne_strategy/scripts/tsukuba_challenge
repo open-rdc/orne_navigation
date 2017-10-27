@@ -165,12 +165,12 @@ class TsukubaChallengeStrategy:
     def call_suspend_wp_pose(self, pose):
         rospy.wait_for_service('suspend_wp_pose')
         suspend_wp_nav = rospy.ServiceProxy('suspend_wp_pose', Pose)
-        return suspend_wp_nav(Pose(pose))
+        return suspend_wp_nav(pose)
 
     def call_resume_wp_pose(self, pose):
         rospy.wait_for_service('resume_wp_pose')
         resume_wp_nav = rospy.ServiceProxy('resume_wp_pose', Pose)
-        return resume_wp_nav(Pose(pose))
+        return resume_wp_nav(pose)
 
 
     def spin(self):
