@@ -91,13 +91,6 @@ class TsukubaChallengeStrategy:
         self.aproach_flag = False
         self.state = 'not_search'
 
-        rospy.wait_for_service('suspend_wp_pose')
-        self.suspend_wp_nav = rospy.ServiceProxy('suspend_wp_pose', Pose)
-
-        rospy.wait_for_service('resume_wp_pose')
-        self.resume_wp_nav = rospy.ServiceProxy('resume_wp_pose', Pose)
-
-
     def target_position_cb(self, data):
         if not self.aproach_flag:
             self.target_position.header=Header(stamp=rospy.Time(0),frame_id=self.world_frame)
@@ -158,6 +151,17 @@ class TsukubaChallengeStrategy:
         y2 = pose2.pose.position.y
         return math.sqrt(math.pow(x1 - x2, 2) + math.pow(y1 - y2, 2))
 
+    def call_suspend_wp_pose(self, pose):
+        rospy.wait_for_service('suspend_wp_pose')
+        suspend_wp_nav = rospy.ServiceProxy('suspend_wp_pose', Pose)
+        return suspend_wp_nav(Pose(pose))
+
+    def call_resume_wp_pose(self, pose):
+        rospy.wait_for_service('resume_wp_pose')
+        resume_wp_nav = rospy.ServiceProxy('resume_wp_pose', Pose)
+        return resume_wp_nav(Pose(pose))
+
+
     def spin(self):
         rate = rospy.Rate(10)
         self.state = 'not_search'
@@ -187,7 +191,7 @@ class TsukubaChallengeStrategy:
 
             elif self.state == 'suspend_nav':
                 self.return_pose = self.get_now_pose()
-                ret = self.suspend_wp_nav(self.return_pose.pose)
+                ret = self.call_suspend_wp_pose(self.return_pose.pose)
                 if ret:
                     self.state = 'aproach_target'
 
@@ -229,9 +233,9 @@ class TsukubaChallengeStrategy:
                     self.state = 'resume_nav'
 
             elif self.state == 'resume_nav':
-                self_resume_pose = self.get_now_pose()
-                ref = self.resume_wp_nav(self_resume_pose.pose)
-                if ref:
+                self.resume_pose = self.get_now_pose()
+                ret = self.call_resume_wp_pose(self.resume_pose.pose)
+                if ret:
                     self.state = 'not_search'
                     self.aproach_flag= False
 
