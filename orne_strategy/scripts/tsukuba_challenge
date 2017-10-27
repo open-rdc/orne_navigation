@@ -213,6 +213,7 @@ class TsukubaChallengeStrategy:
             elif self.state == 'aproach_target':
                 target_from_robotframe = self.tf_listener.transformPose("/base_link", self.target_position)
                 target_from_robotframe.pose.position.x = target_from_robotframe.pose.position.x - 1
+                target_from_robotframe.pose.orientation = geometry_msgs.msg.Quaternion(0.0, 0.0, 0.0, 1.0)
                 print target_from_robotframe
                 goal_pose = self.tf_listener.transformPose("/map", target_from_robotframe)
                 self.goal_manager.set_goal(goal_pose)
