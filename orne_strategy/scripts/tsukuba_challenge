@@ -165,6 +165,7 @@ class TsukubaChallengeStrategy:
     def call_suspend_wp_pose(self, pose):
         rospy.wait_for_service('suspend_wp_pose')
         suspend_wp_nav = rospy.ServiceProxy('suspend_wp_pose', Pose)
+        print pose
         return suspend_wp_nav(pose)
 
     def call_resume_wp_pose(self, pose):
@@ -202,23 +203,19 @@ class TsukubaChallengeStrategy:
 
             elif self.state == 'suspend_nav':
                 self.return_pose = self.get_now_pose()
+                theta = math.atan2(self.target_position.pose.position.y - self.return_pose.pose.position.y, self.target_position.pose.position.x - self.return_pose.pose.position.x)
+                self.return_pose.pose.orientation = geometry_msgs.msg.Quaternion(*tf.transformations.quaternion_from_euler(0.0, 0.0, theta))
+
                 ret = self.call_suspend_wp_pose(self.return_pose.pose)
                 if ret:
                     self.state = 'aproach_target'
 
             elif self.state == 'aproach_target':
-                goal_pose = self.target_position
+                target_from_robotframe = self.tf_listener.transformPose("/base_link", self.target_position)
+                target_from_robotframe.pose.position.x = target_from_robotframe.pose.position.x - 1
+                print target_from_robotframe
+                goal_pose = self.tf_listener.transformPose("/map", target_from_robotframe)
                 self.goal_manager.set_goal(goal_pose)
-                self.goal_manager.start_nav()
-                self.state = 'wait_near_target'
-
-            elif self.state == 'wait_near_target':
-                if self.goal_manager.is_arrive_goal(dist_thr=2.0):
-                    self.state = 'stop_near_target'
-
-            elif self.state == 'stop_near_target':
-                pose_arrive = self.get_now_pose()
-                self.goal_manager.set_goal(pose_arrive)
                 self.goal_manager.start_nav()
                 self.state = 'wait_arrive_target'
 
