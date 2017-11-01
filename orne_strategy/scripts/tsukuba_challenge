@@ -209,10 +209,12 @@ class TsukubaChallengeStrategy:
                 ret = self.call_suspend_wp_pose(self.return_pose.pose)
                 if ret:
                     self.state = 'aproach_target'
+                else:
+                    self.state = 'not_search'
 
             elif self.state == 'aproach_target':
                 target_from_robotframe = self.tf_listener.transformPose("/base_link", self.target_position)
-                target_from_robotframe.pose.position.x = target_from_robotframe.pose.position.x - 1
+                target_from_robotframe.pose.position.x = target_from_robotframe.pose.position.x - 2.0
                 target_from_robotframe.pose.orientation = geometry_msgs.msg.Quaternion(0.0, 0.0, 0.0, 1.0)
                 print target_from_robotframe
                 goal_pose = self.tf_listener.transformPose("/map", target_from_robotframe)
