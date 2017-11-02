@@ -51,7 +51,7 @@ class TsukubaChallengeStrategy:
         self.resume_nav_server = rospy.Service('resume_nav', Trigger, self.resume_nav_callback)
 
         rospy.Subscriber('/target_point', PointStamped, self.target_position_cb, queue_size=10)
-
+        rospy.Subscriber('/icart_mini/cmd_vel', Twist, self.cmd_vel_cb, queue_size=10)
         self.goal_pose_pub = rospy.Publisher('/move_base_simple/goal', PoseStamped, queue_size=10)
 
         suspend_pose_cfg = rospy.get_param('~suspend_pose')
@@ -91,6 +91,7 @@ class TsukubaChallengeStrategy:
         self.aproach_flag = False
         self.state = 'not_search'
         self.past_positions = []
+        self.last_move_time = 0
 
     def target_position_cb(self, data):
        if not self.aproach_flag:
@@ -104,9 +105,19 @@ class TsukubaChallengeStrategy:
             if past_flag:
                 self.target_position.header=Header(stamp=rospy.Time(0),frame_id=self.world_frame)
                 self.target_position.pose.position = data.point
+                self.target_position.pose.position.z = 0.0
                 self.target_position.pose.orientation = Quaternion(0.0,0.0,0.0,1.0)
                 self.aproach_flag = True
                 self.past_positions.append(data.point)
+
+    def cmd_vel_cb(self, msg):
+        if msg.linear.x > -0.001 and msg.linear.x < 0.001 and msg.linear.y > -0.001 and msg.linear.y < 0.001   and msg.linear.z > -0.001 and msg.linear.z < 0.001   and msg.angular.x > -0.001 and msg.angular.x < 0.001 and msg.angular.y > -0.001 and msg.angular.y < 0.001 and msg.angular.z > -0.001 and msg.angular.z < 0.001 :
+            rospy.loginfo("command velocity all zero")
+            if (rospy.Time.now().to_sec() - self.last_move_time > 300):
+                if (self.state != 'search') and (self.state != 'not_search'):
+                    self.state = 'resume_nav'
+        else:
+            self.last_moved_time = rospy.Time.now().to_sec()
 
     def start_nav_callback(self, req):
         self.is_search = True
@@ -173,7 +184,6 @@ class TsukubaChallengeStrategy:
         resume_wp_nav = rospy.ServiceProxy('resume_wp_pose', Pose)
         return resume_wp_nav(pose)
 
-
     def spin(self):
         rate = rospy.Rate(10)
         self.state = 'not_search'
@@ -217,6 +227,7 @@ class TsukubaChallengeStrategy:
                 target_from_robotframe.pose.position.x = target_from_robotframe.pose.position.x - 2.0
                 target_from_robotframe.pose.orientation = geometry_msgs.msg.Quaternion(0.0, 0.0, 0.0, 1.0)
                 print target_from_robotframe
+                goal_pose.pose.orientation = self.return_pose.pose.orientation
                 goal_pose = self.tf_listener.transformPose("/map", target_from_robotframe)
                 self.goal_manager.set_goal(goal_pose)
                 self.goal_manager.start_nav()
