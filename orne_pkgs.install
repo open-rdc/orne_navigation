@@ -17,7 +17,7 @@
 - git:
     uri: https://github.com/open-rdc/orne_navigation
     local-name: orne_navigation
-    version: indigo-devel
+    version: kinetic-devel
 - git:
     uri: https://github.com/Nasupl/mpu6050_serial_to_imu
     local-name: mpu6050_serial_to_imu
@@ -25,4 +25,4 @@
 - git:
     uri: https://github.com/open-rdc/navigation
     local-name: navigation
-    version: indigo-devel
+    version: kinetic-devel
