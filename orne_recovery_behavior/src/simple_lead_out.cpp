@@ -140,6 +140,27 @@ void SimpleLeadOut::runBehavior()
 
   if (isObstacle(front_, front_+move_dist_, width_min_, width_max_, scan_cloud)){
     ROS_WARN("can't move");
+    double now_x = global_pose.getOrigin().x(), now_y = global_pose.getOrigin().y();
+    double prev_x = now_x, prev_y = now_y;
+    double init_x = now_x, init_y = now_y;
+    double move = 0.0;
+    while((move < 0.3)&&(n.ok())){
+      cmd_vel.linear.x = -vel_x_;
+      cmd_vel.linear.y = 0.0;
+      cmd_vel.angular.z = 0.0;
+      
+      vel_pub.publish(cmd_vel);
+
+      local_costmap_->getRobotPose(global_pose);
+      prev_x = now_x;
+      prev_y = now_y;
+      now_x = global_pose.getOrigin().x();
+      now_y = global_pose.getOrigin().y();
+      move += sqrt((now_x-prev_x)*(now_x-prev_x) + (now_y-prev_y)*(now_y-prev_y));
+      
+      r.sleep();
+    }
+
     return;
   }
 
