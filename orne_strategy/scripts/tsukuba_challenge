@@ -112,7 +112,6 @@ class TsukubaChallengeStrategy:
 
     def cmd_vel_cb(self, msg):
         if msg.linear.x > -0.001 and msg.linear.x < 0.001 and msg.linear.y > -0.001 and msg.linear.y < 0.001   and msg.linear.z > -0.001 and msg.linear.z < 0.001   and msg.angular.x > -0.001 and msg.angular.x < 0.001 and msg.angular.y > -0.001 and msg.angular.y < 0.001 and msg.angular.z > -0.001 and msg.angular.z < 0.001 :
-            rospy.loginfo("command velocity all zero")
             if (rospy.Time.now().to_sec() - self.last_move_time > 300):
                 if (self.state != 'search') and (self.state != 'not_search'):
                     self.state = 'resume_nav'
@@ -226,9 +225,8 @@ class TsukubaChallengeStrategy:
                 target_from_robotframe = self.tf_listener.transformPose("/base_link", self.target_position)
                 target_from_robotframe.pose.position.x = target_from_robotframe.pose.position.x - 2.0
                 target_from_robotframe.pose.orientation = geometry_msgs.msg.Quaternion(0.0, 0.0, 0.0, 1.0)
-                print target_from_robotframe
-                goal_pose.pose.orientation = self.return_pose.pose.orientation
                 goal_pose = self.tf_listener.transformPose("/map", target_from_robotframe)
+                goal_pose.pose.orientation = self.return_pose.pose.orientation
                 self.goal_manager.set_goal(goal_pose)
                 self.goal_manager.start_nav()
                 self.state = 'wait_arrive_target'
