@@ -1,7 +1,7 @@
 - git:
     uri: https://github.com/open-rdc/icart_mini
     local-name: icart_mini
-    version: indigo-devel
+    version: kinetic-devel
 - git:
     uri: https://github.com/open-rdc/adis_imu_drivers
     local-name: adis_imu_drivers
@@ -26,3 +26,7 @@
     uri: https://github.com/open-rdc/navigation
     local-name: navigation
     version: kinetic-devel
+- git:
+    uri: https://github.com/open-rdc/orne_tools
+    local-name: orne_tools
+    version: master
