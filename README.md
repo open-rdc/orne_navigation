@@ -25,7 +25,7 @@ This repository provides mobile navigation system with i-Cart mini for Tsukuba C
 
 ## Install
 
-Install ROS software (recommended ROS indigo version with Ubuntu 14.04LTS) at http://wiki.ros.org/indigo/Installation, please select Ubuntu platform.
+Install ROS software (we recommend ROS indigo version with Ubuntu 14.04LTS) at http://wiki.ros.org/indigo/Installation, please select the Ubuntu platform.
 
 * Preparation of python-catkin-tools
 
@@ -85,13 +85,13 @@ $ roslaunch orne_navigation_executor  build_map_teleop.launch
 
 
 
-If you want to save a map, run a map_saver node like the following command.
+If you want to save a map, run the map_saver node like the following command.
 
 ```sh
 $ rosrun map_server map_saver -f filename
 ```
 
-Since cost map is required when performing self-positioning, if you don't create a cost map other than walls, create a cost map with the following command
+Since a cost map is required when performing self-positioning, if you haven't created a cost map other than walls, create a cost map with the following command
 ```sh
 $ cp filename.yaml filename_for_costmap.yaml
 ```
@@ -107,10 +107,10 @@ $ roslaunch orne_navigation_executor  record_waypoints_viz.launch map_file:=file
 
 * Using a joystick
 
-During running, waypoints are recorded by pressing the No.1 or □ button of the joystick.
-When you set 2DNavGoal at the goal point on the RViz, waypoints will be saved and then waypoints file stored in orne_navigation/waypoints_cfg/waypoints.yaml is overwritten. So that, the navigation system can be automatically load waypoints configuration.
+While running, waypoints are recorded by pressing the No.1 or □ button of the joystick.
+When you set 2DNavGoal at the goal point on the RViz, waypoints will be saved and then the waypoints file stored in orne_navigation/waypoints_cfg/waypoints.yaml will be overwritten. So that, the navigation system can be automatically loaded  with the waypoints configuration.
 ```sh
-$ roslaunch orne_navigation_executor  record_waypoints_joy_{alpha|beta}.launch map_file:=filename
+$ roslaunch orne_navigation_executor  record_waypoints_joy_{alpha/beta}.launch map_file:=filename
 ```
 
 Note that filename must be specified in the full path.
@@ -120,19 +120,19 @@ Note that filename must be specified in the full path.
 * Waypoint Navigation
 
 ```sh
-$ roslaunch orne_navigation_executor  play_waypoints_nav_{alpha|beta}.launch
+$ roslaunch orne_navigation_executor  play_waypoints_nav_{alpha/beta}.launch
 ```
 
 * Waypoint Navigation with an optional map file
 
 ```sh
-$ roslaunch orne_navigation_executor  play_waypoints_nav_{alpha|beta}.launch map_file:=filename
+$ roslaunch orne_navigation_executor  play_waypoints_nav_{alpha/beta}.launch map_file:=filename
 ```
 
 * Waypoint Navigation with optional waypoints file
 
 ```sh 
-$ roslaunch orne_navigation_executor  play_waypoints_nav_{alpha|beta}.launch waypoints_file:=filename.yaml
+$ roslaunch orne_navigation_executor  play_waypoints_nav_{alpha/beta}.launch waypoints_file:=filename.yaml
 ```
 
 A map name and waypoints file must be specified in the full path.
@@ -144,7 +144,7 @@ Click "StartWaypointsNavigation" button on Rviz
 * Run the navigation system with a static map
 
 ```sh
-$ roslaunch orne_navigation_executor  nav_static_map.launch robot_name:={alpha|beta} map_file:=filename.yaml
+$ roslaunch orne_navigation_executor  nav_static_map.launch robot_name:={alpha/beta} map_file:=filename.yaml
 ```
 
 Don't forget to turn off the teleoperation, it might interfere with the robot's commands.
