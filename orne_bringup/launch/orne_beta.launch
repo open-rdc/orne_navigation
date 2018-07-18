@@ -3,7 +3,7 @@
         <arg name="model"    value="$(find xacro)/xacro.py '$(find orne_description)/urdf/orne_beta.xacro'"/>
         <arg name="scan_dev" value="/dev/sensors/hokuyo_H0803606"/>
         <arg name="ypspur_params" value="/usr/local/share/robot-params/icart-middle.param"/>
- </include>
+    </include>
 
     <node pkg="mpu6050_serial_to_imu" type="mpu6050_serial_to_imu_node" name="imu_node">
         <remap from="imu"        to="imu_data"/>
@@ -13,4 +13,5 @@
     </node>
 
     <include file="$(find orne_bringup)/launch/includes/base.launch.xml"/>
+    
 </launch>
