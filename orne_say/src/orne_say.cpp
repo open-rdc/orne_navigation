@@ -19,11 +19,12 @@ private:
 void OrneSay::goalCallback(const move_base_msgs::MoveBaseActionGoal::ConstPtr& msg){
 	goal_count ++;
     if(goal_count == 1){
-        char *sentence = "espeak 'start waypoints navigation'";
+        char *sentence = "espeak -a 150 'start waypoints navigation'";
         int system_res = system(sentence);
         ROS_INFO("start way points navigation");
     }else{
-        char *sentence = "espeak 'arraved at waypoint'";
+        //char *sentence = "espeak 'arraved at waypoint'";
+        char *sentence = "aplay ~/catkin_ws/src/orne_navigation/orne_say/sound/pekowave1.wav";
         int system_res = system(sentence);
         ROS_INFO("arrived way point");
     }
