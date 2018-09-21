@@ -16,12 +16,15 @@
     <param name="publish_intensity" value="true"/>
   </node>
 
-
+<!--
     <node pkg="cit_adis_imu" type="imu_node" name="imu_node">
         <remap from="imu"        to="imu_data"/>
         <param name="port_name"  value="/dev/sensors/imu"/>
         <param name="z_axis_dir" value="1"/>
     </node>
+ -->
+
+    <include file="$(find orne_bringup)/launch/adis16465.launch"/>
 
     <include file="$(find orne_bringup)/launch/includes/base.launch.xml"/>
 </launch>
