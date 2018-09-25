@@ -41,26 +41,26 @@
     </visual>
 
     <collision name="collision">
-      <origin xyz="0.301 -0.141 0.075" rpy="1.57 0 0"/>
+      <origin xyz="0.301 -0.141 0.075" rpy="0 1.5707 1.5707"/>
       <geometry>
         <cylinder  length="0.03" radius="0.075"/>
       </geometry>
     </collision>
     <visual name="visual">
-      <origin xyz="0.301 -0.141 0.075" rpy="1.57 0 0"/>
+      <origin xyz="0.301 -0.141 0.075" rpy="0 1.5707 1.5707"/>
       <geometry>
         <cylinder  length="0.03" radius="0.075"/>
       </geometry>
     </visual>
 
     <collision name="collision">
-      <origin xyz="0.301 0.141 0.075" rpy="1.57 0 0"/>
+      <origin xyz="0.301 0.141 0.075" rpy="0 1.5707 1.5707"/>
       <geometry>
         <cylinder  length="0.03" radius="0.075"/>
       </geometry>
     </collision>
     <visual name="visual">
-      <origin xyz="0.301 0.141 0.075" rpy="1.57 0 0"/>
+      <origin xyz="0.301 0.141 0.075" rpy="0 1.5707 1.5707"/>
       <geometry>
         <cylinder  length="0.03" radius="0.075"/>
       </geometry>
@@ -75,7 +75,7 @@
 
   <link name="visual_left_wheel">
     <visual name="visual">
-      <origin xyz="0 0.0 0" rpy="1.57 0 0"/>
+      <origin xyz="0 0.0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
         <cylinder  length="0.03" radius="0.151"/>
       </geometry>
@@ -91,13 +91,13 @@
 
   <link name="left_wheel">
     <collision name="collision">
-      <origin xyz="0 0.0 0" rpy="1.57 0 0"/>
+      <origin xyz="0 0.0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
          <cylinder  length="0.03" radius="0.151"/>
       </geometry>
     </collision>
     <!--visual name="visual">
-      <origin xyz="0 0.0 0" rpy="0 0 0"/>
+      <origin xyz="0 0.0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
         <cylinder  length="0.03" radius="0.0725"/>
       </geometry>
@@ -119,7 +119,7 @@
 
   <link name="visual_right_wheel">
     <visual name="visual">
-      <origin xyz="0 0.0 0" rpy="1.57 0 0"/>
+      <origin xyz="0 0.0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
         <cylinder  length="0.03" radius="0.151"/>
       </geometry>
@@ -135,13 +135,13 @@
 
   <link name="right_wheel">
     <collision name="collision">
-      <origin xyz="0 0.0 0" rpy="1.57 00 00"/>
+      <origin xyz="0 0.0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
          <cylinder  length="0.03" radius="0.151"/>
       </geometry>
     </collision>
     <!--visual name="visual">
-      <origin xyz="0 0.0 0" rpy="0 0 0"/>
+      <origin xyz="0 0.0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
         <cylinder  length="0.03" radius="0.0725"/>
       </geometry>
@@ -182,6 +182,4 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-
-
 </robot>
