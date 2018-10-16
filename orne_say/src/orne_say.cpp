@@ -20,8 +20,8 @@ public:
 	void goalCallback(const move_base_msgs::MoveBaseActionGoal::ConstPtr& msg);
 	void TfCallback(const tf2_msgs::TFMessage &tf);
 private:
-    ros::NodeHandle nh;
-    ros::Subscriber wp_sub = nh.subscribe("/move_base/goal", 1, &OrneSay::goalCallback, this);
+	ros::NodeHandle nh;
+	ros::Subscriber wp_sub = nh.subscribe("/move_base/goal", 1, &OrneSay::goalCallback, this);
 
 
 	std::string world_frame_;
