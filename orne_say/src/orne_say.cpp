@@ -27,14 +27,14 @@ private:
 	std::string world_frame_;
 	ros::Subscriber tf_sub;
 	geometry_msgs::PoseStamped pose_t;
-    geometry_msgs::PoseStamped goal_position;
+	geometry_msgs::PoseStamped goal position;
 
 	tf::TransformListener tf_listener;
 	std::string world_frame;
-    std::string robot_frame;
+	std::string robot_frame;
 
-    double arrived_rad;
-	bool sound_flag;
+	double arrived_rad;
+    bool sound_flag;
 };
 
 
@@ -55,14 +55,14 @@ void OrneSay::TfCallback(const tf2_msgs::TFMessage &tf){
 		pose_t.pose.position.y = robot_gl.getOrigin().y();
 		pose_t.pose.position.z = 0;
 
-        double dis =sqrt((pose_t.pose.position.x - goal_position.pose.position.x) * (pose_t.pose.position.x - goal_position.pose.position.x)
+		double dis =sqrt((pose_t.pose.position.x - goal_position.pose.position.x) * (pose_t.pose.position.x - goal_position.pose.position.x)
  						+(pose_t.pose.position.y - goal_position.pose.position.y) * (pose_t.pose.position.y - goal_position.pose.position.y));
 		//ROS_INFO("%lf\t %lf\t %lf \t %lf",pose_t.pose.position.x, pose_t.pose.position.y, goal_position.pose.position.x, goal_position.pose.position.y);
 
 		if(dis < arrived_rad && sound_flag){
-            char *command = "aplay ~/catkin_ws/src/orne_navigation/orne_say/sound/pekowave1.wav";
-            int system_res = system(command);
-            ROS_INFO("arrived way point");
+			char *command = "aplay ~/catkin_ws/src/orne_navigation/orne_say/sound/pekowave1.wav";
+			int system_res = system(command);
+			ROS_INFO("arrived way point");
 			sound_flag = false;
         }
 
