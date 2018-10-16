@@ -41,7 +41,7 @@
 
 <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
 <xacro:VLP-16 name="velodyne" parent="base_link">
-    <origin xyz="0.098 0.0 0.422" rpy="0 0 0"/>
+    <origin xyz="0.098 0.0 0.422" rpy="0 0 -0.12"/>
 </xacro:VLP-16>
 
 </robot>

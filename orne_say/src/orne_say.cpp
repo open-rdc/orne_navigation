@@ -64,7 +64,7 @@ void OrneSay::TfCallback(const tf2_msgs::TFMessage &tf){
 			int system_res = system(command);
 			ROS_INFO("arrived way point");
 			sound_flag = false;
-        }
+		}
 
 	}catch(tf::TransformException &e){
 		ROS_WARN_STREAM(e.what());
