@@ -11,10 +11,10 @@
 class OrneSay{
 public:
     OrneSay(){
-        tf_sub = nh.subscribe("/tf",1,&OrneSay::TfCallback,this);
-        nh.param("robto_frame", robot_frame, std::string("/base_link"));
-        nh.param("world_frame", world_frame, std::string("/map"));
-        nh.param("arrived_rad", arrived_rad, 1.0);
+		tf_sub = nh.subscribe("/tf",1,&OrneSay::TfCallback,this);
+		nh.param("robto_frame", robot_frame, std::string("/base_link"));
+		nh.param("world_frame", world_frame, std::string("/map"));
+		nh.param("arrived_rad", arrived_rad, 1.0);
 		sound_flag = false;
     }
     void goalCallback(const move_base_msgs::MoveBaseActionGoal::ConstPtr& msg);
@@ -34,7 +34,7 @@ private:
 	std::string robot_frame;
 
 	double arrived_rad;
-    bool sound_flag;
+	bool sound_flag;
 };
 
 
