@@ -10,15 +10,15 @@
 
 class OrneSay{
 public:
-    OrneSay(){
+	OrneSay(){
 		tf_sub = nh.subscribe("/tf",1,&OrneSay::TfCallback,this);
 		nh.param("robto_frame", robot_frame, std::string("/base_link"));
 		nh.param("world_frame", world_frame, std::string("/map"));
 		nh.param("arrived_rad", arrived_rad, 1.0);
 		sound_flag = false;
-    }
-    void goalCallback(const move_base_msgs::MoveBaseActionGoal::ConstPtr& msg);
-    void TfCallback(const tf2_msgs::TFMessage &tf);
+	}
+	void goalCallback(const move_base_msgs::MoveBaseActionGoal::ConstPtr& msg);
+	void TfCallback(const tf2_msgs::TFMessage &tf);
 private:
     ros::NodeHandle nh;
     ros::Subscriber wp_sub = nh.subscribe("/move_base/goal", 1, &OrneSay::goalCallback, this);
