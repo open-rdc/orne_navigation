@@ -1,0 +1,8 @@
+<launch>
+  <node name="pcl_detect_humansize_cloud" pkg="pcl_explore_human" type="pcl_detect_humansize_cloud" output="screen"></node>
+  <node name="pcl_extraction_human_description" pkg="pcl_explore_human" type="pcl_extraction_human_description" output="screen">
+  	<param name="model_file" value="$(find pcl_explore_human)/svm_cfg/model.model"/>
+  	<param name="scale_file" value="$(find pcl_explore_human)/svm_cfg/model.scale"/>
+  </node>
+  <!-- <node name="targetpoint_sender" pkg="pcl_explore_human" type="targetpoint_sender"></node> -->
+</launch>
