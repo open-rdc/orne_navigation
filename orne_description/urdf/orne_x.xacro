@@ -52,7 +52,7 @@
         <cylinder  length="0.03" radius="0.075"/>
       </geometry>
     </visual>
-    
+
     <collision name="collision">
       <origin xyz="0.301 0.141 0.075" rpy="0 1.5707 1.5707"/>
       <geometry>
@@ -88,7 +88,7 @@
     <parent link="base_link">base_link</parent>
     <axis xyz="0 1 0"/>
   </joint>
-  
+
   <link name="left_wheel">
     <collision name="collision">
       <origin xyz="0 0.0 0" rpy="0 1.5707 1.5707"/>
@@ -108,14 +108,14 @@
       <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1" />
     </inertial>
   </link>
-  
+
   <joint type="revolute" name="left_wheel_hinge">
     <origin xyz="-0.045 0.223 0.1518" rpy="0 0 0"/>
-    <child link="left_wheel">left_wheel</child> 
+    <child link="left_wheel">left_wheel</child>
     <parent link="base_link">base_link</parent>
     <axis xyz="0 1 0"/>
     <limit effort="100" velocity="100.0"  lower="-5000" upper="5000" />
-  </joint> 
+  </joint>
 
   <link name="visual_right_wheel">
     <visual name="visual">
@@ -132,7 +132,7 @@
     <parent link="base_link">base_link</parent>
     <axis xyz="0 1 0"/>
   </joint>
-  
+
   <link name="right_wheel">
     <collision name="collision">
       <origin xyz="0 0.0 0" rpy="0 1.5707 1.5707"/>
@@ -152,7 +152,7 @@
       <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1" />
     </inertial>
   </link>
-  
+
   <joint type="revolute" name="right_wheel_hinge">
     <origin xyz="-0.045 -0.223 0.1518" rpy="0 0 0"/>
     <child link="right_wheel">right_wheel</child>
