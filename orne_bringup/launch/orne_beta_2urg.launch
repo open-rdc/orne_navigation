@@ -16,12 +16,14 @@
     <param name="publish_intensity" value="true"/>
   </node>
 
+<!--
     <node pkg="mpu6050_serial_to_imu" type="mpu6050_serial_to_imu_node" name="imu_node">
         <remap from="imu"        to="imu_data"/>
         <param name="port"       value="/dev/sensors/imu"/>
         <param name="imu_frame_id"       value="imu_link"/>
         <param name="broadcast_tf"       value="false"/>
     </node>
+-->
 
     <include file="$(find orne_bringup)/launch/adis16465.launch"/>
     <include file="$(find orne_bringup)/launch/includes/base.launch.xml"/>
