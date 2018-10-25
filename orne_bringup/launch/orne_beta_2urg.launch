@@ -1,10 +1,21 @@
 <launch>
     <include file="$(find icart_mini_driver)/launch/icart_mini_drive.launch">
-        <arg name="model"    value="$(find xacro)/xacro.py '$(find orne_description)/urdf/orne_beta.xacro'"/>
+        <arg name="model"    value="$(find xacro)/xacro.py '$(find orne_description)/urdf/orne_beta_2urg.xacro'"/>
         <arg name="scan_dev" value="/dev/sensors/hokuyo_H0803606"/>
         <arg name="ypspur_params" value="/usr/local/share/robot-params/icart-middle.param"/>
-     </include>
-    
+        <arg name="scan_topic" value="/hokuyo_scan"/>
+ </include>
+
+  <node pkg="urg_node" type="urg_node" name="urg_node_0">
+    <remap from="/scan" to="/hokuyo_back_scan"/>
+    <param name="frame_id" value="hokuyo_back_link" />
+    <param name="serial_port" value="/dev/sensors/hokuyo_H1110848"/>
+    <param name="publish_multiecho" value="false"/>
+    <param name="angle_min" value="-1.57079637051"/>
+    <param name="angle_max" value="1.57079637051"/>
+    <param name="publish_intensity" value="true"/>
+  </node>
+
 <!--
     <node pkg="mpu6050_serial_to_imu" type="mpu6050_serial_to_imu_node" name="imu_node">
         <remap from="imu"        to="imu_data"/>
@@ -15,7 +26,5 @@
 -->
 
     <include file="$(find orne_bringup)/launch/adis16465.launch"/>
-    
     <include file="$(find orne_bringup)/launch/includes/base.launch.xml"/>
 </launch>
-

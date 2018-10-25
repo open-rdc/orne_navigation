@@ -30,3 +30,15 @@
     uri: https://github.com/open-rdc/orne_tools
     local-name: orne_tools
     version: master
+- git:
+    uri: https://github.com/iralabdisco/ira_laser_tools
+    local-name: ira_laser_tools
+    version: master
+- git:
+    uri: https://github.com/open-rdc/adi_driver
+    local-name: adi_driver
+    version: master
+- git:
+    uri: https://github.com/ros-drivers/velodyne
+    local-name: velodyne
+    version: master

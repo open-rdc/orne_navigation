@@ -1,0 +1,10 @@
+<launch>
+    <include file="$(find icart_mini_gazebo)/launch/icart_mini.launch">
+        <arg name="model" value="$(find xacro)/xacro.py '$(find orne_description)/urdf/orne_beta_2urg.xacro'"/>
+        <!-- arg name="world" value="$(find icart_mini_gazebo)/worlds/willow.world"/ -->
+    </include>
+
+    <include file="$(find orne_bringup)/launch/includes/base.launch.xml"/>
+
+    <!-- include file="$(find ira_laser_tools)/launch/laserscan_multi_merger.launch"/ -->
+</launch>
