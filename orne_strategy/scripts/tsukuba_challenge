@@ -3,6 +3,7 @@
 import rospy
 import geometry_msgs.msg
 import tf
+from geometry_msgs.msg import Quaternion
 import math
 from std_srvs.srv import Trigger
 from fulanghua_srvs.srv import Pose
@@ -19,12 +20,12 @@ class TsukubaChallengeStrategy:
 
         suspend_pose_cfg  =  [rospy.get_param('~suspend_pose1'),rospy.get_param('~suspend_pose2'),rospy.get_param('~suspend_pose3')]
         resume_pose_cfg  =  [rospy.get_param('~resume_pose1'),rospy.get_param('~resume_pose2'),rospy.get_param('~resume_pose3')]
-        
+
 
         self.world_frame = rospy.get_param('~world_frame', 'map')
         self.robot_frame = rospy.get_param('~robot_frame', 'base_link')
 
-      
+
         self.suspend_pose = [geometry_msgs.msg.Pose(),geometry_msgs.msg.Pose(),geometry_msgs.msg.Pose()]
         self.resume_pose = [geometry_msgs.msg.Pose(),geometry_msgs.msg.Pose(),geometry_msgs.msg.Pose()]
 
@@ -36,7 +37,7 @@ class TsukubaChallengeStrategy:
             self.suspend_pose[index].orientation.y = suspend_pose_cfg[index]['orientation']['y']
             self.suspend_pose[index].orientation.z = suspend_pose_cfg[index]['orientation']['z']
             self.suspend_pose[index].orientation.w = suspend_pose_cfg[index]['orientation']['w']
-        
+
             self.resume_pose[index].position.x = resume_pose_cfg[index]['position']['x']
             self.resume_pose[index].position.y = resume_pose_cfg[index]['position']['y']
             self.resume_pose[index].position.z = resume_pose_cfg[index]['position']['z']
@@ -53,7 +54,7 @@ class TsukubaChallengeStrategy:
 
         print "suspend_pose3 = " + str(self.suspend_pose[2])
         print "resume_pose3 = " + str(self.resume_pose[2])
-        
+
         self.tf_listener = tf.TransformListener()
 
     def start_nav_callback(self, req):
@@ -76,6 +77,11 @@ class TsukubaChallengeStrategy:
         except rospy.ServiceException, e:
             print "error: %s" % e
 
+    def get_yaw_from_quaternion(self, quaternion):
+        e = tf.transformations.euler_from_quaternion((quaternion.x, quaternion.y, quaternion.z, quaternion.w))
+        print "yaw = " + str(math.degrees(e[2]))
+        # return e[2]
+
     def spin(self):
         rate = rospy.Rate(10)
         SP_NUMBER_MAX = 3
@@ -88,6 +94,11 @@ class TsukubaChallengeStrategy:
                     x = trans[0]
                     y = trans[1]
 
+                    ori_x = rot[0]
+                    ori_y = rot[1]
+                    ori_z = rot[2]
+                    ori_w = rot[3]
+
                     if self.current_sp < SP_NUMBER_MAX:
                         dist = math.sqrt(math.pow(x - self.suspend_pose[self.current_sp].position.x, 2) + math.pow(y - self.suspend_pose[self.current_sp].position.y, 2))
                         print "robot_gl = ("  + str(x) + ", " + str(y) + ")"
@@ -97,18 +108,27 @@ class TsukubaChallengeStrategy:
                         print "all suspend pose finished"
 
                     if(dist < 1.0) and self.current_sp  <  SP_NUMBER_MAX:
+                        # self.get_yaw_from_quaternion(Quaternion(ori_x,ori_y,ori_z,ori_w))
+                        # self.get_yaw_from_quaternion(Quaternion(self.suspend_pose[self.current_sp].orientation.x,self.suspend_pose[self.current_sp].orientation.y,self.suspend_pose[self.current_sp].orientation.y,self.suspend_pose[self.current_sp].orientation.w))
+
+                        # input current robot angle
+                        self.suspend_pose[self.current_sp].orientation.x = ori_x
+                        self.suspend_pose[self.current_sp].orientation.y = ori_y
+                        self.suspend_pose[self.current_sp].orientation.z = ori_z
+                        self.suspend_pose[self.current_sp].orientation.w = ori_w
+
                         rospy.loginfo('strategy: send suspending request')
                         rospy.wait_for_service('suspend_wp_pose')
                         suspend_wp_nav = rospy.ServiceProxy('suspend_wp_pose', Pose)
                         print "suspend_wp_nav() = " + str(suspend_wp_nav(self.suspend_pose[self.current_sp]))
                         self.current_sp += 1
 
-                    
+
                 except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
                     continue
             else :
                 print " No suspend Pose "
-                
+
 
 if __name__ == '__main__':
     strategy = TsukubaChallengeStrategy()
