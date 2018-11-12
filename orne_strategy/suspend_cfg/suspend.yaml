@@ -1,20 +1,192 @@
-suspend_pose:
+#つくば市役所
+suspend_pose1:
     position:
-        x: -3.0
-        y: -4.0
-        z: 0
+      x: 36.2926063538
+      y: 76.5788803101
+      z: 0.0
     orientation:
-        x: 0
-        y: 0
-        z: 0
-        w: 1
-resume_pose:
+      x: 0.0
+      y: 0.0
+      z: 0.106723991514
+      w: 0.99428868526
+resume_pose1:
     position:
-        x: -4.0
-        y: 0
-        z: 0
+      x: 36.2926063538
+      y: 76.5788803101
+      z: 0.0
     orientation:
-        x: 0
-        y: 0
-        z: 0
-        w: 1
+      x: 0.0
+      y: 0.0
+      z: 0.106723991514
+      w: 0.99428868526
+
+suspend_pose2:
+    position:
+      x: 69.2872619629
+      y: 92.494430542
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0936260515203
+      w: 0.99560743392
+resume_pose2:
+    position:
+      x: 69.2872619629
+      y: 92.494430542
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0936260515203
+      w: 0.99560743392
+
+suspend_pose3:
+    position:
+      x: 143.616394043
+      y: 113.233200073
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.118375524807
+      w: 0.992968899375
+
+resume_pose3:
+    position:
+      x: 143.616394043
+      y: 113.233200073
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.118375524807
+      w: 0.992968899375
+
+#2号館三階
+# suspend_pose1:
+#     position:
+#         x: -3.9
+#         y: -4.0
+#         z: 0
+#     orientation:
+#         x: 0
+#         y: 0
+#         z: 0
+#         w: 1
+# resume_pose1:
+#     position:
+#         x: -3.9
+#         y: -4.0
+#         z: 0
+#     orientation:
+#         x: 0
+#         y: 0
+#         z: 0
+#         w: 1
+#
+# suspend_pose2:
+#     position:
+#         x: -5.3
+#         y: 5.16
+#         z: 0
+#     orientation:
+#         x: 0
+#         y: 0
+#         z: 0
+#         w: 1
+# resume_pose2:
+#     position:
+#         x: -5.3
+#         y: 5.16
+#         z: 0
+#     orientation:
+#         x: 0
+#         y: 0
+#         z: 0
+#         w: 1
+#
+# suspend_pose3:
+#     position:
+#         x: -6.07633
+#         y: 8.64854
+#         z: 0
+#     orientation:
+#         x: 0
+#         y: 0
+#         z: 0
+#         w: 1
+# resume_pose3:
+#     position:
+#         x: -6.07633
+#         y: 8.64854
+#         z: 0
+#     orientation:
+#         x: 0
+#         y: 0
+#         z: 0
+#         w: 1
+
+###### GAZEBO MYMAP WP NAGA_MYMAP_GAZEBO
+# suspend_pose1:
+#     position:
+#         x: -1.58424
+#         y: -0.0164871
+#         z: 0.00685692
+#     orientation:
+#         x: 0
+#         y: 0
+#         z: 0
+#         w: 1
+# resume_pose1:
+#     position:
+#         x: -1.58424
+#         y: -0.0164871
+#         z: 0
+#     orientation:
+#         x: 0
+#         y: 0
+#         z: 0
+#         w: 1
+#
+# suspend_pose2:
+#     position:
+#         x: -5.15642
+#         y: 0.275381
+#         z: 0
+#     orientation:
+#         x: 0
+#         y: 0
+#         z: 0
+#         w: 1
+# resume_pose2:
+#     position:
+#         x: -5.15642
+#         y: 0.275381
+#         z: 0
+#     orientation:
+#         x: 0
+#         y: 0
+#         z: 0
+#         w: 1
+#
+# suspend_pose3:
+#     position:
+#         x: -7.2064
+#         y: -0.18752
+#         z: 0.00139809
+#     orientation:
+#         x: 0
+#         y: 0
+#         z: 0
+#         w: 1
+# resume_pose3:
+#     position:
+#         x: -7.2064
+#         y: -0.18752
+#         z: 0.00139809
+#     orientation:
+#         x: 0
+#         y: 0
+#         z: 0
+#         w: 1

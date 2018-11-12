@@ -7,6 +7,9 @@
   <arg name="waypoints_file" default="$(find orne_navigation_executor)/waypoints_cfg/waypoints_$(arg robot_name).yaml"/>
   <arg name="dist_err"       default="1.0"/>
 
+  <arg name="suspend" default="False"/>
+  <param name="state" value="$(arg suspend)"/>
+
   <include file="$(find orne_navigation_executor)/launch/play_waypoints_nav_common.launch">
     <arg name="robot_name"    value="$(arg robot_name)"/>
     <arg name="map_file"      value="$(arg map_file)"/>
