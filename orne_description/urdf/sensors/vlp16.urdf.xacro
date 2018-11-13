@@ -33,32 +33,32 @@
   </xacro:macro>
 
   <xacro:macro name="vlp16_2d" params="name parent *origin">
-	  <joint name="${name}_joint" type="fixed">
-	      <axis xyz="1 0 0"/>
-	      <insert_block name="origin"/>
-	      <parent link="${parent}"/>
-	      <child link="${name}"/>
-	  </joint>
+    <joint name="${name}_joint" type="fixed">
+        <axis xyz="1 0 0"/>
+        <insert_block name="origin"/>
+        <parent link="${parent}"/>
+        <child link="${name}"/>
+    </joint>
 
-	  <link name="${name}">
-	      <inertial>
-	        <mass value="0.001"/>
-	        <origin rpy="0 0 0" xyz="0 0 0"/>
-	        <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.0001"/>
-	      </inertial>
-	      <visual>
-	        <origin rpy="0 0 0.1" xyz="0 0 0"/>
-	        <geometry>
-	          <box size="0.1 0.1 0.1"/>
-	        </geometry>
-	      </visual>
-	      <collision>
-	        <origin rpy="0 0 0.1" xyz="0 0 0"/>
-	        <geometry>
-	          <box size="0.1 0.1 0.1"/>
-	        </geometry>
-	      </collision>
-	  </link>
+    <link name="${name}">
+        <inertial>
+          <mass value="0.001"/>
+          <origin rpy="0 0 0" xyz="0 0 0"/>
+          <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.0001"/>
+        </inertial>
+        <visual>
+          <origin rpy="0 0 0.1" xyz="0 0 0"/>
+          <geometry>
+            <box size="0.1 0.1 0.1"/>
+          </geometry>
+        </visual>
+        <collision>
+          <origin rpy="0 0 0.1" xyz="0 0 0"/>
+          <geometry>
+            <box size="0.1 0.1 0.1"/>
+          </geometry>
+        </collision>
+    </link>
 
       <gazebo reference="${name}">
         <sensor name="velodyne_2d" type="ray">
@@ -75,7 +75,7 @@
             </horizontal>
           </scan>
           <range>
-            <min>0.90</min>
+            <min>0.10</min>
             <max>100.0</max>
             <resolution>0.01</resolution>
           </range>
@@ -95,32 +95,32 @@
 
 
   <xacro:macro name="vlp16_3d" params="name parent *origin">
-	  <joint name="${name}_joint" type="fixed">
-	      <axis xyz="1 0 0"/>
-	      <insert_block name="origin"/>
-	      <parent link="${parent}"/>
-	      <child link="${name}"/>
-	  </joint>
+    <joint name="${name}_joint" type="fixed">
+        <axis xyz="1 0 0"/>
+        <insert_block name="origin"/>
+        <parent link="${parent}"/>
+        <child link="${name}"/>
+    </joint>
 
-	  <link name="${name}">
-	      <inertial>
-	        <mass value="0.001"/>
-	        <origin rpy="0 0 0" xyz="0 0 0"/>
-	        <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.0001"/>
-	      </inertial>
-	      <visual>
-	        <origin rpy="0 0 0.1" xyz="0 0 0"/>
-	        <geometry>
-	          <box size="0.1 0.1 0.1"/>
-	        </geometry>
-	      </visual>
-	      <collision>
-	        <origin rpy="0 0 0.1" xyz="0 0 0"/>
-	        <geometry>
-	          <box size="0.1 0.1 0.1"/>
-	        </geometry>
-	      </collision>
-	  </link>
+    <link name="${name}">
+        <inertial>
+          <mass value="0.001"/>
+          <origin rpy="0 0 0" xyz="0 0 0"/>
+        <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.0001"/>
+        </inertial>
+        <visual>
+          <origin rpy="0 0 0.1" xyz="0 0 0"/>
+          <geometry>
+            <box size="0.1 0.1 0.1"/>
+          </geometry>
+       </visual>
+       <collision>
+          <origin rpy="0 0 0.1" xyz="0 0 0"/> 
+          <geometry>
+            <box size="0.1 0.1 0.1"/>
+          </geometry> 
+        </collision>
+    </link>
     <gazebo reference="${name}">
       <sensor name="velodyne_3d" type="ray">
       <always_on>true</always_on>
@@ -129,7 +129,7 @@
       <ray>
         <scan>
           <horizontal>
-            <samples>145</samples>
+            <samples>1825</samples>
             <resolution>1.0</resolution>
             <min_angle>-3.141592</min_angle>
             <max_angle>3.141592</max_angle>
@@ -137,12 +137,12 @@
           <vertical>
             <samples>16</samples>
             <resolution>1.0</resolution>
-            <min_angle>-0.0872664626</min_angle>
-            <max_angle>0.610865238</max_angle>
+            <min_angle>-0.2617993875</min_angle>
+            <max_angle>0.2617993875</max_angle>
           </vertical>
         </scan>
         <range>
-          <min>0.90</min>
+          <min>0.10</min>
           <max>100.0</max>
           <resolution>0.01</resolution>
         </range>
