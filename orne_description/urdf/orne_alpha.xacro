@@ -9,7 +9,6 @@
 <xacro:include filename="$(find orne_description)/urdf/orne_x.xacro"/>
 <xacro:include filename="$(find icart_mini_description)/urdf/sensors/imu.urdf.xacro"/>
 <xacro:include filename="$(find icart_mini_description)/urdf/sensors/hokuyo.urdf.xacro"/>
-<xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
 
 <!-- Setting for imu -->
 <xacro:sensor_imu name="imu" parent="base_link" size="0.05 0.05 0.05">
@@ -39,7 +38,9 @@
 </xacro:sensor_hokuyo3d>
 -->
 
-<xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
+<!--$acro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/-->
+<xacro:include filename="$(find orne_description)/urdf/sensors/vlp16.urdf.xacro"/>
+
 <xacro:VLP-16 name="velodyne" parent="base_link">
     <origin xyz="0.098 0.0 0.422" rpy="0 0 -0.12"/>
 </xacro:VLP-16>
