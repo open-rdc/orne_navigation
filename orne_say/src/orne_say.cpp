@@ -27,7 +27,7 @@ private:
 	std::string world_frame_;
 	ros::Subscriber tf_sub;
 	geometry_msgs::PoseStamped pose_t;
-	geometry_msgs::PoseStamped goal position;
+	geometry_msgs::PoseStamped goal_position;
 
 	tf::TransformListener tf_listener;
 	std::string world_frame;
@@ -50,7 +50,6 @@ void OrneSay::TfCallback(const tf2_msgs::TFMessage &tf){
 	tf::StampedTransform robot_gl;
 	try{
 		tf_listener.lookupTransform(world_frame, robot_frame, ros::Time(0.0), robot_gl);
-
 		pose_t.pose.position.x = robot_gl.getOrigin().x();
 		pose_t.pose.position.y = robot_gl.getOrigin().y();
 		pose_t.pose.position.z = 0;

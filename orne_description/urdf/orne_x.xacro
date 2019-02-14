@@ -28,14 +28,14 @@
     <collision>
       <origin xyz="0.005 0 0.305" rpy="0 0 0"/>
       <geometry>
-	       <box size=".376 .45 .242"/>
+	       <box size=".376 .45 .134"/>
       </geometry>
     </collision>
 
     <visual>
       <origin xyz="0.005 0 0.305" rpy="0 0 0"/>
       <geometry>
-	       <box size=".376 .45 .242"/>
+	       <box size=".376 .45 .134"/>
       </geometry>
       <material name="orange"/>
     </visual>
