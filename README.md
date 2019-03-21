@@ -3,7 +3,7 @@ orne_navigation
 
 [![Join the chat at https://gitter.im/open-rdc/orne_navigation](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/open-rdc/orne_navigation?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-This repository provides mobile navigation system for Tsukuba Challenge under Project ORNE.
+This repository provides mobile navigation system with a robot based i-Cart for Tsukuba Challenge under Project ORNE.
 
 [![Throughput Graph](https://graphs.waffle.io/open-rdc/tsukubachallenge/throughput.svg)](https://waffle.io/open-rdc/tsukubachallenge/metrics)
 
