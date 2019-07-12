@@ -23,15 +23,17 @@
     local-name: mpu6050_serial_to_imu
     version: master
 - git:
+    uri: https://github.com/at-wat/hokuyo3d
+    local-name: hokuyo3d
+    version: master
+- git:
     uri: https://github.com/ros-planning/navigation
     local-name: navigation
     version: melodic-devel
-
 - git:
     uri: https://github.com/ros-planning/navigation_msgs
     local-name: navigation_msgs
     version: jade-devel
-    
 - git:
     uri: https://github.com/ros-perception/openslam_gmapping
     local-name: openslam_gmapping
@@ -40,12 +42,10 @@
     uri: https://github.com/ros-perception/slam_gmapping
     local-name: slam_gmapping
     version: hydro-devel
-
 - git:
     uri: https://github.com/ros/geometry2
     local-name: geometry2
     version: melodic-devel
-    
 - git:
     uri: https://github.com/open-rdc/orne_tools
     local-name: orne_tools
