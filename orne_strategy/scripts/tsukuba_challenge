@@ -12,6 +12,8 @@ from time import sleep
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import LaserScan
 
+SUSPEND_NUMBER_MAX = 4 #suspend_pointの数
+
 class TsukubaChallengeStrategy:
     def __init__(self):
         rospy.init_node('tsukuba_challenge_strategy')
@@ -25,42 +27,42 @@ class TsukubaChallengeStrategy:
         self.vel_sensor_data = 0
 
 
-        suspend_pose_cfg  =  [rospy.get_param('~suspend_pose1'),rospy.get_param('~suspend_pose2'),rospy.get_param('~suspend_pose3')]
-        resume_pose_cfg  =  [rospy.get_param('~resume_pose1'),rospy.get_param('~resume_pose2'),rospy.get_param('~resume_pose3')]
-
+        suspend_pose_cfg = []
+        resume_pose_cfg = []
 
         self.world_frame = rospy.get_param('~world_frame', 'map')
         self.robot_frame = rospy.get_param('~robot_frame', 'base_link')
 
+        self.suspend_pose = []
+        self.resume_pose = []
 
-        self.suspend_pose = [geometry_msgs.msg.Pose(),geometry_msgs.msg.Pose(),geometry_msgs.msg.Pose()]
-        self.resume_pose = [geometry_msgs.msg.Pose(),geometry_msgs.msg.Pose(),geometry_msgs.msg.Pose()]
+        for i in range(SUSPEND_NUMBER_MAX):
+            s = '~suspend_pose' + str(i+1)
+            r = '~resume_pose' + str(i+1)
+            suspend_pose_cfg.append(rospy.get_param(s))
+            resume_pose_cfg.append(rospy.get_param(r))
 
-        for index in range(len(suspend_pose_cfg)):
-            self.suspend_pose[index].position.x = suspend_pose_cfg[index]['position']['x']
-            self.suspend_pose[index].position.y = suspend_pose_cfg[index]['position']['y']
-            self.suspend_pose[index].position.z = suspend_pose_cfg[index]['position']['z']
-            self.suspend_pose[index].orientation.x = suspend_pose_cfg[index]['orientation']['x']
-            self.suspend_pose[index].orientation.y = suspend_pose_cfg[index]['orientation']['y']
-            self.suspend_pose[index].orientation.z = suspend_pose_cfg[index]['orientation']['z']
-            self.suspend_pose[index].orientation.w = suspend_pose_cfg[index]['orientation']['w']
+            self.suspend_pose.append(geometry_msgs.msg.Pose())
+            self.resume_pose.append(geometry_msgs.msg.Pose())
 
-            self.resume_pose[index].position.x = resume_pose_cfg[index]['position']['x']
-            self.resume_pose[index].position.y = resume_pose_cfg[index]['position']['y']
-            self.resume_pose[index].position.z = resume_pose_cfg[index]['position']['z']
-            self.resume_pose[index].orientation.x = resume_pose_cfg[index]['orientation']['x']
-            self.resume_pose[index].orientation.y = resume_pose_cfg[index]['orientation']['y']
-            self.resume_pose[index].orientation.z = resume_pose_cfg[index]['orientation']['z']
-            self.resume_pose[index].orientation.w = resume_pose_cfg[index]['orientation']['w']
+            self.suspend_pose[i].position.x = suspend_pose_cfg[i]['position']['x']
+            self.suspend_pose[i].position.y = suspend_pose_cfg[i]['position']['y']
+            self.suspend_pose[i].position.z = suspend_pose_cfg[i]['position']['z']
+            self.suspend_pose[i].orientation.x = suspend_pose_cfg[i]['orientation']['x']
+            self.suspend_pose[i].orientation.y = suspend_pose_cfg[i]['orientation']['y']
+            self.suspend_pose[i].orientation.z = suspend_pose_cfg[i]['orientation']['z']
+            self.suspend_pose[i].orientation.w = suspend_pose_cfg[i]['orientation']['w']
 
-        print "suspend_pose1 = " + str(self.suspend_pose[0])
-        print "resume_pose1 = " + str(self.resume_pose[0])
+            self.resume_pose[i].position.x = resume_pose_cfg[i]['position']['x']
+            self.resume_pose[i].position.y = resume_pose_cfg[i]['position']['y']
+            self.resume_pose[i].position.z = resume_pose_cfg[i]['position']['z']
+            self.resume_pose[i].orientation.x = resume_pose_cfg[i]['orientation']['x']
+            self.resume_pose[i].orientation.y = resume_pose_cfg[i]['orientation']['y']
+            self.resume_pose[i].orientation.z = resume_pose_cfg[i]['orientation']['z']
+            self.resume_pose[i].orientation.w = resume_pose_cfg[i]['orientation']['w']
 
-        print "suspend_pose2 = " + str(self.suspend_pose[1])
-        print "resume_pose2 = " + str(self.resume_pose[1])
-
-        print "suspend_pose3 = " + str(self.suspend_pose[2])
-        print "resume_pose3 = " + str(self.resume_pose[2])
+            print "suspend_pose" + str(i+1) + " = " + str(self.suspend_pose[0])
+            print "resume_pose" + str(i+1) + " = " + str(self.resume_pose[0])
 
         self.tf_listener = tf.TransformListener()
 
@@ -92,6 +94,9 @@ class TsukubaChallengeStrategy:
 
 
     def pub_vel(self):
+        #suspend_point:move_baseを停止する位置
+        #rviz上のresume_wp_nav:はmove_baseが停止している時に有効,resume_pointに一番近いway_pointをmove_baseに渡しmove_baseを再開する
+        #関数内で使っているラインはsuspend_pointとresume_pointを結んだ線
         rate = rospy.Rate(10)
         
         pub = rospy.Publisher('/icart_mini/cmd_vel', Twist, queue_size=10)
@@ -172,7 +177,6 @@ class TsukubaChallengeStrategy:
 
     def spin(self):
         rate = rospy.Rate(10)
-        SP_NUMBER_MAX = 3
 
         while  not rospy.is_shutdown():
             rate.sleep()
@@ -187,7 +191,7 @@ class TsukubaChallengeStrategy:
                     ori_z = rot[2]
                     ori_w = rot[3]
 
-                    if self.current_sp < SP_NUMBER_MAX:
+                    if self.current_sp < SUSPEND_NUMBER_MAX:
                         dist = math.sqrt(math.pow(x - self.suspend_pose[self.current_sp].position.x, 2) + math.pow(y - self.suspend_pose[self.current_sp].position.y, 2))
                         print "robot_gl = ("  + str(x) + ", " + str(y) + ")"
                         print "dist = " + str(dist)
@@ -195,7 +199,7 @@ class TsukubaChallengeStrategy:
                     else :
                         print "all suspend pose finished"
 
-                    if(dist < 1.5) and self.current_sp  <  SP_NUMBER_MAX:
+                    if(dist < 1.5) and self.current_sp  <  SUSPEND_NUMBER_MAX:
                         # self.get_yaw_from_quaternion(Quaternion(ori_x,ori_y,ori_z,ori_w))
                         # self.get_yaw_from_quaternion(Quaternion(self.suspend_pose[self.current_sp].orientation.x,self.suspend_pose[self.current_sp].orientation.y,self.suspend_pose[self.current_sp].orientation.y,self.suspend_pose[self.current_sp].orientation.w))
 
