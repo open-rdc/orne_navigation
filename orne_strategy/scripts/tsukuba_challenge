@@ -8,14 +8,20 @@ import math
 from std_srvs.srv import Trigger
 from fulanghua_srvs.srv import Pose
 from time import sleep
+from geometry_msgs.msg import Twist
+from sensor_msgs.msg import LaserScan
 
 class TsukubaChallengeStrategy:
     def __init__(self):
         rospy.init_node('tsukuba_challenge_strategy')
         self.start_nav_server = rospy.Service('start_nav', Trigger, self.start_nav_callback)
         self.resume_nav_server = rospy.Service('resume_nav', Trigger, self.resume_nav_callback)
+        self.scan_sub = rospy.Subscriber('/scan',LaserScan ,self.scan_callback)
+        self.vel_scan_sub = rospy.Subscriber('/vel_scan',LaserScan ,self.vel_scan_callback)
         self.current_sp = 0
         self.strategy_state= rospy.get_param('state')
+        self.sensor_data = 0
+        self.vel_sensor_data = 0
 
 
         suspend_pose_cfg  =  [rospy.get_param('~suspend_pose1'),rospy.get_param('~suspend_pose2'),rospy.get_param('~suspend_pose3')]
@@ -80,7 +86,72 @@ class TsukubaChallengeStrategy:
     def get_yaw_from_quaternion(self, quaternion):
         e = tf.transformations.euler_from_quaternion((quaternion.x, quaternion.y, quaternion.z, quaternion.w))
         print "yaw = " + str(math.degrees(e[2]))
-        # return e[2]
+        return e[2]
+
+
+
+    def pub_vel(self):
+        rate = rospy.Rate(10)
+        
+        pub = rospy.Publisher('/icart_mini/cmd_vel', Twist, queue_size=10)
+        vel = Twist()
+        vel.linear.x = 0.5
+        vel.angular.z = 0
+    
+        alpha = -2.0
+        beta = -4.0
+        angular_diff = 0
+        vertical_diff = 0
+        dist = 10
+        
+        while dist > 1:
+            rate.sleep()
+            try:
+                (trans, rot) = self.tf_listener.lookupTransform(self.world_frame, self.robot_frame, rospy.Time(0))
+                x = trans[0]
+                y = trans[1]
+
+                ori_x = rot[0]
+                ori_y = rot[1]
+                ori_z = rot[2]
+                ori_w = rot[3]
+
+                dist = math.sqrt(math.pow(x - self.resume_pose[self.current_sp].position.x, 2) + math.pow(y - self.resume_pose[self.current_sp].position.y, 2))
+
+                robot_angular = tf.transformations.euler_from_quaternion((ori_x, ori_y, ori_z, ori_w))
+                line_angular =  math.atan2(self.resume_pose[self.current_sp].position.y - self.suspend_pose[self.current_sp].position.y, self.resume_pose[self.current_sp].position.x - self.suspend_pose[self.current_sp].position.x)
+                angular_diff = robot_angular[2] - line_angular
+                if angular_diff < -math.pi:
+                    angular_diff = angular_diff + 2*math.pi
+                point_angular = math.atan2(y - self.suspend_pose[self.current_sp].position.y,x - self.suspend_pose[self.current_sp].position.x) - line_angular
+                vertical_diff = math.sin(point_angular) * math.sqrt(math.pow(x - self.suspend_pose[self.current_sp].position.x, 2) + math.pow(y - self.suspend_pose[self.current_sp].position.y, 2))
+
+
+                
+                print('dist:',dist,' angular_diff', angular_diff, 'vertical_diff', vertical_diff)
+                vel.angular.z = alpha * angular_diff + beta * vertical_diff
+                vel.linear.x = 0.5
+                pub.publish(vel)
+                while (self.sensor_data < 1.5 and self.sensor_data > 0.01) or (self.vel_sensor_data < 1.5 and self.vel_sensor_data > 0.01):
+                    
+                    vel.linear.x = 0
+                    vel.angular.z = 0
+                    pub.publish(vel)
+                    print('scan',self.sensor_data)
+                    print('vel_scan',self.vel_sensor_data)
+
+                    #print("stop")
+                    #print('robot_angular:',robot_angular,' line_angular:',line_angular,' angular_diff',angular_diff)
+
+            except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
+                continue
+
+    def scan_callback(self,msg):
+        self.sensor_data = msg.ranges[len(msg.ranges)/2]
+        
+    def vel_scan_callback(self,msg):
+        self.vel_sensor_data = msg.ranges[len(msg.ranges)/2]
+ 
 
     def spin(self):
         rate = rospy.Rate(10)
@@ -121,13 +192,18 @@ class TsukubaChallengeStrategy:
                         rospy.wait_for_service('suspend_wp_pose')
                         suspend_wp_nav = rospy.ServiceProxy('suspend_wp_pose', Pose)
                         print "suspend_wp_nav() = " + str(suspend_wp_nav(self.suspend_pose[self.current_sp]))
+
+
+                        self.pub_vel()
+
                         self.current_sp += 1
 
 
                 except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
                     continue
             else :
-                print " No suspend Pose "
+                #print " No suspend Pose "
+                pass
 
 
 if __name__ == '__main__':
