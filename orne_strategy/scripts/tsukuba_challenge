@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 import rospy
 import geometry_msgs.msg
@@ -95,18 +96,23 @@ class TsukubaChallengeStrategy:
         
         pub = rospy.Publisher('/icart_mini/cmd_vel', Twist, queue_size=10)
         vel = Twist()
-        vel.linear.x = 0.5
-        vel.angular.z = 0
+        vel.linear.x = 0.5  #速度
+        vel.angular.z = 0   #角速度
     
-        alpha = -2.0
-        beta = -4.0
-        angular_diff = 0
-        vertical_diff = 0
-        dist = 10
+        alpha = -2.0    #角速度を決めるときにラインの角度とロボットの姿勢の差にかかる係数
+        beta = -4.0     #ラインとロボットの距離にかかる係数
+
+        angular_diff = 0    #ラインとロボットの姿勢の差
+        vertical_diff = 0   #ラインとロボットの距離
+
+        dist = 10   #resume_poseとロボットの距離
         
+        #resume_poseとロボットのの距離が1mより大きい間ループ
         while dist > 1:
             rate.sleep()
             try:
+
+                #ロボットの位置、姿勢を取得
                 (trans, rot) = self.tf_listener.lookupTransform(self.world_frame, self.robot_frame, rospy.Time(0))
                 x = trans[0]
                 y = trans[1]
@@ -116,22 +122,25 @@ class TsukubaChallengeStrategy:
                 ori_z = rot[2]
                 ori_w = rot[3]
 
+                #resume_poseとロボットの距離
                 dist = math.sqrt(math.pow(x - self.resume_pose[self.current_sp].position.x, 2) + math.pow(y - self.resume_pose[self.current_sp].position.y, 2))
 
+                #ロボットの姿勢(quaternionからeulerに変換)
                 robot_angular = tf.transformations.euler_from_quaternion((ori_x, ori_y, ori_z, ori_w))
+                #ラインの角度
                 line_angular =  math.atan2(self.resume_pose[self.current_sp].position.y - self.suspend_pose[self.current_sp].position.y, self.resume_pose[self.current_sp].position.x - self.suspend_pose[self.current_sp].position.x)
+                #ラインとロボットの角度の差
                 angular_diff = robot_angular[2] - line_angular
                 if angular_diff < -math.pi:
                     angular_diff = angular_diff + 2*math.pi
+                #suspend_poseとロボットの位置を結んだ線の角度
                 point_angular = math.atan2(y - self.suspend_pose[self.current_sp].position.y,x - self.suspend_pose[self.current_sp].position.x) - line_angular
+                #ロボットとラインの距離
                 vertical_diff = math.sin(point_angular) * math.sqrt(math.pow(x - self.suspend_pose[self.current_sp].position.x, 2) + math.pow(y - self.suspend_pose[self.current_sp].position.y, 2))
 
 
-                
-                print('dist:',dist,' angular_diff', angular_diff, 'vertical_diff', vertical_diff)
-                vel.angular.z = alpha * angular_diff + beta * vertical_diff
-                vel.linear.x = 0.5
-                pub.publish(vel)
+
+                #scanまたはvel_scanの値が0.01~1.5の時ループ
                 while (self.sensor_data < 1.5 and self.sensor_data > 0.01) or (self.vel_sensor_data < 1.5 and self.vel_sensor_data > 0.01):
                     
                     vel.linear.x = 0
@@ -142,6 +151,14 @@ class TsukubaChallengeStrategy:
 
                     #print("stop")
                     #print('robot_angular:',robot_angular,' line_angular:',line_angular,' angular_diff',angular_diff)
+
+
+                #角速度を求める
+                vel.angular.z = alpha * angular_diff + beta * vertical_diff
+                vel.linear.x = 0.5
+                pub.publish(vel)
+                #print('dist:',dist,' angular_diff', angular_diff, 'vertical_diff', vertical_diff)
+ 
 
             except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
                 continue
@@ -178,7 +195,7 @@ class TsukubaChallengeStrategy:
                     else :
                         print "all suspend pose finished"
 
-                    if(dist < 1.0) and self.current_sp  <  SP_NUMBER_MAX:
+                    if(dist < 1.5) and self.current_sp  <  SP_NUMBER_MAX:
                         # self.get_yaw_from_quaternion(Quaternion(ori_x,ori_y,ori_z,ori_w))
                         # self.get_yaw_from_quaternion(Quaternion(self.suspend_pose[self.current_sp].orientation.x,self.suspend_pose[self.current_sp].orientation.y,self.suspend_pose[self.current_sp].orientation.y,self.suspend_pose[self.current_sp].orientation.w))
 
