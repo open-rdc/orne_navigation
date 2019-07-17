@@ -12,7 +12,7 @@ from time import sleep
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import LaserScan
 
-SUSPEND_NUMBER_MAX = 4 #suspend_pointの数
+line_track_sp = [1,2] #line_trackをするsuspend_pointの番号
 
 class TsukubaChallengeStrategy:
     def __init__(self):
@@ -25,6 +25,7 @@ class TsukubaChallengeStrategy:
         self.strategy_state= rospy.get_param('state')
         self.sensor_data = 0
         self.vel_sensor_data = 0
+        self.suspend_size = rospy.get_param('~size')
 
 
         suspend_pose_cfg = []
@@ -32,11 +33,12 @@ class TsukubaChallengeStrategy:
 
         self.world_frame = rospy.get_param('~world_frame', 'map')
         self.robot_frame = rospy.get_param('~robot_frame', 'base_link')
+       
 
         self.suspend_pose = []
         self.resume_pose = []
 
-        for i in range(SUSPEND_NUMBER_MAX):
+        for i in range(self.suspend_size):
             s = '~suspend_pose' + str(i+1)
             r = '~resume_pose' + str(i+1)
             suspend_pose_cfg.append(rospy.get_param(s))
@@ -191,7 +193,7 @@ class TsukubaChallengeStrategy:
                     ori_z = rot[2]
                     ori_w = rot[3]
 
-                    if self.current_sp < SUSPEND_NUMBER_MAX:
+                    if self.current_sp < self.suspend_size:
                         dist = math.sqrt(math.pow(x - self.suspend_pose[self.current_sp].position.x, 2) + math.pow(y - self.suspend_pose[self.current_sp].position.y, 2))
                         print "robot_gl = ("  + str(x) + ", " + str(y) + ")"
                         print "dist = " + str(dist)
@@ -199,7 +201,7 @@ class TsukubaChallengeStrategy:
                     else :
                         print "all suspend pose finished"
 
-                    if(dist < 1.5) and self.current_sp  <  SUSPEND_NUMBER_MAX:
+                    if(dist < 1.5) and self.current_sp  <  self.suspend_size:
                         # self.get_yaw_from_quaternion(Quaternion(ori_x,ori_y,ori_z,ori_w))
                         # self.get_yaw_from_quaternion(Quaternion(self.suspend_pose[self.current_sp].orientation.x,self.suspend_pose[self.current_sp].orientation.y,self.suspend_pose[self.current_sp].orientation.y,self.suspend_pose[self.current_sp].orientation.w))
 
@@ -215,8 +217,9 @@ class TsukubaChallengeStrategy:
                         print "suspend_wp_nav() = " + str(suspend_wp_nav(self.suspend_pose[self.current_sp]))
 
 
-                        self.pub_vel()
-
+                        for i in range(len(line_track_sp)):
+                            if (line_track_sp[i]-1) == self.current_sp: 
+                                self.pub_vel()
                         self.current_sp += 1
 
 
