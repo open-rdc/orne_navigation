@@ -166,7 +166,7 @@ class TsukubaChallengeStrategy:
                 if vel.angular.z > math.pi/2:
                     vel.angular.z = math.pi/2
                 if vel.angular.z < -math.pi/2:
-                    vel.angular.z = math.pi/2
+                    vel.angular.z = -math.pi/2
                    
                 vel.linear.x = 0.5
                 pub.publish(vel)
