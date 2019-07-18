@@ -1,192 +1,241 @@
-#つくば市役所
+size: 12
 suspend_pose1:
     position:
-      x: 36.2926063538
-      y: 76.5788803101
-      z: 0.0
+      x: -1.14632
+      y: 26.7714
+      z: 0.00410815
     orientation:
-      x: 0.0
-      y: 0.0
-      z: 0.106723991514
-      w: 0.99428868526
+      x: 0.000456482
+      y: -0.00184624
+      z: -0.724612
+      w: -0.68919
 resume_pose1:
     position:
-      x: 36.2926063538
-      y: 76.5788803101
-      z: 0.0
+      x: -2.47984
+      y: 40.7272
+      z: -0.000353314
     orientation:
-      x: 0.0
-      y: 0.0
-      z: 0.106723991514
-      w: 0.99428868526
-
+      x: -2.65192e-05
+      y: 1.12467e-05
+      z: -0.741769
+      w: -0.670664
 suspend_pose2:
     position:
-      x: 69.2872619629
-      y: 92.494430542
-      z: 0.0
+      x: -11.3897
+      y: 52.0979
+      z: -0.00287264
     orientation:
-      x: 0.0
-      y: 0.0
-      z: 0.0936260515203
-      w: 0.99560743392
+      x: -2.7014e-06
+      y: -5.61986e-05
+      z: -0.994868
+      w: 0.101251
 resume_pose2:
     position:
-      x: 69.2872619629
-      y: 92.494430542
-      z: 0.0
+      x: -19.9296
+      y: 50.7495
+      z: -2.84623e-07
     orientation:
-      x: 0.0
-      y: 0.0
-      z: 0.0936260515203
-      w: 0.99560743392
-
+      x: -1.48731e-06
+      y: -1.56665e-05
+      z: -0.999652
+      w: -0.0268569
 suspend_pose3:
     position:
-      x: 143.616394043
-      y: 113.233200073
-      z: 0.0
+      x: -57.5425
+      y: 44.9382
+      z: -0.00139021
     orientation:
-      x: 0.0
-      y: 0.0
-      z: 0.118375524807
-      w: 0.992968899375
-
+      x: -6.89817e-05
+      y: -2.39052e-05
+      z: 0.99885
+      w: -0.0483624
 resume_pose3:
     position:
-      x: 143.616394043
-      y: 113.233200073
-      z: 0.0
+      x: -65.5264
+      y: 42.7534
+      z: -0.00105391
     orientation:
-      x: 0.0
-      y: 0.0
-      z: 0.118375524807
-      w: 0.992968899375
-
-#2号館三階
-# suspend_pose1:
-#     position:
-#         x: -3.9
-#         y: -4.0
-#         z: 0
-#     orientation:
-#         x: 0
-#         y: 0
-#         z: 0
-#         w: 1
-# resume_pose1:
-#     position:
-#         x: -3.9
-#         y: -4.0
-#         z: 0
-#     orientation:
-#         x: 0
-#         y: 0
-#         z: 0
-#         w: 1
-#
-# suspend_pose2:
-#     position:
-#         x: -5.3
-#         y: 5.16
-#         z: 0
-#     orientation:
-#         x: 0
-#         y: 0
-#         z: 0
-#         w: 1
-# resume_pose2:
-#     position:
-#         x: -5.3
-#         y: 5.16
-#         z: 0
-#     orientation:
-#         x: 0
-#         y: 0
-#         z: 0
-#         w: 1
-#
-# suspend_pose3:
-#     position:
-#         x: -6.07633
-#         y: 8.64854
-#         z: 0
-#     orientation:
-#         x: 0
-#         y: 0
-#         z: 0
-#         w: 1
-# resume_pose3:
-#     position:
-#         x: -6.07633
-#         y: 8.64854
-#         z: 0
-#     orientation:
-#         x: 0
-#         y: 0
-#         z: 0
-#         w: 1
-
-###### GAZEBO MYMAP WP NAGA_MYMAP_GAZEBO
-# suspend_pose1:
-#     position:
-#         x: -1.58424
-#         y: -0.0164871
-#         z: 0.00685692
-#     orientation:
-#         x: 0
-#         y: 0
-#         z: 0
-#         w: 1
-# resume_pose1:
-#     position:
-#         x: -1.58424
-#         y: -0.0164871
-#         z: 0
-#     orientation:
-#         x: 0
-#         y: 0
-#         z: 0
-#         w: 1
-#
-# suspend_pose2:
-#     position:
-#         x: -5.15642
-#         y: 0.275381
-#         z: 0
-#     orientation:
-#         x: 0
-#         y: 0
-#         z: 0
-#         w: 1
-# resume_pose2:
-#     position:
-#         x: -5.15642
-#         y: 0.275381
-#         z: 0
-#     orientation:
-#         x: 0
-#         y: 0
-#         z: 0
-#         w: 1
-#
-# suspend_pose3:
-#     position:
-#         x: -7.2064
-#         y: -0.18752
-#         z: 0.00139809
-#     orientation:
-#         x: 0
-#         y: 0
-#         z: 0
-#         w: 1
-# resume_pose3:
-#     position:
-#         x: -7.2064
-#         y: -0.18752
-#         z: 0.00139809
-#     orientation:
-#         x: 0
-#         y: 0
-#         z: 0
-#         w: 1
+      x: 4.89549e-05
+      y: 1.95742e-06
+      z: 0.997825
+      w: -0.066105
+suspend_pose4:
+    position:
+      x: -79.1544
+      y: 22.2697
+      z: -0.00451856
+    orientation:
+      x: -0.000484265
+      y: 0.000143162
+      z: 0.60331
+      w: -0.797531
+resume_pose4:
+    position:
+      x: -76.0611
+      y: 4.17164
+      z: -0.00719168
+    orientation:
+      x: -9.77312e-05
+      y: -9.24882e-06
+      z: 0.696361
+      w: -0.7177
+suspend_pose5:
+    position:
+      x: -60.0308
+      y: -12.8119
+      z: -0.00990884
+    orientation:
+      x: 0.000271631
+      y: -0.000406358
+      z: 0.0915388
+      w: 0.995814
+resume_pose5:
+    position:
+      x: -42.9584
+      y: -11.9219
+      z: 0.00477352
+    orientation:
+      x: 0.000329537
+      y: -0.000393511
+      z: 0.0370791
+      w: 0.999325
+suspend_pose6:
+    position:
+      x: -25.3967
+      y: -10.4421
+      z: 0.0174431
+    orientation:
+      x: -0.000281751
+      y: 0.000410629
+      z: -0.0731188
+      w: -0.997328
+resume_pose6:
+    position:
+      x: -10.994
+      y: -8.01595
+      z: 0.0304433
+    orientation:
+      x: -0.000287757
+      y: 0.000420528
+      z: -0.0666361
+      w: -0.997786
+suspend_pose7:
+    position:
+      x: 3.70905
+      y: -19.2331
+      z: 0.0338031
+    orientation:
+      x: -0.000488183
+      y: 5.53967e-05
+      z: 0.728929
+      w: -0.684593
+resume_pose7:
+    position:
+      x: 5.3037
+      y: -32.9855
+      z: 0.0262157
+    orientation:
+      x: -0.00050289
+      y: 4.53828e-05
+      z: 0.723194
+      w: -0.690652
+suspend_pose8:
+    position:
+      x: 8.59251
+      y: -42.6136
+      z: 0.0234699
+    orientation:
+      x: 0.000447343
+      y: -3.39504e-05
+      z: -0.758949
+      w: 0.651157
+resume_pose8:
+    position:
+      x: 9.31636
+      y: -54.9635
+      z: 0.0153869
+    orientation:
+      x: 0.000510801
+      y: -5.83114e-05
+      z: -0.712307
+      w: 0.701875
+suspend_pose9:
+    position:
+      x: 26.1102
+      y: -57.4383
+      z: 0.027167
+    orientation:
+      x: 0.000243394
+      y: -0.000382484
+      z: 0.099727
+      w: 0.995015
+resume_pose9:
+    position:
+      x: 40.7103
+      y: -55.8495
+      z: 0.0376268
+    orientation:
+      x: 0.000205463
+      y: -0.000382783
+      z: 0.189524
+      w: 0.98188
+suspend_pose10:
+    position:
+      x: 71.5524
+      y: -52.5761
+      z: 0.0619659
+    orientation:
+      x: 0.000248784
+      y: -0.000402471
+      z: 0.0692744
+      w: 0.997609
+resume_pose10:
+    position:
+      x: 94.8259
+      y: -48.9788
+      z: 0.0812526
+    orientation:
+      x: -0.000254424
+      y: 0.000363981
+      z: -0.0455285
+      w: -0.998975
+suspend_pose11:
+    position:
+      x: 129.913
+      y: -27.3612
+      z: 0.119275
+    orientation:
+      x: 5.92376e-05
+      y: 0.000436156
+      z: -0.728726
+      w: -0.684817
+resume_pose11:
+    position:
+      x: 127.297
+      y: -11.451
+      z: 0.125502
+    orientation:
+      x: -1.9617e-05
+      y: -0.000455027
+      z: 0.597325
+      w: 0.802008
+suspend_pose12:
+    position:
+      x: 121.762
+      y: 24.4453
+      z: 0.141776
+    orientation:
+      x: -0.000103186
+      y: -0.000421539
+      z: 0.791327
+      w: 0.6114
+resume_pose12:
+    position:
+      x: 119.805
+      y: 41.9971
+      z: 0.149498
+    orientation:
+      x: 8.42766e-05
+      y: 0.000417686
+      z: -0.773876
+      w: -0.633343
