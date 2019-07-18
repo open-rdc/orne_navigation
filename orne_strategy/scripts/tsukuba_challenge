@@ -12,7 +12,8 @@ from time import sleep
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import LaserScan
 
-line_track_sp = [1,2] #line_trackをするsuspend_pointの番号
+line_track_sp = [0,1,2,3,4,5,6,7,8,9,10,11] #line_trackをするsuspend_pointの番号
+
 
 class TsukubaChallengeStrategy:
     def __init__(self):
@@ -162,6 +163,11 @@ class TsukubaChallengeStrategy:
 
                 #角速度を求める
                 vel.angular.z = alpha * angular_diff + beta * vertical_diff
+                if vel.angular.z > math.pi/2:
+                    vel.angular.z = math.pi/2
+                if vel.angular.z < -math.pi/2:
+                    vel.angular.z = math.pi/2
+                   
                 vel.linear.x = 0.5
                 pub.publish(vel)
                 #print('dist:',dist,' angular_diff', angular_diff, 'vertical_diff', vertical_diff)
@@ -218,7 +224,7 @@ class TsukubaChallengeStrategy:
 
 
                         for i in range(len(line_track_sp)):
-                            if (line_track_sp[i]-1) == self.current_sp: 
+                            if (line_track_sp[i]) == self.current_sp: 
                                 self.pub_vel()
                         self.current_sp += 1
 
