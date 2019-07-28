@@ -12,7 +12,7 @@ from time import sleep
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import LaserScan
 
-line_track_sp = [0,1,2,3,4,5,6,7,8,9,10,11] #line_trackをするsuspend_pointの番号
+line_track_sp = [0,1] #line_trackをするsuspend_pointの番号
 
 
 class TsukubaChallengeStrategy:
@@ -176,11 +176,28 @@ class TsukubaChallengeStrategy:
             except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
                 continue
 
+
+    #laser_scan型から90-degree ~ 90+degreeの範囲で最小の値を返す
+    def min_scan_val(self,msg,degree=5):
+
+        one_data_rad = (msg.angle_max - msg.angle_min)/len(msg.ranges)
+        n = math.ceil(math.pi * degree / 180 / one_data_rad)
+        start = int(len(msg.ranges)/2-n)
+        finish = int(len(msg.ranges)/2+n+1)
+
+        number_list = range(start,finish)
+        data_list = []
+        for i in number_list:
+            data_list.append(msg.ranges[i])
+
+        return min(data_list)
+        
+        
     def scan_callback(self,msg):
-        self.sensor_data = msg.ranges[len(msg.ranges)/2]
+        self.sensor_data = self.min_scan_val(msg)
         
     def vel_scan_callback(self,msg):
-        self.vel_sensor_data = msg.ranges[len(msg.ranges)/2]
+        self.vel_sensor_data = self.min_scan_val(msg)
  
 
     def spin(self):
