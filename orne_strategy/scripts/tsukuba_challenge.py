@@ -12,7 +12,7 @@ from time import sleep
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import LaserScan
 
-line_track_sp = [0,1] #line_trackをするsuspend_pointの番号
+line_tracking_sp = [0,1] #line trackintをするsuspend_pointの番号
 
 
 class TsukubaChallengeStrategy:
@@ -240,8 +240,8 @@ class TsukubaChallengeStrategy:
                         print "suspend_wp_nav() = " + str(suspend_wp_nav(self.suspend_pose[self.current_sp]))
 
 
-                        for i in range(len(line_track_sp)):
-                            if (line_track_sp[i]) == self.current_sp: 
+                        for i in range(len(line_tracking_sp)):
+                            if (line_tracking_sp[i]) == self.current_sp: 
                                 self.pub_vel()
                         self.current_sp += 1
 
