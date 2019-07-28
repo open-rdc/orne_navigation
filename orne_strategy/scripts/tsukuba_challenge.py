@@ -11,8 +11,11 @@ from fulanghua_srvs.srv import Pose
 from time import sleep
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import LaserScan
+import yaml
+import roslib.packages
 
 line_tracking_sp = [0,1] #line trackintをするsuspend_pointの番号
+
 
 
 class TsukubaChallengeStrategy:
@@ -26,7 +29,7 @@ class TsukubaChallengeStrategy:
         self.strategy_state= rospy.get_param('state')
         self.sensor_data = 0
         self.vel_sensor_data = 0
-        self.suspend_size = rospy.get_param('~size')
+        #self.suspend_size = rospy.get_param('~size')
 
 
         suspend_pose_cfg = []
@@ -34,35 +37,37 @@ class TsukubaChallengeStrategy:
 
         self.world_frame = rospy.get_param('~world_frame', 'map')
         self.robot_frame = rospy.get_param('~robot_frame', 'base_link')
-       
+
+        file_name = rospy.get_param('~filename',roslib.packages.get_pkg_dir('orne_strategy')+'/suspend_cfg/suspend.yaml')
+
+        f = open(file_name,'r+')
+        yaml_data = yaml.load(f)
+        self.suspend_size = len(yaml_data['suspend_pose'])
 
         self.suspend_pose = []
         self.resume_pose = []
 
+
         for i in range(self.suspend_size):
-            s = '~suspend_pose' + str(i+1)
-            r = '~resume_pose' + str(i+1)
-            suspend_pose_cfg.append(rospy.get_param(s))
-            resume_pose_cfg.append(rospy.get_param(r))
 
             self.suspend_pose.append(geometry_msgs.msg.Pose())
             self.resume_pose.append(geometry_msgs.msg.Pose())
 
-            self.suspend_pose[i].position.x = suspend_pose_cfg[i]['position']['x']
-            self.suspend_pose[i].position.y = suspend_pose_cfg[i]['position']['y']
-            self.suspend_pose[i].position.z = suspend_pose_cfg[i]['position']['z']
-            self.suspend_pose[i].orientation.x = suspend_pose_cfg[i]['orientation']['x']
-            self.suspend_pose[i].orientation.y = suspend_pose_cfg[i]['orientation']['y']
-            self.suspend_pose[i].orientation.z = suspend_pose_cfg[i]['orientation']['z']
-            self.suspend_pose[i].orientation.w = suspend_pose_cfg[i]['orientation']['w']
+            self.suspend_pose[i].position.x = yaml_data['suspend_pose'][i]['pose']['position']['x']
+            self.suspend_pose[i].position.y = yaml_data['suspend_pose'][i]['pose']['position']['y']
+            self.suspend_pose[i].position.z = yaml_data['suspend_pose'][i]['pose']['position']['z']
+            self.suspend_pose[i].orientation.x = yaml_data['suspend_pose'][i]['pose']['orientation']['x']
+            self.suspend_pose[i].orientation.y = yaml_data['suspend_pose'][i]['pose']['orientation']['y']
+            self.suspend_pose[i].orientation.z = yaml_data['suspend_pose'][i]['pose']['orientation']['z']
+            self.suspend_pose[i].orientation.w = yaml_data['suspend_pose'][i]['pose']['orientation']['w']
 
-            self.resume_pose[i].position.x = resume_pose_cfg[i]['position']['x']
-            self.resume_pose[i].position.y = resume_pose_cfg[i]['position']['y']
-            self.resume_pose[i].position.z = resume_pose_cfg[i]['position']['z']
-            self.resume_pose[i].orientation.x = resume_pose_cfg[i]['orientation']['x']
-            self.resume_pose[i].orientation.y = resume_pose_cfg[i]['orientation']['y']
-            self.resume_pose[i].orientation.z = resume_pose_cfg[i]['orientation']['z']
-            self.resume_pose[i].orientation.w = resume_pose_cfg[i]['orientation']['w']
+            self.resume_pose[i].position.x = yaml_data['resume_pose'][i]['pose']['position']['x']
+            self.resume_pose[i].position.y = yaml_data['resume_pose'][i]['pose']['position']['y']
+            self.resume_pose[i].position.z = yaml_data['resume_pose'][i]['pose']['position']['z']
+            self.resume_pose[i].orientation.x = yaml_data['resume_pose'][i]['pose']['orientation']['x']
+            self.resume_pose[i].orientation.y = yaml_data['resume_pose'][i]['pose']['orientation']['y']
+            self.resume_pose[i].orientation.z = yaml_data['resume_pose'][i]['pose']['orientation']['z']
+            self.resume_pose[i].orientation.w = yaml_data['resume_pose'][i]['pose']['orientation']['w']
 
             print "suspend_pose" + str(i+1) + " = " + str(self.suspend_pose[0])
             print "resume_pose" + str(i+1) + " = " + str(self.resume_pose[0])
