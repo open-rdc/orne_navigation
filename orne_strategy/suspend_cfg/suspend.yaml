@@ -1,6 +1,6 @@
 suspend_pose:
     - pose:
-        line_tracking: 1
+        line_tracking: 0
         position:
           x: -5.85611
           y: -1.28658

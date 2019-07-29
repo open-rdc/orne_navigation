@@ -34,6 +34,7 @@ class TsukubaChallengeStrategy:
 
         file_name = rospy.get_param('~filename',roslib.packages.get_pkg_dir('orne_strategy')+'/suspend_cfg/suspend.yaml')
 
+        print("read suspend file: " + file_name)
         f = open(file_name,'r+')
         yaml_data = yaml.load(f)
         self.suspend_size = len(yaml_data['suspend_pose'])
