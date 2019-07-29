@@ -88,7 +88,7 @@ class TsukubaChallengeStrategy:
             rospy.loginfo('strategy: resume_nav_callback')
             rospy.wait_for_service('resume_wp_pose')
             resume_wp_nav = rospy.ServiceProxy('resume_wp_pose', Pose)
-            return resume_wp_nav(self.resume_pose[self.current_sp-1])
+            return resume_wp_nav(self.resume_pose[self.current_sp])
         except rospy.ServiceException, e:
             print "error: %s" % e
 
@@ -117,7 +117,7 @@ class TsukubaChallengeStrategy:
         vertical_diff = 0   #ラインとロボットの距離
 
         dist = 10   #resume_poseとロボットの距離
-        
+                
         #resume_poseとロボットのの距離が1mより大きい間ループ
         while dist > 1:
             rate.sleep()
@@ -179,10 +179,13 @@ class TsukubaChallengeStrategy:
             except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
                 continue
 
-        rospy.loginfo('strategy: send resume request')
-        rospy.wait_for_service('resume_wp_pose')
-        suspend_wp_nav = rospy.ServiceProxy('resume_wp_pose', Pose)
-        print "suspend_wp_nav() = " + str(suspend_wp_nav(self.resume_pose[self.current_sp]))
+        try:
+            rospy.loginfo('strategy: resume_nav_callback')
+            rospy.wait_for_service('resume_wp_pose')
+            resume_wp_nav = rospy.ServiceProxy('resume_wp_pose', Pose)
+            return resume_wp_nav(self.resume_pose[self.current_sp])
+        except rospy.ServiceException, e:
+            print "error: %s" % e
 
 
 
