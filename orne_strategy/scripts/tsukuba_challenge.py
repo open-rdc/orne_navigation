@@ -180,15 +180,6 @@ class TsukubaChallengeStrategy:
             except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
                 continue
 
-        try:
-            rospy.loginfo('strategy: resume_nav_callback')
-            rospy.wait_for_service('resume_wp_pose')
-            resume_wp_nav = rospy.ServiceProxy('resume_wp_pose', Pose)
-            return resume_wp_nav(self.resume_pose[self.current_sp])
-        except rospy.ServiceException, e:
-            print "error: %s" % e
-
-
 
     #laser_scan型から90-degree ~ 90+degreeの範囲で最小の値を返す
     def min_scan_val(self,msg,degree=5):
