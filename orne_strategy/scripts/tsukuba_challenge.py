@@ -14,8 +14,6 @@ from sensor_msgs.msg import LaserScan
 import yaml
 import roslib.packages
 
-line_tracking_sp = [0,1] #line trackintをするsuspend_pointの番号
-
 
 
 class TsukubaChallengeStrategy:
@@ -29,11 +27,7 @@ class TsukubaChallengeStrategy:
         self.strategy_state= rospy.get_param('state')
         self.sensor_data = 0
         self.vel_sensor_data = 0
-        #self.suspend_size = rospy.get_param('~size')
 
-
-        suspend_pose_cfg = []
-        resume_pose_cfg = []
 
         self.world_frame = rospy.get_param('~world_frame', 'map')
         self.robot_frame = rospy.get_param('~robot_frame', 'base_link')
@@ -46,13 +40,17 @@ class TsukubaChallengeStrategy:
 
         self.suspend_pose = []
         self.resume_pose = []
+        self.line_tracking = []
 
 
         for i in range(self.suspend_size):
 
             self.suspend_pose.append(geometry_msgs.msg.Pose())
             self.resume_pose.append(geometry_msgs.msg.Pose())
+            self.line_tracking.append(0)
 
+
+            self.line_tracking[i] = yaml_data['suspend_pose'][i]['pose']['line_tracking']
             self.suspend_pose[i].position.x = yaml_data['suspend_pose'][i]['pose']['position']['x']
             self.suspend_pose[i].position.y = yaml_data['suspend_pose'][i]['pose']['position']['y']
             self.suspend_pose[i].position.z = yaml_data['suspend_pose'][i]['pose']['position']['z']
@@ -181,6 +179,12 @@ class TsukubaChallengeStrategy:
             except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
                 continue
 
+        rospy.loginfo('strategy: send resume request')
+        rospy.wait_for_service('resume_wp_pose')
+        suspend_wp_nav = rospy.ServiceProxy('resume_wp_pose', Pose)
+        print "suspend_wp_nav() = " + str(suspend_wp_nav(self.resume_pose[self.current_sp]))
+
+
 
     #laser_scan型から90-degree ~ 90+degreeの範囲で最小の値を返す
     def min_scan_val(self,msg,degree=5):
@@ -225,7 +229,7 @@ class TsukubaChallengeStrategy:
                         dist = math.sqrt(math.pow(x - self.suspend_pose[self.current_sp].position.x, 2) + math.pow(y - self.suspend_pose[self.current_sp].position.y, 2))
                         print "robot_gl = ("  + str(x) + ", " + str(y) + ")"
                         print "dist = " + str(dist)
-                        print "curennt suspend pose =  " + str(self.current_sp + 1)
+                        print "curennt_sp =  " + str(self.current_sp)
                     else :
                         print "all suspend pose finished"
 
@@ -245,9 +249,8 @@ class TsukubaChallengeStrategy:
                         print "suspend_wp_nav() = " + str(suspend_wp_nav(self.suspend_pose[self.current_sp]))
 
 
-                        for i in range(len(line_tracking_sp)):
-                            if (line_tracking_sp[i]) == self.current_sp: 
-                                self.pub_vel()
+                        if self.line_tracking[self.current_sp] is 1: 
+                            self.pub_vel()
                         self.current_sp += 1
 
 
