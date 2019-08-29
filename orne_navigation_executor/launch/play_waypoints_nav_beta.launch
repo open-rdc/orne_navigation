@@ -9,6 +9,7 @@
 
   <arg name="suspend" default="False"/>
   <param name="state" value="$(arg suspend)"/>
+  <arg name="suspend_file"       default="$(find orne_strategy)/suspend_cfg/suspend.yaml"/>
 
   <include file="$(find orne_navigation_executor)/launch/play_waypoints_nav_common.launch">
     <arg name="robot_name"    value="$(arg robot_name)"/>
@@ -16,5 +17,6 @@
     <arg name="init_pos_file" value="$(arg init_pos_file)"/>
     <arg name="waypoints_file" value="$(arg waypoints_file)"/>
     <arg name="dist_err" value="$(arg dist_err)"/>
+    <arg name="suspend_file"      value="$(arg suspend_file)"/>
   </include>
 </launch>
