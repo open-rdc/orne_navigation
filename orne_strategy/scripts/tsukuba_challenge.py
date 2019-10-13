@@ -24,7 +24,7 @@ class TsukubaChallengeStrategy:
         self.scan_sub = rospy.Subscriber('/scan',LaserScan ,self.scan_callback)
         self.vel_scan_sub = rospy.Subscriber('/vel_scan',LaserScan ,self.vel_scan_callback)
         self.current_sp = 0
-        self.strategy_state= rospy.get_param('state')
+        self.strategy_state= rospy.get_param('state',default=False)
         self.sensor_data = 0
         self.vel_sensor_data = 0
 
@@ -36,7 +36,7 @@ class TsukubaChallengeStrategy:
 
         print("read suspend file: " + file_name)
         f = open(file_name,'r+')
-        yaml_data = yaml.load(f)
+        yaml_data = yaml.load(f,Loader=yaml.FullLoader)
         self.suspend_size = len(yaml_data['suspend_pose'])
 
         self.suspend_pose = []
