@@ -2,29 +2,190 @@
 # -*- coding: utf-8 -*-
 
 import rospy
-import geometry_msgs.msg
 import tf
-from geometry_msgs.msg import Quaternion
+from geometry_msgs.msg import *
+from std_msgs.msg import Header
+from move_base_msgs.msg import MoveBaseActionGoal
 import math
+from time import sleep
 from std_srvs.srv import Trigger
 from fulanghua_srvs.srv import Pose
 from time import sleep
-from geometry_msgs.msg import Twist
 from sensor_msgs.msg import LaserScan
 import yaml
 import roslib.packages
 
-
-
-class TsukubaChallengeStrategy:
+class ApproachHandler():
     def __init__(self):
-        rospy.init_node('tsukuba_challenge_strategy')
+        self.goal_pub=rospy.Publisher("move_base_simple/goal",PoseStamped,queue_size=10)
+        self.target_sub=rospy.Subscriber("filtered_target_point",PointStamped,self.target_callback)
+	self.goal_sub=rospy.Subscriber("move_base/goal",MoveBaseActionGoal,self.goal_callback)
+        self.world_frame = rospy.get_param('~world_frame', 'map')
+        self.robot_frame = rospy.get_param('~robot_frame', 'base_link')
+        self.target_point=PointStamped()
+        self.target_position=PoseStamped()
+        self.goal_pose=PoseStamped()
+        self.return_pose=PoseStamped()
+        self.state='search'
+        self.prev_status_time=rospy.Time.now().to_sec
+        self.tf_listener=tf.TransformListener()
+
+    def call_suspend_wp_pose(self, pose):
+        rospy.wait_for_service('suspend_wp_pose')
+        suspend_wp_nav = rospy.ServiceProxy('suspend_wp_pose', Pose)
+        return suspend_wp_nav(pose)
+
+    def call_resume_wp_pose(self, pose):
+        rospy.wait_for_service('resume_wp_pose')
+        resume_wp_nav = rospy.ServiceProxy('resume_wp_pose', Pose)
+        return resume_wp_nav(pose)
+
+    def get_now_pose(self):
+        ident = PoseStamped(
+            header=Header(
+                stamp=rospy.Time(0),
+                frame_id=self.robot_frame
+            ),
+            pose=geometry_msgs.msg.Pose()
+        )
+        robot_pose = PoseStamped()
+        try:
+            robot_pose = self.tf_listener.transformPose(self.world_frame, ident)
+        except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
+            rospy.loginfo('tf except')
+        return robot_pose
+
+    def revise_pose(self,target_position):
+        theta = math.atan2(target_position.pose.position.y - self.get_now_pose().pose.position.y, target_position.pose.position.x - self.get_now_pose().pose.position.x)
+            
+        transform_target_orientation=target_position
+
+	q=tf.transformations.quaternion_from_euler(0.0,0.0,theta) 
+        transform_target_orientation.pose.orientation=Quaternion(q[0],q[1],q[2],q[3])
+        transform_target_orientation.pose.orientation.y=q[1]
+        transform_target_orientation.pose.orientation.z=q[2]
+        transform_target_orientation.pose.orientation.w=q[3]
+
+        transform_target_position=self.tf_listener.transformPose(self.robot_frame,transform_target_orientation)
+        transform_target_position.pose.position.x=transform_target_position.pose.position.x-1.5
+
+        revise_target_position=self.tf_listener.transformPose(self.world_frame,transform_target_position)
+        
+        return revise_target_position
+
+    def nav_publish(self,goal_pose):
+        self.goal_pose=goal_pose
+        self.goal_pub.publish(self.goal_pose)
+
+    def target_callback(self,target_point):
+        if self.state == 'search':
+            print('target_callback')
+            self.target_point=target_point
+            #self.target_position.header=self.target_point.header
+            self.target_position.header=Header(stamp=rospy.Time(0),frame_id=self.world_frame)
+	    self.target_position.pose.position=self.target_point.point
+	    self.target_position.pose.orientation=Quaternion(0.0,0.0,0.0,1.0)
+            
+	    self.state = 'try_approach'
+
+    def goal_callback(self,goal):
+	print('goalcallback')
+
+    def is_arrive_goal(self,dist_thr=1.5):
+        try:
+            self.tf_listener.waitForTransform(self.world_frame,self.robot_frame,rospy.Time(0),rospy.Duration(1.0))
+            (trans, rot) = self.tf_listener.lookupTransform(self.world_frame, self.robot_frame, rospy.Time(0))
+            x = trans[0]
+            y = trans[1]
+
+            dist = math.sqrt(math.pow(x - self.goal_pose.pose.position.x, 2) + math.pow(y - self.goal_pose.pose.position.y, 2))
+            
+        except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
+            return False
+
+        if dist < dist_thr:
+            return True
+        else:
+            return False
+
+    def check_status_timeover(self,now,prev,dist=10.0):
+        if(now - prev > dist):
+            return True
+        else:
+            return False
+
+    def run(self):
+        if self.state=='try_approach':
+            self.state='suspend_nav'
+            self.prev_status_time=rospy.Time.now().to_sec()
+
+	elif self.state == 'suspend_nav':
+            self.return_pose = self.get_now_pose()
+            theta = math.atan2(self.target_position.pose.position.y - self.return_pose.pose.position.y, self.target_position.pose.position.x - self.return_pose.pose.position.x)
+            self.return_pose.pose.orientation = geometry_msgs.msg.Quaternion(*tf.transformations.quaternion_from_euler(0.0, 0.0, theta))
+
+            ret = self.call_suspend_wp_pose(self.return_pose.pose)
+            if ret:
+                self.state = 'approach_target'
+            else:
+                self.state = 'not_search'
+	    
+        elif self.state == 'approach_target':
+	    self.target_position.header.stamp=rospy.Time(0)
+	    target_from_robotframe = self.tf_listener.transformPose(self.robot_frame, self.target_position)
+            target_from_robotframe.pose.position.x = target_from_robotframe.pose.position.x - 1.0
+            target_from_robotframe.pose.orientation = geometry_msgs.msg.Quaternion(0.0, 0.0, 0.0, 1.0)
+            print target_from_robotframe
+            #goal_pose.pose.orientation = self.return_pose.pose.orientation
+            revise_pose = self.tf_listener.transformPose(self.world_frame, target_from_robotframe)	    
+	    print('transformed_map')
+	    self.nav_publish(revise_pose)
+	    print('publish')
+            self.state = 'wait_arrive_target'
+
+        elif self.state == 'wait_arrive_target':
+	    if self.is_arrive_goal(dist_thr=0.5):
+                self.state = 'arrive_target'
+                self.prev_status_time=rospy.Time.now().to_sec()
+
+	elif self.state == 'arrive_target':
+            if self.check_status_timeover(rospy.Time.now().to_sec(),self.prev_status_time,dist=5.0):
+                self.state = 'return_stop_point'
+                self.prev_status_time=rospy.Time.now().to_sec()
+
+        elif self.state == 'return_stop_point':
+            return_pose = self.return_pose
+            self.nav_publish(return_pose)
+            self.state = 'wait_resume_nav'
+            self.prev_status_time=rospy.Time.now().to_sec()
+
+        elif self.state == 'wait_resume_nav':
+            if self.is_arrive_goal(dist_thr=1.0):
+                self.state = 'resume_nav'
+                self.prev_status_time=rospy.Time.now().to_sec()
+
+        elif self.state == 'resume_nav':
+            ret = self.call_resume_wp_pose(self.get_now_pose().pose)
+            if ret:
+                self.state = 'pause_search'
+                self.prev_status_time=rospy.Time.now().to_sec()
+	    else:
+		self.state = 'not_search'
+
+        elif self.state == 'pause_search':
+            if self.check_status_timeover(rospy.Time.now().to_sec(),self.prev_status_time,dist=50.0):
+                print("timeover")
+                self.state='search'
+
+class TsukubaChallengeStrategy():
+    def __init__(self):
+        self.approach=ApproachHandler()
         self.start_nav_server = rospy.Service('start_nav', Trigger, self.start_nav_callback)
         self.resume_nav_server = rospy.Service('resume_nav', Trigger, self.resume_nav_callback)
         self.scan_sub = rospy.Subscriber('/scan',LaserScan ,self.scan_callback)
         self.vel_scan_sub = rospy.Subscriber('/vel_scan',LaserScan ,self.vel_scan_callback)
         self.current_sp = 0
-        self.strategy_state= rospy.get_param('state')
+        self.strategy_state= rospy.get_param('state',default=False)
         self.sensor_data = 0
         self.vel_sensor_data = 0
 
@@ -36,7 +197,7 @@ class TsukubaChallengeStrategy:
 
         print("read suspend file: " + file_name)
         f = open(file_name,'r+')
-        yaml_data = yaml.load(f)
+        yaml_data = yaml.load(f,Loader=yaml.SafeLoader)
         self.suspend_size = len(yaml_data['suspend_pose'])
 
         self.suspend_pose = []
@@ -211,6 +372,8 @@ class TsukubaChallengeStrategy:
             rate.sleep()
             if self.strategy_state is True:
                 try:
+		    print(self.approach.state)
+                    self.approach.run()
                     (trans, rot) = self.tf_listener.lookupTransform(self.world_frame, self.robot_frame, rospy.Time(0))
                     x = trans[0]
                     y = trans[1]
@@ -222,9 +385,9 @@ class TsukubaChallengeStrategy:
 
                     if self.current_sp < self.suspend_size:
                         dist = math.sqrt(math.pow(x - self.suspend_pose[self.current_sp].position.x, 2) + math.pow(y - self.suspend_pose[self.current_sp].position.y, 2))
-                        print "robot_gl = ("  + str(x) + ", " + str(y) + ")"
-                        print "dist = " + str(dist)
-                        print "curennt_sp =  " + str(self.current_sp)
+                        #print "robot_gl = ("  + str(x) + ", " + str(y) + ")"
+                        #print "dist = " + str(dist)
+                        #print "curennt_sp =  " + str(self.current_sp)
                     else :
                         print "all suspend pose finished"
 
@@ -257,5 +420,6 @@ class TsukubaChallengeStrategy:
 
 
 if __name__ == '__main__':
+    rospy.init_node('tsukuba_challenge_strategy')
     strategy = TsukubaChallengeStrategy()
     strategy.spin()
