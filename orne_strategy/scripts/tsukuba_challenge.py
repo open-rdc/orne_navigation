@@ -89,7 +89,7 @@ class TsukubaChallengeStrategy:
             rospy.loginfo('strategy: resume_nav_callback')
             rospy.wait_for_service('resume_wp_pose')
             resume_wp_nav = rospy.ServiceProxy('resume_wp_pose', Pose)
-            return resume_wp_nav(self.resume_pose[self.current_sp])
+            return resume_wp_nav(self.resume_pose[self.current_sp-1])
         except rospy.ServiceException, e:
             print "error: %s" % e
 
