@@ -2,11 +2,11 @@
 
 <launch>
   <arg name="robot_name" default="alpha"/>
-  <arg name="map_file"   default="$(find orne_navigation_executor)/maps/mymap"/>
+  <arg name="costmap_file"/>
   <arg name="odom_topic" default="/odom"/>
   <arg name="cmd_vel"    default="/cmd_vel"/>
 
-  <node name="map_server_for_costmap" pkg="map_server" type="map_server" args="$(arg map_file)_for_costmap.yaml">
+  <node name="map_server_for_costmap" pkg="map_server" type="map_server" args="$(arg costmap_file)">
     <remap from="/map" to="/map_for_costmap"/>
     <param name="frame_id" value="/map_for_costmap"/>
   </node>
