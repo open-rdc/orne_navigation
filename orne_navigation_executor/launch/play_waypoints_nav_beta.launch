@@ -7,7 +7,7 @@
   <arg name="waypoints_file" default="$(find orne_navigation_executor)/waypoints_cfg/waypoints_$(arg robot_name).yaml"/>
   <arg name="dist_err"       default="1.0"/>
 
-  <arg name="suspend" default="False"/>
+  <arg name="suspend" default="True"/>
   <param name="state" value="$(arg suspend)"/>
   <arg name="suspend_file"       default="$(find orne_strategy)/suspend_cfg/suspend.yaml"/>
 
