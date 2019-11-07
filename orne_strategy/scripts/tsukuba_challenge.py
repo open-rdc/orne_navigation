@@ -13,6 +13,7 @@ from geometry_msgs.msg import Twist
 from sensor_msgs.msg import LaserScan
 import yaml
 import roslib.packages
+import subprocess
 
 
 
@@ -75,6 +76,7 @@ class TsukubaChallengeStrategy:
 
     def start_nav_callback(self, req):
         try:
+            res=subprocess.call(['rosservice','call','/move_base/clear_costmaps'])
             rospy.loginfo("strategy: start_nav_callback")
             rospy.wait_for_service('start_wp_nav')
             start_wp_nav = rospy.ServiceProxy('start_wp_nav', Trigger)
@@ -86,6 +88,7 @@ class TsukubaChallengeStrategy:
 
     def resume_nav_callback(self, req):
         try:
+            res=subprocess.call(['rosservice','call','/move_base/clear_costmaps'])
             rospy.loginfo('strategy: resume_nav_callback')
             rospy.wait_for_service('resume_wp_pose')
             resume_wp_nav = rospy.ServiceProxy('resume_wp_pose', Pose)
