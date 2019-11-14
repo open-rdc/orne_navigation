@@ -11,9 +11,9 @@
 #    local-name: ros_controllers
 #    version: indigo-devel
 - git:
-    uri: https://github.com/DaikiMaekawa/fulanghua_navigation
+    uri: https://github.com/taishiyamamoto/fulanghua_navigation
     local-name: fulanghua_navigation
-    version: indigo-devel
+    version: melodic-devel
 - git:
     uri: https://github.com/taishiyamamoto/orne_navigation
     local-name: orne_navigation
@@ -41,7 +41,7 @@
 - git:
     uri: https://github.com/ros-perception/slam_gmapping
     local-name: slam_gmapping
-    version: hydro-devel
+    version: melodic-devel
 - git:
     uri: https://github.com/ros/geometry2
     local-name: geometry2
