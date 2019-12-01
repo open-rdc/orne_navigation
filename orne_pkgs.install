@@ -27,7 +27,7 @@
     local-name: hokuyo3d
     version: master
 - git:
-    uri: https://github.com/ros-planning/navigation
+    uri: https://github.com/taishiyamamoto/navigation
     local-name: navigation
     version: melodic-devel
 - git:
