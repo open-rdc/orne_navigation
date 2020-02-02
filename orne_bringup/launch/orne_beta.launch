@@ -4,7 +4,7 @@
         <arg name="scan_dev" value="/dev/sensors/hokuyo_H0803606"/>
         <arg name="ypspur_params" value="/usr/local/share/robot-params/icart-middle.param"/>
      </include>
-    
+
     <node pkg="urg_node" type="urg_node" name="urg_node_0">
     <param name="frame_id" value="hokuyo_link" />
     <param name="serial_port" value="/dev/sensors/hokuyo_H0803606"/>
