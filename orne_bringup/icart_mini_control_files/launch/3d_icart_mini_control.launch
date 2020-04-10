@@ -1,0 +1,17 @@
+<launch>
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find icart_mini_control)/config/3d_icart_mini_control.yaml" command="load"/>
+
+  <!-- load the controllers -->
+  <!-- publish /icart_mini/odom and /icart_mini/cmd_vel -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" args="icart_mini joint_state_controller">
+  </node>
+
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+  </node>
+
+</launch>

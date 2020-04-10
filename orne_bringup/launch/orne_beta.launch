@@ -4,7 +4,15 @@
         <arg name="scan_dev" value="/dev/sensors/hokuyo_H0803606"/>
         <arg name="ypspur_params" value="/usr/local/share/robot-params/icart-middle.param"/>
      </include>
-    
+
+    <node pkg="urg_node" type="urg_node" name="urg_node_0">
+    <param name="frame_id" value="hokuyo_link" />
+    <param name="serial_port" value="/dev/sensors/hokuyo_H0803606"/>
+    <param name="publish_multiecho" value="false"/>
+    <param name="angle_min" value="-1.047"/>
+    <param name="angle_max" value="1.047"/>
+    <param name="publish_intensity" value="true"/>
+    </node>
 <!--
     <node pkg="mpu6050_serial_to_imu" type="mpu6050_serial_to_imu_node" name="imu_node">
         <remap from="imu"        to="imu_data"/>
@@ -15,7 +23,8 @@
 -->
 
     <include file="$(find orne_bringup)/launch/adis16465.launch"/>
-    
+
     <include file="$(find orne_bringup)/launch/includes/base.launch.xml"/>
+
 </launch>
 
