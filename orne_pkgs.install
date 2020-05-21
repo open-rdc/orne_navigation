@@ -11,11 +11,11 @@
 #    local-name: ros_controllers
 #    version: indigo-devel
 - git:
-    uri: https://github.com/taishiyamamoto/fulanghua_navigation
+    uri: https://github.com/open-rdc/fulanghua_navigation
     local-name: fulanghua_navigation
     version: melodic-devel
 - git:
-    uri: https://github.com/taishiyamamoto/orne_navigation
+    uri: https://github.com/open-rdc/orne_navigation
     local-name: orne_navigation
     version: melodic-devel
 - git:
@@ -27,7 +27,7 @@
     local-name: hokuyo3d
     version: master
 - git:
-    uri: https://github.com/taishiyamamoto/navigation
+    uri: https://github.com/open-rdc/navigation
     local-name: navigation
     version: melodic-devel
 - git:
