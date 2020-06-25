@@ -10,7 +10,7 @@ kld_z: 0.99
 odom_alpha1: 0.2
 odom_alpha2: 0.2
 odom_alpha4: 0.4
-laser_z_hit: 0.5
+laser_z_hit: 0.6
 laser_z_short: 0.05
 laser_z_max: 0.05
 laser_z_rand: 0.5
@@ -27,4 +27,4 @@ transform_tolerance: 0.1
 recovery_alpha_slow: 0.0
 recovery_alpha_fast: 0.0
 
-reset_th_alpha: 0.003
+reset_th_alpha: 1.3
