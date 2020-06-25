@@ -8,7 +8,7 @@
 
   <node name="map_server_for_costmap" pkg="map_server" type="map_server" args="$(arg costmap_file)">
     <remap from="map" to="map_for_costmap"/>
-    <param name="frame_id" value="map_for_costmap"/>
+    <param name="frame_id" value="map"/>
   </node>
 
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
