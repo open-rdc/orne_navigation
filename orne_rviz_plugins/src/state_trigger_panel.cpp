@@ -18,7 +18,7 @@ namespace orne_rviz_plugins
 StateTriggerPanel::StateTriggerPanel( QWidget* parent )
   : rviz::Panel( parent )
 {
-  start_client_ = nh_.serviceClient<std_srvs::Trigger>("start_nav", false);
+  start_client_ = nh_.serviceClient<std_srvs::Trigger>("start_wp_nav", false);
   resume_client_ = nh_.serviceClient<std_srvs::Trigger>("resume_nav", false);
 
   start_nav_button_ = new QPushButton("StartWaypointsNavigation");
