@@ -33,7 +33,7 @@
 - git:
     uri: https://github.com/iralabdisco/ira_laser_tools
     local-name: ira_laser_tools
-    version: master
+    version: kinetic
 - git:
     uri: https://github.com/open-rdc/adi_driver
     local-name: adi_driver
