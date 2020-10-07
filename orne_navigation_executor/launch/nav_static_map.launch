@@ -8,7 +8,7 @@
   <include file="$(find orne_navigation_executor)/launch/move_base.launch">
     <arg name="robot_name" value="$(arg robot_name)"/>
     <arg name="map_file" value="$(arg map_file)"/>
-    <arg name="odom_topic" value="combined_odom"/>
+    <arg name="odom_topic" value="icart_mini/odom"/>
     <arg name="cmd_vel" value="icart_mini/cmd_vel"/>
   </include>
 
