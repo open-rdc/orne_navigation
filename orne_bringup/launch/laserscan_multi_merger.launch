@@ -5,9 +5,9 @@ DESCRITPION
 
 <launch>
         <node pkg="ira_laser_tools" name="laserscan_multi_merger" type="laserscan_multi_merger" output="screen">
-		<param name="destination_frame" value="hokuyo_link"/>
+		<param name="destination_frame" value="base_link"/>
 		<param name="cloud_destination_topic" value="/merged_cloud"/>
-		<param name="scan_destination_topic" value="/scan"/>
+		<param name="scan_destination_topic" value="/vel_scan"/>
         <param name="laserscan_topics" value ="/hokuyo_scan   /hokuyo_back_scan  " /> <!-- LIST OF THE LASER SCAN TOPICS TO SUBSCRIBE -->
 
         <param name="angle_min" value="-3.14159"/>
