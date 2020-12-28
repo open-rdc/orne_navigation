@@ -11,10 +11,8 @@
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>move_base</build_depend>
   <build_depend>map_server</build_depend>
-  <build_depend>yocs_waypoints_navi</build_depend>
   <run_depend>move_base</run_depend>
   <run_depend>map_server</run_depend>
-  <run_depend>yocs_waypoints_navi</run_depend>
   <run_depend>rviz</run_depend>
   <run_depend>gmapping</run_depend>
   <run_depend>amcl</run_depend>
