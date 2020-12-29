@@ -9,7 +9,7 @@
 - git:
     uri: https://github.com/open-rdc/orne_navigation
     local-name: orne_navigation
-    version: clean_workspace
+    version: melodic-devel
 - git:
     uri: https://github.com/open-rdc/navigation
     local-name: navigation
