@@ -3,10 +3,6 @@
     local-name: icart_mini
     version: melodic-devel
 - git:
-    uri: https://github.com/open-rdc/fulanghua_navigation
-    local-name: fulanghua_navigation
-    version: melodic-devel
-- git:
     uri: https://github.com/open-rdc/orne_navigation
     local-name: orne_navigation
     version: melodic-devel
