@@ -7,7 +7,7 @@ import tf
 from geometry_msgs.msg import Quaternion
 import math
 from std_srvs.srv import Trigger
-from fulanghua_srvs.srv import Pose
+from orne_waypoints_nav.srv import Pose
 from time import sleep
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import LaserScan
