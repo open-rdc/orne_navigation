@@ -14,7 +14,7 @@
     <arg name="init_pos_file" value="$(arg init_pos_file)"/>
   </include>
 
-  <node name="waypoints_nav" pkg="fulanghua_waypoints_nav" type="waypoints_nav" output="screen">
+  <node name="waypoints_nav" pkg="orne_waypoints_nav" type="waypoints_nav" output="screen">
     <param name="filename" value="$(arg waypoints_file)"/>
     <param name="dist_err" value="$(arg dist_err)"/>
   </node>

@@ -14,7 +14,7 @@
     <arg name="joy_dev" value="$(arg joy_dev)"/>
   </include>
 
-  <node name="waypoints_saver" pkg="fulanghua_waypoints_nav" type="waypoints_saver" output="screen">
+  <node name="waypoints_saver" pkg="orne_waypoints_nav" type="waypoints_saver" output="screen">
     <param name="save_joy_button" value="$(arg save_joy_button)"/>
     <param name="filename" value="$(arg filename)"/> 
     <remap from="waypoints_joy" to="joy"/>
