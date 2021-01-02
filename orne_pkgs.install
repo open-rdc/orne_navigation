@@ -22,8 +22,4 @@
     uri: https://github.com/open-rdc/adi_driver
     local-name: adi_driver
     version: master
-- git:
-    uri: https://github.com/ros-drivers/velodyne
-    local-name: velodyne
-    version: master
 
