@@ -15,10 +15,6 @@
     local-name: navigation
     version: melodic-devel
 - git:
-    uri: https://github.com/ros-planning/navigation_msgs
-    local-name: navigation_msgs
-    version: jade-devel
-- git:
     uri: https://github.com/open-rdc/orne_tools
     local-name: orne_tools
     version: master
@@ -30,7 +26,4 @@
     uri: https://github.com/ros-drivers/velodyne
     local-name: velodyne
     version: master
-- git:
-    uri: https://github.com/ros-planning/robot_pose_ekf
-    local-name: robot_pose_ekf
-    version: master
+
