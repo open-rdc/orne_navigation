@@ -3,25 +3,17 @@
     local-name: icart_mini
     version: kinetic-devel
 - git:
-    uri: https://github.com/open-rdc/adis_imu_drivers
-    local-name: adis_imu_drivers
-    version: indigo-devel
-#- git:
-#    uri: https://github.com/ros-controls/ros_controllers
-#    local-name: ros_controllers
-#    version: indigo-devel
+    uri: https://github.com/open-rdc/ypspur/
+    local-name: ypspur
+    version: kinetic-devel
 - git:
-    uri: https://github.com/DaikiMaekawa/fulanghua_navigation
+    uri: https://github.com/open-rdc/fulanghua_navigation
     local-name: fulanghua_navigation
-    version: indigo-devel
+    version: kinetic-devel
 - git:
     uri: https://github.com/open-rdc/orne_navigation
     local-name: orne_navigation
     version: kinetic-devel
-- git:
-    uri: https://github.com/Nasupl/mpu6050_serial_to_imu
-    local-name: mpu6050_serial_to_imu
-    version: master
 - git:
     uri: https://github.com/open-rdc/navigation
     local-name: navigation
@@ -31,14 +23,7 @@
     local-name: orne_tools
     version: master
 - git:
-    uri: https://github.com/iralabdisco/ira_laser_tools
-    local-name: ira_laser_tools
-    version: kinetic
-- git:
     uri: https://github.com/open-rdc/adi_driver
     local-name: adi_driver
     version: master
-- git:
-    uri: https://github.com/ros-drivers/velodyne
-    local-name: velodyne
-    version: master
+
