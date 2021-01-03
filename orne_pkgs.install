@@ -3,6 +3,10 @@
     local-name: icart_mini
     version: melodic-devel
 - git:
+    uri: https://github.com/open-rdc/ypspur/
+    local-name: ypspur
+    version: melodic-devel
+- git:
     uri: https://github.com/open-rdc/fulanghua_navigation
     local-name: fulanghua_navigation
     version: melodic-devel
@@ -15,10 +19,6 @@
     local-name: navigation
     version: melodic-devel
 - git:
-    uri: https://github.com/ros-planning/navigation_msgs
-    local-name: navigation_msgs
-    version: jade-devel
-- git:
     uri: https://github.com/open-rdc/orne_tools
     local-name: orne_tools
     version: master
@@ -26,11 +26,4 @@
     uri: https://github.com/open-rdc/adi_driver
     local-name: adi_driver
     version: master
-- git:
-    uri: https://github.com/ros-drivers/velodyne
-    local-name: velodyne
-    version: master
-- git:
-    uri: https://github.com/ros-planning/robot_pose_ekf
-    local-name: robot_pose_ekf
-    version: master
+
