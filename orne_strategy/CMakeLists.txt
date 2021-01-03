@@ -5,7 +5,6 @@ project(orne_strategy)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  fulanghua_srvs
   smach
   smach_ros
   std_srvs
