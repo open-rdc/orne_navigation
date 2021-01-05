@@ -68,6 +68,7 @@
         <ray>
           <scan>
             <horizontal>
+<!--          <samples>720</samples>  -->
               <samples>721</samples>
               <resolution>1.0</resolution>
               <min_angle>-3.141592</min_angle>
