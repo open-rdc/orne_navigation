@@ -2,14 +2,7 @@
     <include file="$(find icart_mini_driver)/launch/icart_mini_drive.launch">
         <arg name="model"    value="$(find xacro)/xacro.py '$(find orne_description)/urdf/interaction_robot.xacro'"/>
         <!-- <arg name="ypspur_params" value="/usr/local/share/robot-params/interaction_robot.param"/> -->
- </include>
-
-    <!-- <node pkg="mpu6050_serial_to_imu" type="mpu6050_serial_to_imu_node" name="imu_node">
-        <remap from="imu"        to="imu_data"/>
-        <param name="port"       value="/dev/sensors/imu"/>
-        <param name="imu_frame_id"       value="imu_link"/>
-        <param name="broadcast_tf"       value="false"/>
-    </node> -->
+    </include>
 
     <include file="$(find orne_bringup)/launch/includes/base.launch.xml"/>
 </launch>
