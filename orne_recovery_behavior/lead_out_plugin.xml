@@ -1,0 +1,7 @@
+<library path="lib/libsimple_lead_out">
+  <class name="simple_lead_out/SimpleLeadOut" type="simple_lead_out::SimpleLeadOut" base_class_type="nav_core::RecoveryBehavior">
+    <description>
+      simple lead out
+    </description>
+    </class>
+</library>
