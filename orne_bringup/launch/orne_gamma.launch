@@ -1,0 +1,20 @@
+<launch>
+    <include file="$(find icart_mini_driver)/launch/icart_mini_drive.launch">
+        <arg name="model"    value="$(find xacro)/xacro.py '$(find orne_description)/urdf/orne_gamma.xacro'"/>
+        <arg name="scan_dev" value="/dev/sensors/hokuyo_H1205387"/>
+        <arg name="ypspur_params" value="/usr/local/share/robot-params/icart-mini.param"/>
+    </include>
+
+    <node pkg="urg_node" type="urg_node" name="urg_node_0">
+        <param name="frame_id" value="hokuyo_link" />
+        <param name="serial_port" value="/dev/sensors/hokuyo_H1205387"/>
+        <param name="publish_multiecho" value="false"/>
+        <param name="angle_min" value="-1.047"/>
+        <param name="angle_max" value="1.047"/>
+        <param name="publish_intensity" value="true"/>
+    </node>
+<!--
+    <include file="$(find orne_bringup)/launch/adis16465.launch"/>
+-->
+    <include file="$(find orne_bringup)/launch/includes/base.launch.xml"/>
+</launch>
