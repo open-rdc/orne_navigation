@@ -7,11 +7,6 @@
 
 
   <node pkg="urg_node" type="urg_node" name="urg_node_0">
-<!--
-    <remap from="/scan" to="/diag_scan" />
-    <param name="frame_id" value="diagonally_hokuyo_link" />
-    <param name="serial_port" value="/dev/sensors/hokuyo_H1110848"/>
--->
     <param name="frame_id" value="hokuyo_link" />
     <param name="serial_port" value="/dev/sensors/hokuyo_H1110843"/>
     <param name="publish_multiecho" value="false"/>
