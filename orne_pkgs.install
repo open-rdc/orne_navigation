@@ -1,23 +1,23 @@
 - git:
-    uri: https://github.com/open-rdc/icart_mini
-    local-name: icart_mini
-    version: melodic-devel
+    uri: https://github.com/open-rdc/icart.git
+    local-name: icart
+    version: noetic-devel
 - git:
-    uri: https://github.com/open-rdc/ypspur/
+    uri: https://github.com/open-rdc/ypspur.git
     local-name: ypspur
     version: melodic-devel
 - git:
-    uri: https://github.com/open-rdc/fulanghua_navigation
+    uri: https://github.com/open-rdc/fulanghua_navigation.git
     local-name: fulanghua_navigation
-    version: melodic-devel
+    version: noetic-devel
 - git:
     uri: https://github.com/open-rdc/orne_navigation
     local-name: orne_navigation
-    version: melodic-devel
+    version: noetic-devel
 - git:
-    uri: https://github.com/open-rdc/navigation
+    uri: https://github.com/ros-planning/navigation.git
     local-name: navigation
-    version: melodic-devel
+    version: noetic-devel
 - git:
     uri: https://github.com/open-rdc/orne_tools
     local-name: orne_tools
@@ -25,5 +25,17 @@
 - git:
     uri: https://github.com/open-rdc/adi_driver
     local-name: adi_driver
+    version: master
+- git:
+    uri: https://github.com/iralabdisco/ira_laser_tools.git
+    local-name: ira_laser_tools
+    version: master
+- git:
+    uri: https://github.com/at-wat/mcl_3dl.git
+    local-name: mcl_3dl
+    version: master
+- git:
+    uri: https://github.com/at-wat/mcl_3dl_msgs.git
+    local-name: mcl_3dl_msgs
     version: master
 
