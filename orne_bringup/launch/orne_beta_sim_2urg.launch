@@ -1,5 +1,6 @@
 <launch>
     <include file="$(find icart_mini_gazebo)/launch/icart_mini.launch">
+	<arg name="gui" value="true"/>
         <arg name="model" value="$(find xacro)/xacro.py '$(find orne_description)/urdf/orne_beta_2urg.xacro'"/>
         <!--arg name="world" value="$(find icart_mini_gazebo)/worlds/Tsudanuma_2-3.world"/-->
     </include>
