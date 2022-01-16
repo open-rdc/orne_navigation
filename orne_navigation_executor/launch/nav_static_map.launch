@@ -5,6 +5,7 @@
   <arg name="map_file"   default="$(find orne_navigation_executor)/maps/tsudanuma2-3/tsudanuma2-3"/>
   <arg name="init_pos_file" default="$(find orne_navigation_executor)/initial_pose_cfg/initial_pose.yaml"/>
   <arg name="odom_topic" default="combined_odom"/>
+  <arg name="emcl" default="false"/>
 
   <include file="$(find orne_navigation_executor)/launch/move_base.launch">
     <arg name="robot_name" value="$(arg robot_name)"/>
@@ -17,6 +18,7 @@
     <arg name="robot_name" value="$(arg robot_name)"/>
     <arg name="map_file" value="$(arg map_file)"/>
     <arg name="init_pos_file" value="$(arg init_pos_file)"/>
+    <arg name="emcl" value="$(arg emcl)"/>
   </include>
 
   <node pkg="rviz" type="rviz" name="rviz" args="-d $(find orne_navigation_executor)/rviz_cfg/nav.rviz"/>

@@ -1,0 +1,32 @@
+odom_freq:                    20
+num_particles:                500
+
+odom_frame_id:                odom
+footprint_frame_id:           base_link
+base_frame_id:                base_link
+
+initial_pose_x:               0.0
+initial_pose_y:               0.0
+initial_pose_a:               0.0
+
+odom_fw_dev_per_fw:           0.19
+odom_fw_dev_per_rot:          0.0001
+odom_rot_dev_per_fw:          0.13
+odom_rot_dev_per_rot:         0.2
+
+laser_likelihood_max_dist:    0.2
+
+alpha_threshold:              0.6
+open_space_threshold:         0.05
+
+expansion_radius_position:    0.1
+expansion_radius_orientation: 0.2
+
+laser_min_range:              0.0
+laser_max_range:              100000000.0
+
+scan_increment:               1
+
+#transform_tolerance:         0.5
+#gui_publish_rate:            50.0
+#laser_max_beams:             180
