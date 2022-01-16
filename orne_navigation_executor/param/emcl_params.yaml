@@ -16,10 +16,10 @@ odom_rot_dev_per_rot:         0.2
 
 laser_likelihood_max_dist:    0.2
 
-alpha_threshold:              0.6
+alpha_threshold:              0.4
 open_space_threshold:         0.05
 
-expansion_radius_position:    0.1
+expansion_radius_position:    1.0
 expansion_radius_orientation: 0.2
 
 laser_min_range:              0.0
