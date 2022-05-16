@@ -6,20 +6,28 @@
   <arg name="init_pos_file"  default="$(find orne_navigation_executor)/initial_pose_cfg/initial_pose_$(arg robot_name).yaml"/>
   <arg name="waypoints_file" default="$(find orne_navigation_executor)/waypoints_cfg/waypoints_$(arg robot_name).yaml"/>
   <arg name="dist_err"       default="0.8"/>
-  <arg name="suspend_file"       default="$(find orne_strategy)/suspend_cfg/suspend.yaml"/>
+  
+  <arg name="odom_topic" default="combined_odom"/>
 
-  <include file="$(find orne_navigation_executor)/launch/nav_static_map.launch">
-    <arg name="robot_name"    value="$(arg robot_name)"/>
-    <arg name="map_file"      value="$(arg map_file)"/>
+  <include file="$(find orne_navigation_executor)/launch/move_base.launch">
+    <arg name="robot_name" value="$(arg robot_name)"/>
+    <arg name="map_file" value="$(arg map_file)"/>
+    <arg name="odom_topic" value="$(arg odom_topic)"/>
+    <arg name="cmd_vel" value="icart_mini/cmd_vel"/>
+  </include>
+
+  <include file="$(find orne_navigation_executor)/launch/localization.launch">
+    <arg name="robot_name" value="$(arg robot_name)"/>
+    <arg name="map_file" value="$(arg map_file)"/>
     <arg name="init_pos_file" value="$(arg init_pos_file)"/>
   </include>
 
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find orne_navigation_executor)/rviz_cfg/nav.rviz"/>
   <node name="waypoints_nav" pkg="fulanghua_waypoints_nav" type="waypoints_nav" output="screen">
     <param name="filename" value="$(arg waypoints_file)"/>
     <param name="dist_err" value="$(arg dist_err)"/>
   </node>
 
-  <node name="tsukuba_challenge_strategy" pkg="orne_strategy" type="tsukuba_challenge.py" output="screen">
-    <param name="filename"      value="$(arg suspend_file)"/>
-  </node>
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find orne_navigation_executor)/rviz_cfg/nav.rviz"/>
+
 </launch>
