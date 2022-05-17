@@ -1,12 +1,13 @@
 <?xml version="1.0"?>
 
 <launch>
-  <arg name="robot_name"     default="alpha"/>
+  <arg name="robot_name"     default="alpha"/> <!--please type robot_name alpha or beta or gamma-->
   <arg name="map_file"       default="$(find orne_navigation_executor)/maps/mymap"/>
-  <arg name="init_pos_file"  default="$(find orne_navigation_executor)/initial_pose_cfg/initial_pose_$(arg robot_name).yaml"/>
-  <arg name="waypoints_file" default="$(find orne_navigation_executor)/waypoints_cfg/waypoints_$(arg robot_name).yaml"/>
+  <arg name="init_pos_file"  default="$(find orne_navigation_executor)/initial_pose/initial_pose_$(arg robot_name).yaml"/>
+  <arg name="waypoints_file" default="$(find orne_navigation_executor)/waypoints/waypoints_$(arg robot_name).yaml"/>
   <arg name="dist_err"       default="0.8"/>
-  
+  <erg name="localization_pkg" default="amcl"/>
+
   <arg name="odom_topic" default="combined_odom"/>
 
   <include file="$(find orne_navigation_executor)/launch/move_base.launch">
@@ -20,9 +21,9 @@
     <arg name="robot_name" value="$(arg robot_name)"/>
     <arg name="map_file" value="$(arg map_file)"/>
     <arg name="init_pos_file" value="$(arg init_pos_file)"/>
+    <arg name="localization_pkg" value="$(arg licalization_pkg)"/>
   </include>
 
-  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find orne_navigation_executor)/rviz_cfg/nav.rviz"/>
   <node name="waypoints_nav" pkg="fulanghua_waypoints_nav" type="waypoints_nav" output="screen">
     <param name="filename" value="$(arg waypoints_file)"/>
     <param name="dist_err" value="$(arg dist_err)"/>
