@@ -8,6 +8,15 @@
   <xacro:include filename="$(find icart_mini_description)/urdf/materials.xacro" />
   <xacro:include filename="$(find orne_description)/urdf/orne_x.gazebo"/>
 
+ <!-- Base footprint-->
+ <link name="base_footprint"/>
+
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0.0 0.0 0.010" rpy="0 0 0"/>
+  </joint>
+
   <!-- Base Link -->
   <link name="base_link">
     <collision>
