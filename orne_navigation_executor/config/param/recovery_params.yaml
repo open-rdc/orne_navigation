@@ -1,0 +1,4 @@
+recovery_behaviors: [{name: aggressive_reset, type: clear_costmap_recovery/ClearCostmapRecovery},
+                     {name: simple_lead_out, type: simple_lead_out/SimpleLeadOut},
+                     {name: rotate_recovery, type: rotate_recovery/RotateRecovery},
+                     {name: conservative_reset, type: clear_costmap_recovery/ClearCostmapRecovery}]

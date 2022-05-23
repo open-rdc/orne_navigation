@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<launch>
+  <arg name="robot_name"     default="alpha"/>
+  <arg name="costmap_file"/>
+  <arg name="init_pos_file"  default="$(find orne_navigation_executor)/initial_pose_cfg/initial_pose_$(arg robot_name).yaml"/>
+  <arg name="waypoints_file" default="$(find orne_navigation_executor)/waypoints_cfg/waypoints_$(arg robot_name).yaml"/>
+  <arg name="dist_err"       default="0.8"/>
+  <arg name="suspend_file"       default="$(find orne_strategy)/suspend_cfg/suspend.yaml"/>
+  <arg name="map_pcd"  default="a"/>
+
+  <include file="$(find orne_navigation_executor)/launch/3d_nav_static_map.launch">
+    <arg name="robot_name"    value="$(arg robot_name)"/>
+    <arg name="costmap_file"      value="$(arg costmap_file)"/>
+    <arg name="init_pos_file" value="$(arg init_pos_file)"/>
+    <arg name="map_pcd" value="$(arg map_pcd)"/>
+  </include>
+
+  <node name="waypoints_nav" pkg="fulanghua_waypoints_nav" type="waypoints_nav" output="screen">
+    <param name="filename" value="$(arg waypoints_file)"/>
+    <param name="dist_err" value="$(arg dist_err)"/>
+  </node>
+
+  <node name="tsukuba_challenge_strategy" pkg="orne_strategy" type="tsukuba_challenge.py" output="screen">
+    <param name="filename"      value="$(arg suspend_file)"/>
+  </node>
+</launch>
