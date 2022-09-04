@@ -5,6 +5,7 @@
   <arg name="map_file"      default="$(find orne_navigation_executor)/maps/mymap"/>
   <arg name="init_pos_file" default="$(find orne_navigation_executor)/initial_pose_cfg/initial_pose.yaml"/>
   <arg name="emcl"          default="false"/>
+  <arg name="landmark_filename" default="$(find emcl)/test/maps/landmarks.yaml"/>
 
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file).yaml"/>
 
@@ -22,6 +23,7 @@
     <node pkg="emcl" type="emcl_node" name="emcl_node" output="screen">
       <rosparam file="$(find orne_navigation_executor)/param/emcl_params.yaml" command="load"/>
       <rosparam file="$(arg init_pos_file)" command="load"/>
+      <param name="landmark_filename"        value="$(arg landmark_filename)"/>
     </node>
   </group>
 
