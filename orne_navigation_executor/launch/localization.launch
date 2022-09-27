@@ -2,14 +2,14 @@
 
 <launch>
   <arg name="robot_name"    default="alpha"/>
-  <arg name="map_file"      default="$(find orne_navigation_executor)/maps/mymap"/>
-  <arg name="init_pos_file" default="$(find orne_navigation_executor)/initial_pose_cfg/initial_pose.yaml"/>
+  <arg name="map_file"      default="$(find orne_navigation_executor)/config/maps/mymap"/>
+  <arg name="init_pos_file" default="$(find orne_navigation_executor)/config/initial_pose_cfg/initial_pose.yaml"/>
 
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file).yaml"/>
 
   <node pkg="amcl" type="amcl" name="amcl" output="screen">
     <rosparam file="$(find orne_navigation_executor)/param/localization_params.yaml" command="load"/>
-    <rosparam file="$(find orne_navigation_executor)/param/localization_params_$(arg robot_name).yaml" command="load"/>
+    <rosparam file="$(find orne_navigation_executor)/param/$(arg robot_name)/localization_params_$(arg robot_name).yaml" command="load"/>
     <rosparam file="$(arg init_pos_file)" command="load"/>
   </node>
 </launch>

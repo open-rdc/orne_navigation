@@ -14,10 +14,10 @@
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
     <remap from="/odom" to="$(arg odom_topic)"/>
     <remap from="/cmd_vel" to="$(arg cmd_vel)"/>
-    <rosparam file="$(find orne_navigation_executor)/config/param/costmap_common_params.yaml" command="load" ns="global_costmap"/>
-    <rosparam file="$(find orne_navigation_executor)/config/param/foot_print_$(arg robot_name).yaml" command="load" ns="global_costmap"/>
-    <rosparam file="$(find orne_navigation_executor)/config/param/costmap_common_params.yaml" command="load" ns="local_costmap"/>
-    <rosparam file="$(find orne_navigation_executor)/config/param/foot_print_$(arg robot_name).yaml" command="load" ns="local_costmap"/>
+    <rosparam file="$(find orne_navigation_executor)/config/param/costmap_common_params_$(arg robot_name)..yaml" command="load" ns="global_costmap"/>
+    <!-- <rosparam file="$(find orne_navigation_executor)/config/param/foot_print_$(arg robot_name).yaml" command="load" ns="global_costmap"/> -->
+    <!-- <rosparam file="$(find orne_navigation_executor)/config/param/costmap_common_params.yaml" command="load" ns="local_costmap"/> -->
+    <!-- <rosparam file="$(find orne_navigation_executor)/config/param/foot_print_$(arg robot_name).yaml" command="load" ns="local_costmap"/> -->
     <rosparam file="$(find orne_navigation_executor)/config/param/local_costmap_params.yaml" command="load"/>
     <rosparam file="$(find orne_navigation_executor)/config/param/global_costmap_params.yaml" command="load"/>
     <rosparam file="$(find orne_navigation_executor)/config/param/move_base_params.yaml" command="load"/>
