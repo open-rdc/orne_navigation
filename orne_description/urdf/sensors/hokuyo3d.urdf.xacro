@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<robot name="sensor_hokuyo3d" xmlns:xacro="http://ros.org/wiki/xacro"
+                              xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+                              xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+
+  <xacro:macro name="sensor_hokuyo3d" params="name parent *origin">
+	  <joint name="${name}_joint" type="fixed">
+	      <axis xyz="1 0 0"/>
+	      <insert_block name="origin"/>
+	      <parent link="${parent}"/>
+	      <child link="${name}_link"/>
+	  </joint>
+	
+	  <link name="${name}_link">
+	      <inertial>
+	        <mass value="0.001"/>
+	        <origin rpy="0 0 0" xyz="0 0 0"/>
+	        <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.0001"/>
+	      </inertial>
+	      <visual>
+	        <origin rpy="0 0 0" xyz="0 0 0"/>
+	        <geometry>
+	          <box size="0.1 0.1 0.1"/>
+	        </geometry>
+	      </visual>
+	      <collision>
+	        <origin rpy="0 0 0" xyz="0 0 0"/>
+	        <geometry>
+	          <box size="0.1 0.1 0.1"/>
+	        </geometry>
+	      </collision>
+	  </link>
+	  
+      <gazebo reference="${name}_link">
+        <sensor name="velodyne" type="ray">
+        <always_on>true</always_on>
+        <visualize>false</visualize>
+        <update_rate>5</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>144</samples>
+              <resolution>1.0</resolution>
+              <min_angle>-1.83591184</min_angle>
+              <max_angle>1.83591184</max_angle>
+            </horizontal>
+            <vertical>
+              <samples>74</samples>
+              <resolution>1.0</resolution>
+              <min_angle>-0.0872664626</min_angle>
+              <max_angle>0.610865238</max_angle>
+            </vertical>
+          </scan>
+          <range>
+            <min>0.10</min>
+            <max>20.0</max>
+            <resolution>0.01</resolution>
+          </range>
+        </ray>
+        <plugin name="ros_hokuyo3d" filename="libgazebo_ros_block_laser.so">
+          <gaussianNoise>0.02</gaussianNoise>
+          <updateRate>20</updateRate>
+          <topicName>/${name}/hokuyo_cloud</topicName>
+          <frameName>${name}_link</frameName>
+        </plugin>
+      </sensor>
+    </gazebo>
+  </xacro:macro>
+
+</robot>
