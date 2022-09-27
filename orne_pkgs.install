@@ -1,41 +1,53 @@
 - git:
-    uri: https://github.com/open-rdc/icart.git
-    local-name: icart
-    version: noetic-devel
-- git:
-    uri: https://github.com/open-rdc/ypspur.git
+    uri: https://github.com/DaikiMaekawa/ypspur
     local-name: ypspur
-    version: melodic-devel
+    version: master
 - git:
-    uri: https://github.com/open-rdc/fulanghua_navigation.git
-    local-name: fulanghua_navigation
-    version: noetic-devel
+    uri: https://github.com/openspur/ypspur_ros
+    local-name: ypspur_ros
+    version: master
 - git:
     uri: https://github.com/open-rdc/orne_navigation
     local-name: orne_navigation
-    version: noetic-devel
+    version: refactor/noetic-devel
 - git:
-    uri: https://github.com/ros-planning/navigation.git
+    uri: https://github.com/ros-planning/navigation
     local-name: navigation
     version: noetic-devel
-- git:
-    uri: https://github.com/open-rdc/orne_tools
-    local-name: orne_tools
-    version: master
 - git:
     uri: https://github.com/open-rdc/adi_driver
     local-name: adi_driver
     version: master
 - git:
-    uri: https://github.com/iralabdisco/ira_laser_tools.git
-    local-name: ira_laser_tools
-    version: master
+    uri: https://github.com/technoroad/ADI_IMU_TR_Driver_ROS1
+    local-name: adi_imu_tr_driver
+    version: dev
 - git:
-    uri: https://github.com/at-wat/mcl_3dl.git
+    uri: https://github.com/cra-ros-pkg/robot_localization
+    local-name: robot_localization
+    version: noetic-devel
+- git:
+    uri: https://github.com/NaokiTakahashi12/waypoint_manager
+    local-name: waypoint_manager
+    version: main
+- git:
+    uri: https://github.com/at-wat/mcl_3dl
     local-name: mcl_3dl
     version: master
 - git:
-    uri: https://github.com/at-wat/mcl_3dl_msgs.git
+    uri: https://github.com/at-wat/mcl_3dl_msgs
     local-name: mcl_3dl_msgs
+    version: master
+- git:
+    uri: https://github.com/KumarRobotics/ublox
+    local-name: ublox
+    version: master
+- git:
+    uri: https://github.com/ANYbotics/any_node.git
+    local-name: any_node
+    version: master
+- git:
+    uri: https://github.com/ANYbotics/message_logger.git
+    local-name: message_logger
     version: master
 
