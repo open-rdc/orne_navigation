@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>orne_navigation</name>
+  <version>0.1.0</version>
+  <description>The orne package(meta package)</description>
+  <maintainer email="hoge@todo.todo">taishi</maintainer>
+  <license>BSD</license>
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>orne_description</exec_depend>
+  <exec_depend>orne_bringup</exec_depend>
+  <exec_depend>orne_navigation_executor</exec_depend>
+  <exec_depend>orne_recavery_behavior</exec_depend>
+  <!-- <exec_depend>orne_simulations</exec_depend> -->
+  <export><metapackage/></export>
+</package>
