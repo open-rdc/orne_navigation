@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<package>
+<package format="2">
   <name>orne_bringup</name>
-  <version>0.0.0</version>
+  <version>0.1.0</version>
   <description>The orne_bringup package</description>
 
   <maintainer email="d.maekawa@rapyuta-robotics.com">Daiki Maekawa</maintainer>
@@ -11,12 +11,21 @@
   <author email="d.maekawa@rapyuta-robotics.com">Daiki Maekawa</author>
 
   <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>icart_mini_driver</build_depend>
-  <build_depend>icart_mini_gazebo</build_depend>
-  <run_depend>icart_mini_driver</run_depend>
-  <run_depend>icart_mini_gazebo</run_depend>
-  <run_depend>robot_pose_ekf</run_depend>
-  <run_depend>velodyne</run_depend>
+  
+  <depend>geometry_msgs</depend>
+  <depend>move_base_msgs</depend>
+  <depend>gazebo_ros</depend>
+  <build_depend>roscpp</build_depend>
+  <!-- <build_depend>tf2_eigen</build_depend> -->
+  <build_depend>tf2_ros</build_depend>
+  <exec_depend>gazebo</exec_depend>
+  <exec_depend>orne_description</exec_depend>
+  <exec_depend>urg_node</exec_depend>
+  <!-- <exec_depend>pcl_ros</exec_depend> -->
+  <exec_depend>move_base</exec_depend>
+  <!-- <exec_depend>nodelet</exec_depend> -->
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>robot_localization</exec_depend>
 
   <export>
   </export>

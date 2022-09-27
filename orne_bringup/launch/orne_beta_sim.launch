@@ -1,8 +1,0 @@
-<launch>
-    <include file="$(find icart_mini_gazebo)/launch/icart_mini.launch">
-        <arg name="model" value="$(find xacro)/xacro '$(find orne_description)/urdf/orne_beta.xacro'"/>
-        <arg name="world" value="$(find orne_gazebo)/worlds/Tsudanuma_2-3-without_door.world"/>
-    </include>
-
-    <include file="$(find orne_bringup)/launch/includes/base.launch.xml"/>
-</launch>

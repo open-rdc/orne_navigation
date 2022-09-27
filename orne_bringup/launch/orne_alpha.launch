@@ -1,29 +1,18 @@
 <launch>
-    <include file="$(find icart_mini_driver)/launch/icart_mini_drive.launch">
-        <arg name="model"    value="$(find xacro)/xacro '$(find orne_description)/urdf/orne_alpha.xacro'"/>
-        <arg name="scan_dev" value="/dev/sensors/hokuyo_H1110843"/>
-		<arg name="ypspur_params" value="/usr/local/share/robot-params/orne_x.param"/>
-    </include>
-
-
-  <node pkg="urg_node" type="urg_node" name="urg_node_0">
-    <param name="frame_id" value="hokuyo_link" />
-    <param name="serial_port" value="/dev/sensors/hokuyo_H1110843"/>
-    <param name="publish_multiecho" value="false"/>
-    <param name="angle_min" value="-1.047"/>
-    <param name="angle_max" value="1.047"/>
-    <param name="publish_intensity" value="true"/>
-  </node>
-
-<!--
-    <node pkg="cit_adis_imu" type="imu_node" name="imu_node">
-        <remap from="imu"        to="imu_data"/>
-        <param name="port_name"  value="/dev/sensors/imu"/>
-        <param name="z_axis_dir" value="1"/>
+    <arg name="output" default="screen"/>
+    <arg name="ypspur_serial_port" default="/dev/sensors/icart-mini"/>
+    <node pkg="ypspur_ros" type="ypspur_ros" name="ypspur_ros" output="$(arg output)" respawn="true">
+        <rosparam command="load" file="$(find orne_bringup)/config/ypspur_ros.yaml" subst_value="true"/>
+        <param name="param_file" value="$(find orne_bringup)/config/ypspur/alpha.param"/>
+        <param name="port" value="$(arg ypspur_serial_port)"/>
     </node>
- -->
 
-    <include file="$(find orne_bringup)/launch/adis16465.launch"/>
-
-    <include file="$(find orne_bringup)/launch/includes/base.launch.xml"/>
+    <!-- <include file="$(find orne_bringup)/launch/includes/description.launch.xml"/> -->
+    <include file="$(find orne_bringup)/launch/includes/teleop_joy.launch"/>
+    <include file="$(find orne_bringup)/launch/includes/robot_localization.launch"/>
+    <include file="$(find orne_bringup)/launch/includes/urg.launch"/>
+    
+    <!-- <include file="$(find orne_bringup)/launch/includes/adis16465.launch"/> -->
+    <!-- <node pkg="orne_bringup" type="projected_transform_publisher_node" name="projected_transform_publisher" output="$(arg output)">
+    </node-->
 </launch>

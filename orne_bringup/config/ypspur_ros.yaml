@@ -1,0 +1,6 @@
+compatible: 1
+odom_id: odom
+base_link_id: base_link
+hz: 100
+publish_odom_tf: false
+# TODO add more gain parameters https://github.com/openspur/ypspur_ros/blob/c070c29c33106943426ef2bc832e0fa5aa608ca9/src/ypspur_ros.cpp#L464

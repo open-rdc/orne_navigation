@@ -1,0 +1,7 @@
+<launch>
+  <arg name ="output"    default="screen"/>
+  <arg name="robot_name" default="alpha"/>
+  <arg name="urdf_file" default="$(find xacro)/xacro --inorder '$(find orne_description)/urdf/$(arg robot_name).urdf.xacro'" />
+  <param name="robot_description" command="$(arg urdf_file)" />
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="$(arg output)"/>
+</launch>

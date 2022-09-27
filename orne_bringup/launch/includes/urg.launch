@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<launch>
+  <arg name="scan_topic"          default="hokuyo_scan"/>
+  <arg name="scan_frame"          default="hokuyo_link"/>
+  <arg name="use_eth_urg"         default="true"/>
+  <arg name="urg_ip"              default="192.168.0.10" if="$(arg use_eth_urg)"/>
+  <arg name="scan_dev"            default="/dev/sensors/hokuyo_urg" unless="$(arg use_eth_urg)"/>
+
+  <node pkg="urg_node" type="urg_node" name="urg_node">
+    <remap from="scan" to="$(arg scan_topic)"/>
+    <param name="frame_id" value="$(arg scan_frame)"/>
+    <param name="ip_address"  value="$(arg urg_ip)" if="$(arg use_eth_urg)"/>
+    <param name="serial_port" value="$(arg scan_dev)" unless="$(arg use_eth_urg)"/>
+    <param name="publish_multiecho" value="false"/>
+    <param name="angle_min" value="-1.57"/>
+    <param name="angle_max" value="1.57"/>
+  </node>
+</launch>

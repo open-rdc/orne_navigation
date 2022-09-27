@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="joy_dev" default="/dev/input/js0"/>
+  <arg name="joy_config" default="joy"/>
+  <arg name="cmd_vel" default="cmd_vel"/>
+  <node pkg="joy" type="joy_node" name="joy_node">
+    <param name="dev" value="$(arg joy_dev)"/>
+    <param name="autorepeat_rate" value="20"/>
+  </node>
+  <node pkg="teleop_twist_joy" name="teleop_twist_joy" type="teleop_node">
+    <rosparam command="load" file="$(find orne_bringup)/config/$(arg joy_config).yaml"/>
+    <remap from="cmd_vel" to="$(arg cmd_vel)"/>
+  </node>
+</launch>

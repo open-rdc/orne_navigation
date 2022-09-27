@@ -1,8 +1,0 @@
-<launch>
-    <include file="$(find icart_mini_driver)/launch/icart_mini_drive.launch">
-        <arg name="model"    value="$(find xacro)/xacro '$(find orne_description)/urdf/interaction_robot.xacro'"/>
-        <!-- <arg name="ypspur_params" value="/usr/local/share/robot-params/interaction_robot.param"/> -->
-    </include>
-
-    <include file="$(find orne_bringup)/launch/includes/base.launch.xml"/>
-</launch>
