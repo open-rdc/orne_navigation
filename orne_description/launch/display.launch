@@ -10,5 +10,5 @@
   </node>
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
   <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find orne_box_description)/rviz/model.rviz" required="true" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find orne_description)/rviz/model.rviz" required="true" />
 </launch>

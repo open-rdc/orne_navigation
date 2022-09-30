@@ -22,6 +22,7 @@ laser_likelihood_max_dist: 2.0
 update_min_d: 0.2
 update_min_a: 0.5
 odom_frame_id: odom
+base_frame_id: base_footprint
 resample_interval: 1
 transform_tolerance: 0.1
 recovery_alpha_slow: 0.0
