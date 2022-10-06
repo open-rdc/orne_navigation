@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <launch>
   <arg name="model" default="$(find orne_description)/urdf/alpha/orne_alpha.urdf.xacro"/>
+  <!-- <arg name="model" default="$(find orne_description)/urdf/gamma/orne_gamma.urdf.xacro"/> -->
   <arg name="gui" default="True" />
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg model)"/>
   <param name="use_gui" value="$(arg gui)"/>

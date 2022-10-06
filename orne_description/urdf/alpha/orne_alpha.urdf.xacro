@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!-- Revolute-Revolute Manipulator -->
-<robot name="orne_x" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="orne_alpha" xmlns:xacro="http://ros.org/wiki/xacro">
   <!-- Constants for robot dimensions -->
   <xacro:property name="PI" value="3.1415926535897931"/>
 
@@ -93,35 +93,37 @@
       <origin xyz="0.212 0 0.2485" rpy="0 0 0"/>
   </xacro:sensor_hokuyo>
 
-  <link name="visual_left_wheel">
+  <!-- <link name="visual_left_wheel">
     <visual name="visual">
       <origin xyz="0 0.0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
         <cylinder  length="0.03" radius="0.151"/>
       </geometry>
     </visual>
-  </link>
+  </link> -->
 
-  <joint type="fixed" name="visual_left_wheel_hinge">
+  <!-- <joint type="fixed" name="visual_left_wheel_joint">
     <origin xyz="-0.045 0.233 0.1518" rpy="0 0 0"/>
     <child link="visual_left_wheel">visual_left_wheel</child>
     <parent link="base_link">base_link</parent>
     <axis xyz="0 1 0"/>
-  </joint>
+  </joint> -->
 
   <link name="left_wheel">
     <collision name="collision">
-      <origin xyz="0 0.0 0" rpy="0 1.5707 1.5707"/>
+      <!-- <origin xyz="0 0.0 0" rpy="0 1.5707 1.5707"/> -->
+      <origin xyz="0 0.0 0" rpy="0 0 0"/>
       <geometry>
          <cylinder  length="0.03" radius="0.151"/>
       </geometry>
     </collision>
-    <!--visual name="visual">
-      <origin xyz="0 0.0 0" rpy="0 1.5707 1.5707"/>
+    <visual name="visual">
+      <!-- <origin xyz="0 0.0 0" rpy="0 1.5707 1.5707"/> -->
+      <origin xyz="0 0.0 0" rpy="0 0 0"/>
       <geometry>
-        <cylinder  length="0.03" radius="0.0725"/>
+        <cylinder  length="0.03" radius="0.151"/>
       </geometry>
-    </visual-->
+    </visual>
     <inertial>
       <mass value="1" />
       <origin xyz="0 0.0 0"/>
@@ -129,43 +131,45 @@
     </inertial>
   </link>
 
-  <joint type="revolute" name="left_wheel_hinge">
-    <origin xyz="-0.045 0.223 0.1518" rpy="0 0 0"/>
+  <joint type="revolute" name="left_wheel_joint">
+    <origin xyz="-0.045 0.223 0.1518" rpy="-1.57 0 0"/>
     <child link="left_wheel">left_wheel</child>
     <parent link="base_link">base_link</parent>
-    <axis xyz="0 1 0"/>
+    <axis xyz="0 0 1i"/>
     <limit effort="100" velocity="100.0"  lower="-5000" upper="5000" />
   </joint>
 
-  <link name="visual_right_wheel">
+  <!-- <link name="visual_right_wheel">
     <visual name="visual">
       <origin xyz="0 0.0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
         <cylinder  length="0.03" radius="0.151"/>
       </geometry>
     </visual>
-  </link>
+  </link> -->
 
-  <joint type="fixed" name="visual_right_wheel_hinge">
+  <!-- <joint type="fixed" name="visual_right_wheel_joint">
     <origin xyz="-0.045 -0.223 0.1518" rpy="0 0 0"/>
     <child link="visual_right_wheel">visual_right_wheel</child>
     <parent link="base_link">base_link</parent>
     <axis xyz="0 1 0"/>
-  </joint>
+  </joint> -->
 
   <link name="right_wheel">
     <collision name="collision">
-      <origin xyz="0 0.0 0" rpy="0 1.5707 1.5707"/>
+      <!-- <origin xyz="0 0.0 0" rpy="0 1.5707 1.5707"/> -->
+      <origin xyz="0 0.0 0" rpy="0 0 0"/>
       <geometry>
          <cylinder  length="0.03" radius="0.151"/>
       </geometry>
     </collision>
-    <!--visual name="visual">
-      <origin xyz="0 0.0 0" rpy="0 1.5707 1.5707"/>
+    <visual name="visual">
+      <!-- <origin xyz="0 0.0 0" rpy="0 1.5707 1.5707"/> -->
+      <origin xyz="0 0.0 0" rpy="0 0 0"/>
       <geometry>
-        <cylinder  length="0.03" radius="0.0725"/>
+        <cylinder  length="0.03" radius="0.151"/>
       </geometry>
-    </visual-->
+    </visual>
     <inertial>
       <mass value="1" />
       <origin xyz="0 0.0 0"/>
@@ -173,17 +177,17 @@
     </inertial>
   </link>
 
-  <joint type="revolute" name="right_wheel_hinge">
-    <origin xyz="-0.045 -0.223 0.1518" rpy="0 0 0"/>
+  <joint type="revolute" name="right_wheel_joint">
+    <origin xyz="-0.045 -0.223 0.1518" rpy="-1.57 0 0"/>
     <child link="right_wheel">right_wheel</child>
     <parent link="base_link">base_link</parent>
-    <axis xyz="0 1 0"/>
+    <axis xyz="0 0 1"/>
     <limit effort="100" velocity="100.0"  lower="-5000" upper="5000" />
   </joint>
 
   <transmission name="tran1">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="left_wheel_hinge">
+    <joint name="left_wheel_joint">
       <hardwareInterface>VelocityJointInterface</hardwareInterface>
     </joint>
   <actuator name="left_motor">
@@ -194,7 +198,7 @@
 
   <transmission name="tran2">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="right_wheel_hinge">
+    <joint name="right_wheel_joint">
       <hardwareInterface>VelocityJointInterface</hardwareInterface>
     </joint>
   <actuator name="right_motor">
