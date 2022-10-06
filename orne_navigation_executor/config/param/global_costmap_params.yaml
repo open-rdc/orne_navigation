@@ -1,11 +1,24 @@
-global_costmap:
-   map_topic: map_for_costmap
-   global_frame: map
-   robot_base_frame: base_footprint
-   # robot_base_frame: base_link
+# global_costmap:
+# map_topic: map
+global_frame: map
+robot_base_frame: base_footprint
+# robot_base_frame: base_link
 
-   update_frequency: 1.0
-   publish_frequency: 0.5
-   transform_tolerance: 0.5
+footprint: [[0.514, 0.395], [0.514, -0.395], [-0.314, -0.395], [-0.314, 0.395]]
+inflation_radius: 2.0
+cost_scaling_factor: 1.0
 
-   static_map: true
+update_frequency: 1
+publish_frequency: 1
+transform_tolerance: 2
+
+static_map: false
+rolling_window: false
+always_send_full_costmap: true
+
+plugins:
+- {name: static_layer, type: "costmap_2d::StaticLayer" }
+- {name: obstacles_layer, type: "costmap_2d::ObstacleLayer" }
+- {name: inflation_layer,  type: "costmap_2d::InflationLayer" }   
+
+    
