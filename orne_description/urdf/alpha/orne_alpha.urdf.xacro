@@ -23,14 +23,14 @@
     <collision>
       <origin xyz="0 0 0.1" rpy="0 0 0"/>
       <geometry>
-	       <box size=".40 .45 .134"/>
+	       <box size=".40 .40 .134"/>
       </geometry>
     </collision>
 
     <visual>
       <origin xyz="0.1 0 0.1" rpy="0 0 0"/>
       <geometry>
-	       <box size=".40 .45 .134"/>
+	       <box size=".40 .40 .134"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -38,14 +38,14 @@
     <collision>
       <origin xyz="0.005 0 0.305" rpy="0 0 0"/>
       <geometry>
-	       <box size=".376 .45 .134"/>
+	       <box size=".376 .40 .134"/>
       </geometry>
     </collision>
 
     <visual>
       <origin xyz="0.005 0 0.305" rpy="0 0 0"/>
       <geometry>
-	       <box size=".376 .45 .134"/>
+	       <box size=".376 .40 .134"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -133,9 +133,9 @@
 
   <joint type="revolute" name="left_wheel_joint">
     <origin xyz="-0.045 0.223 0.1518" rpy="-1.57 0 0"/>
-    <child link="left_wheel">left_wheel</child>
-    <parent link="base_link">base_link</parent>
-    <axis xyz="0 0 1i"/>
+    <child link="left_wheel"></child>
+    <parent link="base_link"></parent>
+    <axis xyz="0 0 1"/>
     <limit effort="100" velocity="100.0"  lower="-5000" upper="5000" />
   </joint>
 
@@ -179,8 +179,8 @@
 
   <joint type="revolute" name="right_wheel_joint">
     <origin xyz="-0.045 -0.223 0.1518" rpy="-1.57 0 0"/>
-    <child link="right_wheel">right_wheel</child>
-    <parent link="base_link">base_link</parent>
+    <child link="right_wheel"></child>
+    <parent link="base_link"></parent>
     <axis xyz="0 0 1"/>
     <limit effort="100" velocity="100.0"  lower="-5000" upper="5000" />
   </joint>

@@ -28,7 +28,7 @@
       </geometry>
       <!-- <material name="orange"/> -->
     </visual>
-    <collision>
+    <collision name="collision">
       <!-- <origin xyz="-0.15 0 0.1" rpy="0 0 0"/> -->
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>>
       <geometry>
@@ -49,12 +49,16 @@
       </geometry>
     </visual>
 
-    <inertial>
+    <!-- <inertial>
       <mass value="20" />
       <origin xyz="-0.08 0 0" rpy="0 0 0"/>
       <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1" />
-   </inertial>
-   
+   </inertial> -->
+   <inertial>
+    <mass value="15" />
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1" />
+    </inertial>
  </link>
 
    <!-- <link name="caster"> -->

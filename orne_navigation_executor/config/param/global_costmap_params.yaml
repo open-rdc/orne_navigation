@@ -1,11 +1,11 @@
 # global_costmap:
-# map_topic: map
+map_topic: map
 global_frame: map
 robot_base_frame: base_footprint
 # robot_base_frame: base_link
 
 footprint: [[0.514, 0.395], [0.514, -0.395], [-0.314, -0.395], [-0.314, 0.395]]
-inflation_radius: 2.0
+inflation_radius: 0.5
 cost_scaling_factor: 1.0
 
 update_frequency: 1

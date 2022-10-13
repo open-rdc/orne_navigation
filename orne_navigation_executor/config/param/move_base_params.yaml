@@ -13,5 +13,52 @@ planner_patience: 5.0
 oscillation_timeout: 10.0
 oscillation_distance: 0.2
 
-#base_local_planner: dwa_local_planner/DWAPlannerROS
+# base_local_planner: dwa_local_planner/DWAPlannerROS
 
+
+# planner_frequency: 1.0
+# planner_patience: 5.0
+# base_global_planner: global_planner/GlobalPlanner
+
+# GlobalPlanner:
+#   use_dijkstra: true
+#   use_grid_path: false
+#   use_quadratic: true
+#   visualize_potential: false
+#   publish_potential: false
+#   allow_unknown: false
+#   Overview_map: true
+#   default_tolerance: 0.0
+#   planner_window_x: 0
+#   planner_window_y: 0
+#   orientation_window_size: 2
+#   orientation_mode: 2
+#   lethal_cost: 253
+#   cost_factor: 0.6
+#   neutral_cost: 55.0
+
+# #Local
+# controller_frequency: 5.0
+# controller_patience: 15.0
+# base_local_planner: dwa_local_planner/DWAPlannerROS
+
+# #Recovery_behavior
+recovery_behavior_enabled: true
+# conservative_reset_dist: 3.0
+# oscillation_timeout: 10.0
+# oscillation_distance: 0.2
+# max_planning_retries: -1
+
+# recovery_behaviors:
+#   - name: 'conservative_reset'
+#     type: 'clear_costmap_recovery/ClearCostmapRecovery'
+#   - name: 'rotate_recovery0'
+#     type: 'rotate_recovery/RotateRecovery'
+#   - name: 'aggressive_reset'
+#     type: 'clear_costmap_recovery/ClearCostmapRecovery'
+#   - name: 'rotate_recovery1'
+#     type: 'rotate_recovery/RotateRecovery'
+#   - name: 'all_reset'
+#     type: 'clear_costmap_recovery/ClearCostmapRecovery'
+#   - name: 'rotate_recovery2'
+#     type: 'rotate_recovery/RotateRecovery'

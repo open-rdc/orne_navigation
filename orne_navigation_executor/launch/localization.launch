@@ -4,12 +4,24 @@
   <arg name="robot_name"    default="alpha"/>
   <arg name="map_file"      default="$(find orne_navigation_executor)/config/maps/mymap"/>
   <arg name="init_pos_file" default="$(find orne_navigation_executor)/config/initial_pose_cfg/initial_pose.yaml"/>
+  <arg name="mcl_pkg" default="amcl"/>
 
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file).yaml"/>
 
-  <node pkg="amcl" type="amcl" name="amcl" output="screen">
-    <rosparam file="$(find orne_navigation_executor)/param/localization_params.yaml" command="load"/>
-    <rosparam file="$(find orne_navigation_executor)/param/$(arg robot_name)/localization_params_$(arg robot_name).yaml" command="load"/>
+  <!-- <node pkg="amcl" type="amcl" name="amcl" output="screen">
+    <rosparam file="$(find orne_navigation_executor)/config/param/localization_params.yaml" command="load"/>
+    <rosparam file="$(find orne_navigation_executor)/config/param/$(arg robot_name)/localization_params_$(arg robot_name).yaml" command="load"/>
     <rosparam file="$(arg init_pos_file)" command="load"/>
-  </node>
+  </node> -->
+
+   <include file="$(find emcl2)/launch/emcl2.launch">
+      <arg name="scan_topic"     default="scan"/>
+      <arg name="initial_pose_x" default="-2.0"/>
+      <arg name="initial_pose_y" default="-0.5"/>
+      <arg name="initial_pose_a" default="0.0"/>
+   </include>
+
+   <!-- <include file="$(find als_ros)/launch/mcl.launch">
+   </include>  -->
+
 </launch>
