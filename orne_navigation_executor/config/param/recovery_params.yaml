@@ -1,7 +1,42 @@
-recovery_behaviors: [{name: aggressive_reset, type: clear_costmap_recovery/ClearCostmapRecovery},
-                     {name: rotate_recovery, type: rotate_recovery/RotateRecovery},
-                     {name: conservative_reset, type: clear_costmap_recovery/ClearCostmapRecovery},
-                     {name: rotate_recovery, type: rotate_recovery/RotateRecovery}]
+# recovery
+# + 2021 Tsukuba Challenge
+clearing_rotation_allowed: true
+recovery_behavior_enabled: true
+recovery_behaviors: 
+  - name: local_costmap_clear
+    type: clear_costmap_recovery/ClearCostmapRecovery
+  - name: global_costmap_clear
+    type: clear_costmap_recovery/ClearCostmapRecovery
+  - name: both_costmap_clear
+    type: clear_costmap_recovery/ClearCostmapRecovery
+local_costmap_clear:
+  reset_distance: 4.0
+  force_updating: true
+  affected_maps: local
+  layer_names: 
+    - local_obstacles_layer
+global_costmap_clear:
+  reset_distance: 1.0
+  force_updating: true
+  affected_maps: global
+  layer_names: 
+    - global_obstacles_layer
+both_costmap_clear:
+  reset_distance: 2.0
+  force_updating: true
+  affected_maps: both
+  layer_names: 
+    - local_obstacles_layer
+    - global_obstacles_layer
+move_and_slow:
+  reset_distance: 1.0
+
+
+#<old param>
+# recovery_behaviors: [{name: aggressive_reset, type: clear_costmap_recovery/ClearCostmapRecovery},
+#                      {name: rotate_recovery, type: rotate_recovery/RotateRecovery},
+#                      {name: conservative_reset, type: clear_costmap_recovery/ClearCostmapRecovery},
+#                      {name: rotate_recovery, type: rotate_recovery/RotateRecovery}]
 
 # recovery_behaviors: [{name: aggressive_reset, type: clear_costmap_recovery/ClearCostmapRecovery},
 #                      {name: simple_lead_out, type: simple_lead_out/SimpleLeadOut},

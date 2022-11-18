@@ -36,7 +36,7 @@
     </visual>
 
     <collision>
-      <origin xyz="0.005 0 0.305" rpy="0 0 0"/>
+      <origin xyz="0.005 0 0.300" rpy="0 0 0"/>
       <geometry>
 	       <box size=".376 .40 .134"/>
       </geometry>
@@ -90,7 +90,7 @@
   
   <!-- Setting for levelly fixed 2D URG -->
   <xacro:sensor_hokuyo name="hokuyo" parent="base_link" size="0.05 0.05 0.05">
-      <origin xyz="0.212 0 0.2485" rpy="0 0 0"/>
+      <origin xyz="0.212 0 0.375" rpy="0 0 0"/>
   </xacro:sensor_hokuyo>
 
   <!-- <link name="visual_left_wheel">

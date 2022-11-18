@@ -1,30 +1,54 @@
 <launch>
-
     <arg name="output" default="screen"/>
+    <arg name="laser_filter_file" default="laser_filter.yaml"/>  
     <arg name="ypspur_serial_port" default="/dev/sensors/icart-mini"/>
-    <arg name="robot_name" default="alpha"/>
-        
+    <arg name="use_low_scan" default="false"/>
+
+    <!--ypspur_ros bringup-->>
     <node pkg="ypspur_ros" type="ypspur_ros" name="ypspur_ros" output="$(arg output)" respawn="true">
         <rosparam command="load" file="$(find orne_bringup)/config/ypspur_ros.yaml" subst_value="true"/>
-        <param name="param_file" value="$(find orne_bringup)/config/ypspur/alpha.param"/>
+        <param name="param_file" value="$(find orne_bringup)/config/alpha.param"/>
         <param name="port" value="$(arg ypspur_serial_port)"/>
     </node>
 
-
-    <include file="$(find orne_bringup)/launch/includes/description.launch.xml"/>
-        <param name="robot_name" value="$(arg robot_name)"/>
-    
-    <include file="$(find orne_bringup)/launch/includes/teleop_joy.launch"/>
-    
-    <include file="$(find orne_bringup)/launch/includes/robot_localization.launch"/>
-    
-    <include file="$(find orne_bringup)/launch/includes/urg.launch">
-        <param name="use_eth_urg" value="true"/>
-        <param name="urg_ip" value="192.168.1.102"/>
+    <!--load urdf-->>
+    <include file="$(find orne_bringup)/launch/includes/description.launch.xml">
+        <arg name="robot_name" value="alpha"/>
     </include>
-    
+
+    <!--bringup joy_con-->>
+    <include file="$(find orne_bringup)/launch/includes/teleop_joy.launch">
+        <arg name="cmd_vel" default ="/joy_vel"/>
+    </include>
+
+    <!--brigup localization mix /odom + /imu-->
+    <include file="$(find orne_bringup)/launch/includes/robot_localization.launch"/>
+
+    <!--bringup eth_urg and filter-->
+    <include file="$(find orne_bringup)/launch/includes/urg.launch">
+        <arg name="scan_topic"          default="/hokuyo_scan"/>
+        <arg name="use_eth_urg" default="true"/>
+        <arg name="urg_ip" default="192.168.1.102"/>
+    </include>
+     <node pkg="laser_filters" type="scan_to_scan_filter_chain" name="laser_filter">
+        <rosparam command="load" file="$(find orne_bringup)/config/$(arg laser_filter_file)" />
+        <!-- <remap from="/hokuyo_scan" to="/scan" /> -->
+        <remap from="/scan_filtered" to="/scan"/>
+    </node>
+
+    <!--bringup low_urg-->
+    <!-- <group if ="$(arg use_low_scan)">
+        <include file="$(find orne_bringup)/launch/includes/urg_low.launch">
+    </include>
+    </group> -->
+
+    <!--bringup imu-->
     <include file="$(find orne_bringup)/launch/includes/adis16465.launch"/>
-    
+    <!--cmd_vel mix = nav,joy,seg,stop etc...-->
+    <!-- <include file="$(find twist_mux)/launch/twist_mux.launch"/> -->
+    <!-- <include file="$(find vel_stopper)/launch/vel_stopper.launch"/> -->
+
+     <!-- <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" /> -->
     <!-- <node pkg="orne_bringup" type="projected_transform_publisher_node" name="projected_transform_publisher" output="$(arg output)">
     </node-->
 </launch>

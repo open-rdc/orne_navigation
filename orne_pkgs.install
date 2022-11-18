@@ -19,10 +19,6 @@
     local-name: adi_driver
     version: master
 - git:
-    uri: https://github.com/technoroad/ADI_IMU_TR_Driver_ROS1
-    local-name: adi_imu_tr_driver
-    version: dev
-- git:
     uri: https://github.com/cra-ros-pkg/robot_localization
     local-name: robot_localization
     version: noetic-devel

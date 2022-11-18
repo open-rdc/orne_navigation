@@ -1,13 +1,13 @@
 #local_costmap:
 global_frame: odom
 robot_base_frame: base_footprint
-#robot_base_frame: base_link
+# robot_base_frame: base_link
 
 footprint: [[0.514, 0.395], [0.514, -0.395], [-0.314, -0.395], [-0.314, 0.395]]
 resolution: 0.15
 cost_scaling_factor: 10
 
-inflation_radius: 0.3
+inflation_radius: 0.5
 update_frequency: 3.0
 publish_frequency: 2.0
 transform_tolerance: 1.0

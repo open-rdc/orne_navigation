@@ -12,8 +12,11 @@
     <arg name="headless" value="false"/>
     <arg name="debug" value="false"/>
   </include>
-
+  <include file="$(find orne_bringup)/launch/includes/robot_localization.launch"/>
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(find orne_description)/urdf/$(arg model)/orne_$(arg model).urdf.xacro" />
 
   <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-urdf -model orne_$(arg model) -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description" />
+
+ <include file="$(find orne_bringup)/launch/includes/description.launch.xml"/>
+        <param name="model" value="$(arg model)"/>
 </launch>

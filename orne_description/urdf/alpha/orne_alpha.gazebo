@@ -13,9 +13,9 @@
       <odometryTopic>/odom</odometryTopic>
       <odometryFrame>odom</odometryFrame>
       <odometrySource>world</odometrySource>
-      <publishOdomTF>true</publishOdomTF>
+      <publishOdomTF>false</publishOdomTF><!--true-->
       <robotBaseFrame>base_footprint</robotBaseFrame>
-      <publishWheelTF>true</publishWheelTF>
+      <publishWheelTF>false</publishWheelTF><!--true-->
       <publishTf>true</publishTf>
       <publishWheelJointState>true</publishWheelJointState>
       <legacyMode>false</legacyMode>
@@ -65,7 +65,7 @@
       <alwaysOn>true</alwaysOn>
       <bodyName>imu_link</bodyName>
       <frameName>imu_link</frameName>
-      <topicName>imu</topicName>
+      <topicName>imu_data</topicName>
       <serviceName>imu_service</serviceName>
       <gaussianNoise>0.0</gaussianNoise>
       <updateRate>200</updateRate>
@@ -99,8 +99,10 @@
           <horizontal>
             <samples>720</samples>
             <resolution>1</resolution>
-            <min_angle>-1.570796</min_angle>
-            <max_angle>1.570796</max_angle>
+            <min_angle>-2.356</min_angle>
+            <max_angle>2.356</max_angle>
+            <!-- <min_angle>-1.570796</min_angle>
+            <max_angle>1.570796</max_angle> -->
           </horizontal>
         </scan>
         <range>

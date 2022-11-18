@@ -1,6 +1,6 @@
 <launch>
-
-  <arg name="model" value="$(find orne_description)/urdf/orne_gamma.xacro"/>
+  <arg name="robot_name" default="gamma" />
+  <arg name="model" default="$(find orne_description)/urdf/$(arg robot_name)/orne_$(arg robot_name).urdf.xacro'" />
   <arg name="gui" default="true" />
   <arg name="rvizconfig" default="$(find urdf_tutorial)/rviz/urdf.rviz" />
 
