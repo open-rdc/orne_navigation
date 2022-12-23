@@ -5,9 +5,9 @@
   <xacro:property name="PI" value="3.1415926535897931"/>
 
   <!-- Import Rviz colors -->
-  <xacro:include filename="$(find orne_box_description)/urdf/material_colors.xacro"/>
+  <xacro:include filename="$(find orne_description)/urdf/material_colors.xacro"/>
   <xacro:include filename="$(find orne_description)/urdf/gamma/orne_gamma.gazebo"/>
-  <xacro:include filename="$(find orne_box_description)/urdf/sensors/hokuyo.urdf.xacro"/>
+  <xacro:include filename="$(find orne_description)/urdf/sensors/hokuyo.urdf.xacro"/>
 
   <!--Base Footprint-->
   <link name="base_footprint" />
