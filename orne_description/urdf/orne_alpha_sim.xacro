@@ -39,7 +39,7 @@
 
 <xacro:include filename="$(find orne_description)/urdf/sensors/vlp16.urdf.xacro"/>
 <xacro:vlp16_2d name="velodyne" parent="base_link">
-    <origin xyz="0.098 0.0 0.422" rpy="0 0 0"/>
+    <origin xyz="zz 0.0 0.422" rpy="0 0 0"/>
 </xacro:vlp16_2d>
 
 <!--

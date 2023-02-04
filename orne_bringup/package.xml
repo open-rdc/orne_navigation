@@ -16,7 +16,6 @@
   <run_depend>icart_mini_driver</run_depend>
   <run_depend>icart_mini_gazebo</run_depend>
   <run_depend>robot_pose_ekf</run_depend>
-  <run_depend>ira_laser_tools</run_depend>
   <run_depend>velodyne</run_depend>
 
   <export>

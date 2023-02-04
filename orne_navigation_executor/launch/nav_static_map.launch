@@ -2,7 +2,7 @@
 
 <launch>
   <arg name="robot_name" default="alpha"/>
-  <arg name="map_file"   default="$(find orne_navigation_executor)/maps/tsudanuma2-3/tsudanuma2-3"/>
+  <arg name="map_file"   default="$(find orne_navigation_executor)/maps/mymap"/>
   <arg name="init_pos_file" default="$(find orne_navigation_executor)/initial_pose_cfg/initial_pose.yaml"/>
   <arg name="odom_topic" default="combined_odom"/>
   <arg name="emcl" default="false"/>

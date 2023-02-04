@@ -7,14 +7,21 @@
   <arg name="waypoints_file" default="$(find orne_navigation_executor)/waypoints_cfg/waypoints_$(arg robot_name).yaml"/>
   <arg name="emcl"           default="true"/>
 
-  <arg name="suspend" default="False"/>
-  <param name="state" value="$(arg suspend)"/>
-  <arg name="suspend_file"       default="$(find orne_strategy)/suspend_cfg/suspend.yaml"/>
+  <arg name="suspend"        default="False"/>
+  <param name="state"        value="$(arg suspend)"/>
+  <arg name="suspend_file"   default="$(find orne_strategy)/suspend_cfg/suspend.yaml"/>
+
+<!--    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">-->
+<!--            <param name="robot_description" command="$(find xacro)/xacro &#45;&#45;inorder $(find orne_description)/urdf/orne_alpha_with_vision_sim.xacro"/>-->
+<!--            <param name="publish_frequency" value="50.0"/>-->
+<!--            <param name="use_tf_static" value="true"/>-->
+<!--            <param name="tf_prefix" value="orne_alpha_with_vision_sim"/>-->
+<!--    </node>-->
   <include file="$(find orne_navigation_executor)/launch/play_waypoints_nav_common.launch">
-    <arg name="robot_name"    value="$(arg robot_name)"/>
-    <arg name="map_file"      value="$(arg map_file)"/>
-    <arg name="init_pos_file" value="$(arg init_pos_file)"/>
-    <arg name="waypoints_file" value="$(arg waypoints_file)"/>
+    <arg name="robot_name"        value="$(arg robot_name)"/>
+    <arg name="map_file"          value="$(arg map_file)"/>
+    <arg name="init_pos_file"     value="$(arg init_pos_file)"/>
+    <arg name="waypoints_file"    value="$(arg waypoints_file)"/>
     <arg name="emcl" value="$(arg emcl)"/>
     <arg name="suspend_file"      value="$(arg suspend_file)"/>
 

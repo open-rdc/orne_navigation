@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="gps">
+
+    <link name="gps_link" />
+    <joint name="gps_joint" type="fixed">
+        <origin xyz="0.20 0.0 0.820" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="gps_link" />
+    </joint>
+    <xacro:macro name="gps" params="prefix:=gps">
+        <gazebo>
+        <plugin name="gps" filename="libhector_gazebo_ros_gps.so">
+            <alwaysOn>true</alwaysOn>
+            <updateRate>10.0</updateRate>
+            <topicName>gps/fix</topicName>
+            <gaussianNoise>0.0 0.0 0.0</gaussianNoise>
+            <offset>0 0 0</offset>
+            <velocityGaussianNoise>0 0 0</velocityGaussianNoise>
+            <frameId>gps_link</frameId>
+        </plugin>
+        </gazebo>
+    </xacro:macro>
+</robot>

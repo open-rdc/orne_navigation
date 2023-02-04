@@ -1,8 +1,7 @@
 <launch>
     <include file="$(find icart_mini_gazebo)/launch/icart_mini.launch">
-	<arg name="gui" value="true"/>
-        <arg name="model" value="$(find xacro)/xacro.py '$(find orne_description)/urdf/orne_beta_2urg.xacro'"/>
-        <!--arg name="world" value="$(find icart_mini_gazebo)/worlds/Tsudanuma_2-3.world"/-->
+        <arg name="model" value="$(find xacro)/xacro '$(find orne_description)/urdf/orne_beta_2urg.xacro'"/>
+        <!-- arg name="world" value="$(find icart_mini_gazebo)/worlds/willow.world"/ -->
     </include>
 
     <include file="$(find orne_bringup)/launch/includes/base.launch.xml"/>
