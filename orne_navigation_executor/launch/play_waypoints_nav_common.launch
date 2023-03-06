@@ -56,7 +56,7 @@
     <param name="loop_flag" value="true"/>
   </node> -->
 
-  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find orne_navigarion_executor)/config/rviz_cfg/nav.rviz"/>
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find orne_navigation_executor)/config/rviz_cfg/nav.rviz"/>
   <!-- <node pkg="rviz" type="rviz" name="rviz" args="-d $(find waypoint_visualization)/rviz_config/nav_manager_v5.rviz"/> -->
 
 </launch>
