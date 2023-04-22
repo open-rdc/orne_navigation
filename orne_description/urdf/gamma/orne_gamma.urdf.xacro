@@ -22,99 +22,32 @@
   <!-- Base Link -->
   <link name="base_link">
     <visual>
-      <!-- <origin xyz="-0.15 0 0.1" rpy="0 0 0"/> -->
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>>
       <geometry>
 	    <box size=".485 .43 .15"/>
       </geometry>
-      <!-- <material name="orange"/> -->
     </visual>
     <collision name="collision">
-      <!-- <origin xyz="-0.15 0 0.1" rpy="0 0 0"/> -->
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>>
       <geometry>
 	    <box size=".485 .43 .15"/>
       </geometry>
     </collision>
-
-     <!-- <collision name="collision">
-      <origin xyz="0.15 0.0 -0.075" rpy="1.57 0.0 0.0"/>
-      <geometry>
-        <cylinder  length="0.03" radius="0.04625"/>
-      </geometry>
-    </collision>
-    <visual name="visual">
-      <origin xyz="0.15 0.0 -0.075" rpy="1.57 0.0 0.0"/>
-      <geometry>
-        <cylinder  length="0.03" radius="0.04625"/>
-      </geometry>
-    </visual> -->
-
-    <!-- <inertial>
-      <mass value="20" />
-      <origin xyz="-0.08 0 0" rpy="0 0 0"/>
-      <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1" />
-   </inertial> -->
    <inertial>
     <mass value="15" />
     <origin xyz="0 0 0" rpy="0 0 0"/>
-    <!-- <inertia ixx="0.5" ixy="0" ixz="0" iyy="0.5" iyz="0" izz="0.5" /> -->
     <inertia ixx="0.25925" ixy="0" ixz="0" iyy="0.32216" iyz="0" izz="0.52516" />
     </inertial>
  </link>
 
-   <!-- <link name="caster"> -->
-    <!-- <collision name="collision">
-      <origin xyz="0.15 0.0 -0.075" rpy="1.57 0.0 0.0"/>
-      <geometry>
-        <cylinder  length="0.03" radius="0.04625"/>
-      </geometry>
-    </collision>
-    <visual name="visual">
-      <origin xyz="-0.325 0.0 -0.075" rpy="0 1.5707 1.5707"/>
-      <geometry>
-        <cylinder  length="0.03" radius="0.04625"/>
-      </geometry>
-    </visual> -->
-    <!-- </link> -->
-
-  <!-- <joint name="caster_joint" type="continuous">
-    <axis xyz="0 0 1"/>
-    <parent link="base_link"/>
-    <child link="caster"/>
-    <origin xyz="0.15  0.0 -0.075" rpy="1.57 0 0"/>
-  </joint> -->
-  <!-- <link name="caster_support">
-    <visual name="visual">
-      <geometry>
-        <box size="0.01 0.01 0.01"/>
-      </geometry>
-    </visual>
-    </link> -->
-  
-  <!-- <joint type="continuous" name="caster_joint">
-    <origin xyz="0 -0.15 0.075" rpy="0 0 0"/>
-    <origin xyz="0 0.0 -0.10" rpy="0 1.5707 1.5707"/>
-    <origin xyz="0 -0.15 -0.05" rpy="1.57 0 0"/>
-    <origin xyz="0.0 0.0 0.0" rpy="1.57 0 0"/>
-    <child link="caster"></child>
-    <parent link="caster_support"></parent>
-    <axis xyz="0 0 1"/>
-    <limit effort="100" velocity="100.0"  lower="-5000" upper="5000" />
-  </joint> -->
-
   <link name="left_wheel">
     <collision name="collision">
-      <!-- <origin xyz="0 0.0 -0.10" rpy="0 1.5707 1.5707"/> -->
-      <!-- <origin xyz="-0.15 0.15 -0.05" rpy="-1.57 0.0 0.0"/> -->
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <geometry>
          <cylinder  length="0.03" radius="0.0725"/>
       </geometry>
     </collision>
     <visual name="visual">
-      <!-- <origin xyz="0 0.0 -0.10" rpy="0 0 0"/> -->
-      <!-- <origin xyz="-0.15 0.15 -0.05" rpy="-1.57 0.0 0.0"/> -->
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <geometry>
         <cylinder  length="0.03" radius="0.0725"/>
@@ -122,14 +55,12 @@
     </visual>
     <inertial>
       <mass value="1" />
-      <!-- <origin xyz="-0.15 0.15 -0.05" rpy="-1.57 0.0 0.0"/> -->
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.002" iyz="0" izz="0.001" />
     </inertial>
   </link>
   
   <joint type="continuous" name="left_wheel_joint">
-    <!-- <origin xyz="0 0.15 0.075" rpy="0 0 0"/> -->
     <origin xyz="-0.15 0.15 -0.05" rpy="-1.57 0 0"/>
     <child link="left_wheel"></child>
     <parent link="base_link"></parent>
@@ -138,35 +69,14 @@
     <dynamics damping="0.1"/>
   </joint> 
 
-  <!--link name="visual_right_wheel">
-    <visual name="visual">
-      <origin xyz="0 0.0 0" rpy="0 1.5707 1.5707"/>
-      <geometry>
-        <cylinder  length="0.03" radius="0.0725"/>
-      </geometry>
-    </visual>
-  </link>
-
-  <joint type="fixed" name="visual_right_wheel_joint">
-    <origin xyz="0.15 -0.15 0.075" rpy="0 0 0"/>
-    <child link="visual_right_wheel">visual_right_wheel</child>
-    <parent link="base_link">base_link</parent>
-    <axis xyz="0 1 0"/>
-  </joint-->
-  
   <link name="right_wheel">
     <collision name="collision">
-      <!-- <origin xyz="-0.15 -0.15 -0.05" rpy="-1.57 0.0 0.0"/> -->
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-      <!-- <origin xyz="0 0.0 -0.10" rpy="0 1.5707 1.5707"/> -->
-      <!-- <origin xyz="0 0.15 -0.05" rpy="1.57 0 0"/> -->
       <geometry>
          <cylinder  length="0.03" radius="0.0725"/>
       </geometry>
     </collision>
     <visual name="visual">
-      <!-- <origin xyz="0 0.0 -0.10" rpy="0 1.5707 1.5707"/> -->
-      <!-- <origin xyz="-0.15 -0.15 -0.05" rpy="-1.57 0.0 0.0"/> -->
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <geometry>
         <cylinder  length="0.03" radius="0.0725"/>
@@ -174,15 +84,12 @@
     </visual>
     <inertial>
       <mass value="1" />
-      <!-- <origin xyz="-0.15 -0.15 -0.05" rpy="-1.57 0.0 0.0"/> -->
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.002" iyz="0" izz="0.001" />
     </inertial>
   </link>
   
   <joint type="continuous" name="right_wheel_joint">
-    <!-- <origin xyz="0 -0.15 0.075" rpy="0 0 0"/> -->
-    <!-- <origin xyz="0 0.0 -0.10" rpy="0 1.5707 1.5707"/> -->
     <origin xyz="-0.15 -0.15 -0.05" rpy="-1.57 0 0"/>
     <child link="right_wheel"></child>
     <parent link="base_link"></parent>
@@ -196,8 +103,6 @@
   </xacro:sensor_hokuyo>
 
   <xacro:caster sub="0" parent="base_link" transX="0.15" transY="0.0" transZ="-0.075" />
-    <!-- <origin xyz="0.25 0 0.1" rpy="0 0 0"/> -->
-  <!-- </xacro:caster> -->
 
   <transmission name="tran1">
     <type>transmission_interface/SimpleTransmission</type>

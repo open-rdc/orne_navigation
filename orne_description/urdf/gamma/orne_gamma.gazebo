@@ -1,16 +1,5 @@
 <?xml version="1.0"?>
 <robot>
-  <!-- <xacro:arg name="laser_visual"  default="false"/>
-  <xacro:arg name="camera_visual" default="false"/>
-  <xacro:arg name="imu_visual"    default="false"/> -->
-  <!-- ros_control plugin -->
-  <!-- <gazebo>
-    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-      <robotSimType>icart_mini_gazebo/ICartMiniHWSim</robotSimType> 
-          <robotNamespace>orne_gamma</robotNamespace>
-      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
-    </plugin>
-  </gazebo> -->
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_diff_drive.so">
       <robotNamespace>orne_gamma</robotNamespace>
@@ -28,7 +17,6 @@
       <leftJoint>left_wheel_joint</leftJoint>
       <rightJoint>right_wheel_joint</rightJoint>
       <wheelSeparation>0.3</wheelSeparation>
-      <!-- wheel separation 0.4615 -->
       <wheelDiameter>0.145</wheelDiameter>
       <wheelAcceleration>1</wheelAcceleration>
       <wheelTorque>10</wheelTorque>
@@ -43,8 +31,6 @@
 
   <!-- Left Wheel -->
   <gazebo reference="left_wheel">
-    <!-- <mu1>2.5</mu1>
-    <mu2>2.5</mu2> -->
     <mu1>1.0</mu1>
     <mu2>1.0</mu2>
     <kp>1000000.0</kp>
@@ -57,8 +43,6 @@
 
   <!-- Right Wheel -->
   <gazebo reference="right_wheel">
-    <!-- <mu1>2.5</mu1>
-    <mu2>2.5</mu2> -->
     <mu1>1.0</mu1>
     <mu2>1.0</mu2>
     <kp>1000000.0</kp>
@@ -69,16 +53,6 @@
     <material>Gazebo/Orange</material>
   </gazebo>
   
-  <!--gazebo reference="caster">
-    <mu1>1.0</mu1>
-    <mu2>1.0</mu2>
-    <kp>1000000.0</kp>
-    <kd>100.0</kd>
-    <minDepth>0.001</minDepth>
-    <maxVel>1.0</maxVel>
-
-    <material>Gazebo/Orange</material>
-  </gazebo-->
   <!-- hokuyo -->
   <gazebo reference="hokuyo_link">
     <!-- <sensor type="ray" name="head_hokuyo_sensor"> -->
