@@ -1,4 +1,4 @@
-SUBSYSTEMS=="usb", KERNEL=="ttyACM[0-9]", ACTION=="add", ATTRS{idVendor}=="15d1", ATTRS{idProduct}=="0000", PROGRAM="/opt/ros/melodic/env.sh rosrun urg_node getID %N q", MODE="666", SYMLINK+="sensors/hokuyo_$result", GROUP="dialout"
+SUBSYSTEMS=="usb", KERNEL=="ttyACM[0-9]", ACTION=="add", ATTRS{idVendor}=="15d1", ATTRS{idProduct}=="0000", PROGRAM="/opt/ros/noetic/env.sh rosrun urg_node getID %N q", MODE="666", SYMLINK+="sensors/hokuyo_$result", GROUP="dialout"
 SUBSYSTEMS=="usb", KERNEL=="ttyACM*", ACTION=="add", ATTRS{product}=="T-frog Driver", MODE="666", SYMLINK+="sensors/icart-mini", GROUP="dialout"
 SUBSYSTEMS=="usb", KERNEL=="ttyUSB*", ACTION=="add", ATTRS{product}=="FT232R USB UART", MODE="666", SYMLINK+="sensors/imu", GROUP="dialout"
 SUBSYSTEMS=="usb", KERNEL=="ttyACM*", ACTION=="add", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0043", MODE="666", SYMLINK+="sensors/imu", GROUP="dialout"

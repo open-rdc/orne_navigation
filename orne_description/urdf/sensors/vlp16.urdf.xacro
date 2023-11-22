@@ -6,7 +6,7 @@
   <xacro:macro name="VLP-16" params="name parent *origin">
       <joint name="${name}_joint" type="fixed">
           <axis xyz="1 0 0"/>
-          <insert_block name="origin"/>
+          <xacro:insert_block name="origin"/>
           <parent link="${parent}"/>
           <child link="${name}"/>
       </joint>
@@ -36,7 +36,7 @@
     <joint name="${name}_joint" type="fixed">
         <origin xyz="0.098 0.0 0.422" rpy="0 0 0"/>
         <axis xyz="1 0 0"/>
-        <insert_block name="origin"/>
+        <xacro:insert_block name="origin"/>
         <parent link="${parent}"/>
         <child link="${name}"/>
     </joint>
@@ -98,7 +98,7 @@
   <xacro:macro name="vlp16_3d" params="name parent *origin">
     <joint name="${name}_joint" type="fixed">
         <axis xyz="1 0 0"/>
-        <insert_block name="origin"/>
+        <xacro:insert_block name="origin"/>
         <parent link="${parent}"/>
         <child link="${name}"/>
     </joint>

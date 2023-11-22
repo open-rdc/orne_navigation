@@ -5,7 +5,7 @@
 - git:
     uri: https://github.com/open-rdc/ypspur.git
     local-name: ypspur
-    version: melodic-devel
+    version: noetic-devel
 - git:
     uri: https://github.com/open-rdc/fulanghua_navigation.git
     local-name: fulanghua_navigation
